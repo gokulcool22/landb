@@ -130,6 +130,7 @@ section{padding:clamp(70px,10vw,130px) 0}
 .tile.sm:hover img{transform:scale(2.3)}
 .gal.two .tile{aspect-ratio:3/4}.gal.three{grid-template-columns:repeat(3,1fr);gap:10px}.gal.three .tile{aspect-ratio:3/4}.gal.one{grid-template-columns:1fr}.gal.one .tile.main{grid-column:auto}
 .tile.sm.pic img{transform:none}.tile.sm.pic:hover img{transform:scale(1.05)}
+.gal.one.tall .tile{aspect-ratio:3/4;max-width:420px;margin-inline:auto;width:100%}
 .tile .cap{position:absolute;left:10px;bottom:10px;background:rgba(250,247,242,.92);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px;font-size:.66rem;letter-spacing:.08em;color:var(--indigo)}
 .num{font-family:var(--serif);font-style:italic;color:var(--ochre-text);font-size:1.3rem;margin-bottom:6px;display:block}
 .project h3{margin-bottom:16px}
@@ -644,6 +645,7 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
         <button class="chip" data-f="kitchen" aria-pressed="false">Kitchen</button>
         <button class="chip" data-f="bedroom" aria-pressed="false">Bedroom</button>
         <button class="chip" data-f="commercial" aria-pressed="false">Commercial</button>
+        <button class="chip" data-f="fabrication" aria-pressed="false">Fabrication</button>
       </div>
     </div>
 
@@ -713,6 +715,31 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
           <h3>Wardrobes &amp; Study Corner</h3>
           <p>Floor-to-loft wardrobes with a wood-grain and white finish, a full-length mirror and brass-finish handles, paired with a compact kids' study corner that has a lit overhead cabinet and a built-in desk.</p>
           <div class="tags"><span>Custom Wardrobes</span><span>Loft Storage</span><span>Study Furniture</span></div>
+        </div>
+      </article>
+
+      <article class="project rv" data-cat="kitchen">
+        <div class="gal two">
+          <button class="tile sm pic" data-lb data-img="gk" data-t="Sage-green island kitchen" data-s="Glossy white wall units, sage-green base units and a lit island with a timber-fluted curve."><img data-img="gk" alt="Island kitchen with sage-green base units, glossy white wall units and warm under-lighting" loading="lazy"/></button>
+          <button class="tile sm pic" data-lb data-img="gk2" data-t="Sage-green kitchen" data-s="The same kitchen from another angle."><img data-img="gk2" alt="Sage-green kitchen with a long counter, an island and ceiling light lines" loading="lazy"/></button>
+        </div>
+        <div>
+          <span class="num">06</span>
+          <h3>Sage-Green Island Kitchen</h3>
+          <p>A large kitchen planned around a central island. Sage-green base units and glossy white wall units sit under a ceiling of light lines, with warm light running under the counters and the island, whose front has a timber-fluted curve.</p>
+          <div class="tags"><span>Island Kitchen</span><span>High-Gloss Finish</span><span>Under-Counter Lighting</span></div>
+        </div>
+      </article>
+
+      <article class="project rv" data-cat="fabrication">
+        <div class="gal one tall">
+          <button class="tile main" data-lb data-img="ball" data-t="Illuminated entrance signage" data-s="Halo-lit metal letters on a stone-clad wall, with warm uplighting from the planting below."><img data-img="ball" alt="Illuminated sign with halo-lit letters on a marble-look wall at night" loading="lazy"/><span class="cap">View full</span></button>
+        </div>
+        <div>
+          <span class="num">07</span>
+          <h3>Illuminated Signage</h3>
+          <p>Entrance signage built from halo-lit metal letters on a stone-clad wall, with warm uplighting from the planting below so the name glows at night.</p>
+          <div class="tags"><span>Halo-Lit Letters</span><span>Metal Work</span><span>Signage &amp; Branding</span></div>
         </div>
       </article>
     </div>
@@ -908,7 +935,7 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 const IMG={
   kit3:'img/kitchen-3.jpg',kidw:'img/kids-wardrobe.jpg',
   kit1:'img/kitchen-1.jpg',kit2:'img/kitchen-2.jpg',ward:'img/wardrobe-teak.jpg',kids:'img/kids-room.jpg',
-  tv1:'img/tv-wall-1.jpg',tv2:'img/tv-wall-2.jpg',pooja:'img/pooja-wall-unit.jpg',
+  gk:'img/green-kitchen.jpg',gk2:'img/green-kitchen-2.jpg',ball:'img/ballroom-sign.jpg',tv1:'img/tv-wall-1.jpg',tv2:'img/tv-wall-2.jpg',pooja:'img/pooja-wall-unit.jpg',
   sales1:'img/sales-office-1.jpg',sales2:'img/sales-office-2.jpg',sales3:'img/sales-office-3.jpg',
 };
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
