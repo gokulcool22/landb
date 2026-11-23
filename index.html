@@ -86,11 +86,6 @@ header.solid{background:rgba(250,247,242,.9);backdrop-filter:blur(16px);-webkit-
 .hero h1{margin-bottom:26px}
 .hero .lead{margin-bottom:36px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
-.arch{position:relative;border-radius:999px 999px 20px 20px;overflow:hidden;aspect-ratio:4/5;max-height:76vh;margin-left:auto;width:100%;max-width:520px;box-shadow:0 40px 80px -30px rgba(31,34,61,.45)}
-.arch img{width:100%;height:100%;object-fit:cover;object-position:35% 50%;transform:scale(1.08);transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
-.arch:hover img{transform:scale(1.14)}
-.arch-frame{position:absolute;inset:-14px;border:1px solid var(--ochre);border-radius:999px 999px 30px 30px;opacity:.55;pointer-events:none}
-.hero-vis{position:relative;padding:14px}
 .scroll-cue{position:absolute;left:var(--gutter);bottom:26px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
 .scroll-cue::after{content:"";width:48px;height:1px;background:var(--ochre)}
 
@@ -237,15 +232,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .rot-in{display:block;animation:roll 9s cubic-bezier(.65,0,.25,1) 2.6s infinite}
 .rot-in em{display:block;height:1.15em}
 @keyframes roll{0%,28%{transform:translateY(0)}33%,61%{transform:translateY(-1.15em)}66%,94%{transform:translateY(-2.3em)}100%{transform:translateY(-3.45em)}}
-.rings{position:absolute;right:-8%;top:-6%;width:116%;height:112%;pointer-events:none;z-index:0}
-.rings path{fill:none;stroke:var(--ochre);stroke-width:1;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw2 3s 1.5s cubic-bezier(.4,0,.2,1) forwards;opacity:.5}
-.rings path:nth-child(2){animation-delay:1.8s;stroke:var(--indigo);opacity:.22}
-.rings path:nth-child(3){animation-delay:2.1s;opacity:.3}
 @keyframes draw2{to{stroke-dashoffset:0}}
-.arch{position:relative;z-index:1;will-change:transform}
-.tag-float{position:absolute;z-index:2;left:-6%;bottom:12%;background:rgba(250,247,242,.94);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:12px 16px;font-size:.74rem;box-shadow:0 20px 40px -20px rgba(31,34,61,.35);animation:bob 6s ease-in-out infinite}
-.tag-float b{font-family:var(--serif);font-size:1.05rem;font-weight:600;display:block}
-.tag-float span{color:var(--muted)}
 @keyframes bob{50%{transform:translateY(-8px)}}
 /* marquee */
 .marq{border-block:1px solid var(--line);background:var(--card);overflow:hidden;padding:20px 0;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -499,7 +486,7 @@ footer .fcontact a{display:inline-flex;align-items:center;gap:10px;min-height:46
 footer .fcontact a:hover{background:rgba(250,247,242,.1);border-color:#DFB55C;transform:translateY(-2px)}
 footer .fcontact svg{width:18px;height:18px;flex:none;color:#DFB55C}
 footer .fcopy{text-wrap:balance;margin:10px 0 0;padding-top:22px;width:100%;border-top:1px solid rgba(250,247,242,.14);font-size:.78rem;color:rgba(250,247,242,.6)}
-@media(max-width:560px){footer .fcontact{flex-direction:column;align-items:stretch;width:100%;max-width:340px}footer .fcontact a{justify-content:center}}
+@media(max-width:560px){footer .fcontact{flex-direction:column;align-items:stretch;width:100%;max-width:340px}footer .fcontact a{justify-content:center;min-width:0;padding:0 14px;font-size:.86rem;overflow-wrap:anywhere}}
 @media(max-width:820px){body.at-end .wa,body.at-end .top{opacity:0!important;visibility:hidden!important;pointer-events:none}}
 /* copy buttons next to the phone number and email */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -520,6 +507,56 @@ footer .cp.done{color:#8fe0b0;border-color:#8fe0b0}
 footer .cp.done::after{background:#fff;color:var(--indigo)}
 @media(max-width:560px){footer .fc{width:100%}footer .fc a{flex:1}}
 @media(prefers-reduced-motion:reduce){.cp,.cp svg{transition:none}}
+/* A. cinematic hero: full-screen slideshow of finished work */
+.hero.cine{display:block;padding:0;height:100svh;min-height:600px;background:var(--indigo);color:#fff}
+.hero.cine::before{display:none}
+.cine-slides{position:absolute;inset:0}
+.cs{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.cs.on{opacity:1}
+.cs img{width:100%;height:100%;object-fit:cover;transform:scale(1.03)}
+.cs.on img{animation:csKb 10s ease-out forwards}
+@keyframes csKb{from{transform:scale(1.03)}to{transform:scale(1.14)}}
+.cine.is-paused .cs.on img,.cine.is-off .cs.on img{animation-play-state:paused}
+.cine::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(46,49,86,.62) 0%,rgba(46,49,86,.08) 34%,rgba(46,49,86,.42) 62%,rgba(46,49,86,.9) 100%)}
+.cine-copy{position:absolute;z-index:2;left:var(--gutter);right:var(--gutter);bottom:clamp(104px,16vh,170px);max-width:52rem;margin-inline:auto 0}
+@media(min-width:1344px){.cine-copy{left:calc((100vw - 1280px)/2 + var(--gutter))}}
+.cine .kicker{color:#E7C27A}
+.hero.cine h1{font-size:clamp(2.6rem,7vw,5.6rem);color:#fff;margin:6px 0 20px;text-shadow:0 2px 24px rgba(30,33,60,.35)}
+.cine h1 em{color:#E7C27A}
+.cine .lead{color:rgba(255,255,255,.9);max-width:34em;margin-bottom:0}
+.cine .cine-tag{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2vw,1.45rem);color:#E7C27A;margin:16px 0 26px;max-width:30em}
+.cine .cta{display:flex;flex-wrap:wrap;gap:12px}
+.cine .cine-primary{background:#C5A25B;border-color:#C5A25B;color:var(--indigo);font-weight:600}
+.cine .cine-primary:hover{background:#D8B56A;border-color:#D8B56A}
+.cine .cine-ghost{color:#fff;border-color:rgba(255,255,255,.6);background:transparent}
+.cine .cine-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.cine-bar{position:absolute;z-index:2;left:var(--gutter);right:var(--gutter);bottom:calc(14px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+@media(min-width:821px){.cine-bar{padding-right:84px}}
+@media(min-width:1344px){.cine-bar{left:calc((100vw - 1280px)/2 + var(--gutter));right:calc((100vw - 1280px)/2 + var(--gutter))}}
+.cc{order:3;margin-left:auto;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.cc b{font-family:var(--serif);font-weight:500;font-size:1.1rem;letter-spacing:.02em;text-transform:none;margin-left:8px;color:#fff}
+.ct{order:1;flex:0 1 84px;height:44px;border:0;background:none;padding:0;display:flex;align-items:center;cursor:pointer}
+.ct .tr{display:block;width:100%;height:3px;border-radius:2px;background:rgba(255,255,255,.32);overflow:hidden}
+.ct .tr i{display:block;height:100%;width:0;background:#fff}
+.ct.done .tr i{width:100%}
+.ct.on .tr i{animation:ctFill var(--dur,5.5s) linear forwards}
+.ct:focus-visible,.hpause:focus-visible{outline:2px solid #E7C27A;outline-offset:2px;border-radius:6px}
+.cine.is-paused .ct.on .tr i,.cine.is-off .ct.on .tr i{animation-play-state:paused}
+@keyframes ctFill{to{width:100%}}
+.hpause{order:2;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(46,49,86,.35);color:#fff;display:grid;place-items:center;cursor:pointer;margin-left:6px}
+.hpause svg{width:16px;height:16px;grid-area:1/1}
+.hpause .i-play{display:none}.cine.is-paused .hpause .i-play{display:block}.cine.is-paused .hpause .i-pause{display:none}
+@media(max-height:700px) and (max-width:820px){.cine-tag{display:none}.cine .lead{font-size:.92rem;line-height:1.55}}
+@media(max-height:620px) and (max-width:820px){.cine .kicker{display:none}.cine .lead{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
+@media(max-width:820px){.ct{flex:1 1 0;min-width:0}.cc{order:0;flex:0 0 100%;margin:0 0 2px}.cine-copy{bottom:clamp(120px,19vh,170px)}.cine .lead{font-size:.98rem;line-height:1.65}}
+@media(prefers-reduced-motion:reduce){.cs{transition:none}.cs.on img{animation:none}.ct.on .tr i{animation:none;width:100%}}
+/* C. photos drift as you scroll; the viewer grows out of the photo you tap */
+#works .tile.px img{transform:scale(1.12)}
+#works .tile.px.unveil:not(.in) img{transform:scale(1.3)}
+#works .tile.px:hover img{transform:scale(1.18)}
+.xv{position:fixed;z-index:101;margin:0;max-width:none;object-fit:cover;pointer-events:none;box-shadow:0 30px 80px rgba(20,22,48,.4);transition:left .64s var(--xe,cubic-bezier(.65,0,.2,1)),top .64s var(--xe,cubic-bezier(.65,0,.2,1)),width .64s var(--xe,cubic-bezier(.65,0,.2,1)),height .64s var(--xe,cubic-bezier(.65,0,.2,1)),border-radius .64s var(--xe,cubic-bezier(.65,0,.2,1));will-change:left,top,width,height}
+.lb-stage img.fly{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.xv{transition:none}}
 </style>
 </head>
 <body>
@@ -553,29 +590,28 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 
 <main id="top">
 <!-- HERO -->
-<section class="hero" style="padding-bottom:60px">
-  <div class="wrap">
-    <div>
-      <span class="kicker rv">Interior · Elevation · Fabrication</span>
-      <h1><span class="ln"><span>Rooms shaped by</span></span><span class="ln"><span><span class="rot"><span class="rot-in"><em>light.</em><em>colour.</em><em>space.</em><em>light.</em></span></span></span></span></h1>
-      <p class="lead rv">Lumen &amp; Archue are experts in interior design, elevation and fabrication, creating serene homes and boutique spaces with considered materials, warm lighting and honest detailing that replace visual noise with enduring calm.</p>
-      <p class="rv" style="font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2vw,1.45rem);color:var(--ochre-text);margin-top:18px;max-width:30em">Where your ideas meet our craft, with personal attention to every detail.</p>
-      <div class="cta rv">
-        <a class="btn arrow mag" href="#works">View Projects</a>
-        <a class="btn ghost mag" href="#contact">Start a Conversation</a>
-      </div>
-    </div>
-    <div class="hero-vis rv">
-      <svg class="rings" viewBox="0 0 400 480" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M20 470V200C20 100 100 20 200 20s180 80 180 180v270"/>
-        <path d="M45 470V205C45 118 112 48 200 48s155 70 155 157v265"/>
-        <path d="M70 470V210C70 136 125 76 200 76s130 60 130 134v260"/>
-      </svg>
-      <div class="arch" id="archImg"><img data-img="tv1" alt="Floating TV unit with a slatted wall panel and spotlit shelves" /></div>
-      <div class="tag-float"><b>Slatted TV Wall</b><span>Slatted panelling · Cove lighting · Custom joinery</span></div>
+<section class="hero cine" id="hero" aria-roledescription="carousel" aria-label="Featured projects">
+  <div class="cine-slides" aria-live="off">
+    <div class="cs on" data-name="Site Sales Office"><img src="img/sales-office-1.jpg" srcset="img/sales-office-1-360.jpg 360w, img/sales-office-1-640.jpg 640w, img/sales-office-1.jpg 1280w" sizes="100vw" width="1280" height="960" alt="Warm panelled sales office with concealed LED lighting and a glazed frontage" fetchpriority="high" style="object-position:50% 55%" /></div>
+    <div class="cs" data-name="Slatted TV Wall"><img data-srcset="img/tv-wall-2-360.jpg 360w, img/tv-wall-2-640.jpg 640w, img/tv-wall-2.jpg 1050w" data-src="img/tv-wall-2.jpg" sizes="100vw" width="1050" height="1400" alt="Living room with a slatted TV wall and a cove-lit ceiling" decoding="async" style="object-position:50% 50%" /></div>
+    <div class="cs" data-name="Pooja &amp; Display Wall Unit"><img data-srcset="img/pooja-wall-unit-360.jpg 360w, img/pooja-wall-unit-640.jpg 640w, img/pooja-wall-unit.jpg 1400w" data-src="img/pooja-wall-unit.jpg" sizes="100vw" width="1400" height="1050" alt="Full-wall unit with a laser-cut pooja cabinet and a lit display column" decoding="async" style="object-position:50% 50%" /></div>
+    <div class="cs" data-name="L-Shaped Modular Kitchen"><img data-srcset="img/kitchen-3-360.jpg 360w, img/kitchen-3-640.jpg 640w, img/kitchen-3.jpg 1050w" data-src="img/kitchen-3.jpg" sizes="100vw" width="1050" height="1400" alt="L-shaped modular kitchen with glossy wall units and under-cabinet lighting" decoding="async" style="object-position:50% 62%" /></div>
+  </div>
+  <div class="cine-copy">
+    <span class="kicker rv">Interior · Elevation · Fabrication</span>
+    <h1><span class="ln"><span>Rooms shaped by</span></span><span class="ln"><span><span class="rot"><span class="rot-in"><em>light.</em><em>colour.</em><em>space.</em><em>light.</em></span></span></span></span></h1>
+    <p class="lead rv">Lumen &amp; Archue are experts in interior design, elevation and fabrication, creating serene homes and boutique spaces with considered materials, warm lighting and honest detailing that replace visual noise with enduring calm.</p>
+    <p class="rv cine-tag">Where your ideas meet our craft, with personal attention to every detail.</p>
+    <div class="cta rv">
+      <a class="btn arrow mag cine-primary" href="#works">View Projects</a>
+      <a class="btn ghost mag cine-ghost" href="#contact">Start a Conversation</a>
     </div>
   </div>
-  <div class="scroll-cue">Scroll</div>
+  <div class="cine-bar">
+    <div class="cc" aria-live="polite">Now showing <b>Site Sales Office</b></div>
+    <button type="button" class="ct on" aria-label="Show: Site Sales Office"><span class="tr"><i></i></span></button><button type="button" class="ct" aria-label="Show: Slatted TV Wall"><span class="tr"><i></i></span></button><button type="button" class="ct" aria-label="Show: Pooja and Display Wall Unit"><span class="tr"><i></i></span></button><button type="button" class="ct" aria-label="Show: L-Shaped Modular Kitchen"><span class="tr"><i></i></span></button>
+    <button type="button" class="hpause" aria-label="Pause slideshow"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="3.8" height="14" rx="1"/><rect x="13.7" y="5" width="3.8" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a1 1 0 001.5.86l11-6.8a1 1 0 000-1.72l-11-6.8A1 1 0 008 5.2z"/></svg></button>
+  </div>
 </section>
 
 <div class="marq" aria-hidden="true"><div class="marq-track">
@@ -954,21 +990,50 @@ $$('.filters .chip').forEach(c=>c.addEventListener('click',()=>{      // only th
 // lightbox
 const lb=$('#lb'), lbI=$('#lbI'); let items=[], idx=0, last;
 const build=()=>items=$$('[data-lb]').filter(b=>!b.closest('[hidden]'));
-function show(i){
+function show(i,instant){
   idx=(i+items.length)%items.length; const b=items[idx];
-  lbI.classList.remove('zoom'); lbI.classList.add('swap');
+  lbI.classList.remove('zoom'); if(!instant)lbI.classList.add('swap');
   setTimeout(()=>{
     lbI.src=IMG[b.dataset.img]; lbI.alt=b.dataset.t;
     lbI.style.objectPosition=b.dataset.pos||'50% 50%';
     lbI.classList.remove('swap');
-  },lb.classList.contains('open')?180:0);
+  },instant?0:(lb.classList.contains('open')?180:0));
   $('#lbT').innerHTML=b.dataset.t; $('#lbS').innerHTML=b.dataset.s+' · Click image to zoom';
   $('#lbC').textContent=(idx+1)+' / '+items.length;
 }
 lbI.addEventListener('click',e=>{lbI.classList.toggle('zoom');const r=lbI.getBoundingClientRect();lbI.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%'});
 lbI.addEventListener('pointermove',e=>{if(!lbI.classList.contains('zoom')||e.pointerType==='touch')return;const r=lbI.getBoundingClientRect();lbI.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%'});
-function openLb(b){build();last=b;lb.classList.add('open');document.body.classList.add('lock');show(items.indexOf(b));$('#lbX').focus()}
-function closeLb(){lb.classList.remove('open');document.body.classList.remove('lock');last&&last.focus()}
+const inView=el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth};
+function flyBox(c,r,rad){c.style.left=r.left+'px';c.style.top=r.top+'px';c.style.width=r.width+'px';c.style.height=r.height+'px';c.style.borderRadius=rad}
+function openLb(b){
+  build();last=b;
+  const ti=b.querySelector('img');const fly=!calm&&ti&&ti.naturalWidth>0&&inView(b);
+  const from=fly?b.getBoundingClientRect():null;
+  lb.classList.add('open');document.body.classList.add('lock');
+  show(items.indexOf(b),fly);$('#lbX').focus({preventScroll:true});
+  if(!fly)return;
+  // where the photo will end up inside the viewer
+  const st=lbI.parentNode,sr=st.getBoundingClientRect(),cs=getComputedStyle(st),
+    pl=parseFloat(cs.paddingLeft)||0,pr=parseFloat(cs.paddingRight)||0,pt=parseFloat(cs.paddingTop)||0,pbm=parseFloat(cs.paddingBottom)||0,
+    bw=sr.width-pl-pr,bh=sr.height-pt-pbm,ar=ti.naturalWidth/ti.naturalHeight,w=Math.min(bw,bh*ar),h=w/ar;
+  const to={left:sr.left+pl+(bw-w)/2,top:sr.top+pt+(bh-h)/2,width:w,height:h};
+  const c=document.createElement('img');c.className='xv';c.alt='';c.src=ti.currentSrc||ti.src;c.style.objectPosition=getComputedStyle(ti).objectPosition;
+  flyBox(c,from,'18px');document.body.appendChild(c);lbI.classList.add('fly');void c.offsetWidth;
+  requestAnimationFrame(()=>flyBox(c,to,'10px'));
+  let done=false;const finish=()=>{if(done)return;done=true;lbI.classList.remove('fly');c.remove()};
+  const landed=()=>{if(lbI.complete&&lbI.naturalWidth>0)finish();else{lbI.addEventListener('load',finish,{once:true});setTimeout(finish,2500)}};
+  c.addEventListener('transitionend',e=>{if(e.propertyName==='width')landed()});setTimeout(landed,900);
+}
+function closeLb(){
+  const b=items[idx],ti=b&&b.querySelector('img');
+  if(!calm&&lb.classList.contains('open')&&b&&ti&&inView(b)&&!lbI.classList.contains('zoom')&&lbI.naturalWidth>0){
+    const c=document.createElement('img');c.className='xv';c.alt='';c.src=lbI.currentSrc||lbI.src;c.style.objectPosition=getComputedStyle(ti).objectPosition;
+    flyBox(c,lbI.getBoundingClientRect(),'10px');document.body.appendChild(c);lbI.classList.add('fly');void c.offsetWidth;
+    requestAnimationFrame(()=>flyBox(c,b.getBoundingClientRect(),'18px'));
+    setTimeout(()=>{c.remove();lbI.classList.remove('fly')},720);
+  }
+  lb.classList.remove('open');document.body.classList.remove('lock');last&&last.focus({preventScroll:true});
+}
 $$('[data-lb]').forEach(b=>b.addEventListener('click',()=>openLb(b)));
 $('#lbX').onclick=closeLb; $('#lbP').onclick=()=>show(idx-1); $('#lbN').onclick=()=>show(idx+1);
 lb.addEventListener('click',e=>{if(e.target===lb||e.target.id==='lbStage')closeLb()});
@@ -1272,13 +1337,59 @@ const BA=[];
     try{await navigator.clipboard.writeText(t);return true}catch(e){}
     try{const a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(e){return false}
   };
-  $$('.cp').forEach(b=>b.addEventListener('click',async()=>{
+  $$('.cp[data-copy]').forEach(b=>b.addEventListener('click',async()=>{
     const ok=await copy(b.dataset.copy);const label='Copy '+b.dataset.what;
     if(live)live.textContent=ok?(b.dataset.what[0].toUpperCase()+b.dataset.what.slice(1)+' copied'):'Could not copy. Please select and copy it by hand.';
     if(!ok)return;
     b.classList.add('done');b.setAttribute('aria-label','Copied');
     clearTimeout(b._t);b._t=setTimeout(()=>{b.classList.remove('done');b.setAttribute('aria-label',label)},1800);
   }));
+})();
+
+// ---- A. cinematic hero slideshow ----
+(function(){
+  const hero=$('.cine');if(!hero)return;
+  const slides=$$('.cs',hero),ticks=$$('.ct',hero),cap=$('.cc b',hero),pb=$('.hpause',hero);
+  const DUR=5500;hero.style.setProperty('--dur',DUR+'ms');
+  let i=0,timer=null,userPaused=!!calm,visible=true,tabOn=!document.hidden;
+  // the other photos load once the page itself has finished loading
+  const loadRest=()=>$$('img[data-src]',hero).forEach(m=>{m.srcset=m.dataset.srcset;m.src=m.dataset.src;m.removeAttribute('data-src')});
+  if(document.readyState==='complete')setTimeout(loadRest,300);else addEventListener('load',()=>setTimeout(loadRest,300),{once:true});
+  const running=()=>!userPaused&&visible&&tabOn;
+  const arm=()=>{clearTimeout(timer);hero.classList.toggle('is-paused',userPaused);hero.classList.toggle('is-off',!visible||!tabOn);if(running())timer=setTimeout(()=>go(i+1),DUR)};
+  const go=n=>{
+    n=(n+slides.length)%slides.length;
+    ticks.forEach((t,k)=>{t.classList.remove('on','done');if(k<n)t.classList.add('done')});
+    slides[i].classList.remove('on');i=n;slides[i].classList.add('on');
+    void ticks[i].offsetWidth;ticks[i].classList.add('on');
+    cap.textContent=slides[i].dataset.name.replace(/&amp;/g,'&');
+    ticks.forEach((t,k)=>t.setAttribute('aria-current',k===i?'true':'false'));
+    arm();
+  };
+  ticks.forEach((t,k)=>t.addEventListener('click',()=>go(k)));
+  pb.addEventListener('click',()=>{userPaused=!userPaused;pb.setAttribute('aria-label',userPaused?'Play slideshow':'Pause slideshow');if(!userPaused){go(i)}else arm()});
+  pb.setAttribute('aria-label',userPaused?'Play slideshow':'Pause slideshow');
+  if('IntersectionObserver' in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;arm()},{threshold:.15}).observe(hero);
+  document.addEventListener('visibilitychange',()=>{tabOn=!document.hidden;arm()});
+  ticks[0].setAttribute('aria-current','true');
+  if(userPaused){hero.classList.add('is-paused');ticks[0].classList.add('on')}else arm();
+})();
+
+// ---- C. gentle drift of the project photos as the page scrolls ----
+(function(){
+  if(calm)return;
+  const tiles=$$('#works .tile');if(!tiles.length)return;
+  tiles.forEach(t=>t.classList.add('px'));
+  let busy=false;
+  const run=()=>{busy=false;const vh=innerHeight;
+    tiles.forEach(t=>{const r=t.getBoundingClientRect();if(!r.height||r.bottom<-60||r.top>vh+60)return;
+      const im=t.querySelector('img');if(!im)return;
+      const p=Math.max(-.6,Math.min(.6,(r.top+r.height/2)/vh-.5));   // about -0.5 (top of screen) .. +0.5 (bottom)
+      im.style.translate='0 '+(-p*r.height*.08).toFixed(1)+'px'})};
+  const kick=()=>{if(!busy){busy=true;requestAnimationFrame(run)}};
+  addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);
+  $$('.filters .chip').forEach(c=>c.addEventListener('click',()=>setTimeout(kick,60)));
+  run();
 })();
 </script>
 </body>
