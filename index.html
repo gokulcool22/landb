@@ -118,7 +118,7 @@ section{padding:clamp(70px,10vw,130px) 0}
 .tile.sm{aspect-ratio:1/1}
 .tile.sm img{transform:scale(2.1)}
 .tile.sm:hover img{transform:scale(2.3)}
-.gal.two .tile{aspect-ratio:3/4}.gal.one{grid-template-columns:1fr}.gal.one .tile.main{grid-column:auto}
+.gal.two .tile{aspect-ratio:3/4}.gal.three{grid-template-columns:repeat(3,1fr);gap:10px}.gal.three .tile{aspect-ratio:3/4}.gal.one{grid-template-columns:1fr}.gal.one .tile.main{grid-column:auto}
 .tile.sm.pic img{transform:none}.tile.sm.pic:hover img{transform:scale(1.05)}
 .tile .cap{position:absolute;left:10px;bottom:10px;background:rgba(250,247,242,.92);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px;font-size:.66rem;letter-spacing:.08em;color:var(--indigo)}
 .num{font-family:var(--serif);font-style:italic;color:var(--ochre);font-size:1.3rem;margin-bottom:6px;display:block}
@@ -602,7 +602,8 @@ form.sent .f,form.sent>.btn,form.sent .note{display:none}
       </article>
 
       <article class="project rv" data-cat="kitchen">
-        <div class="gal two">
+        <div class="gal three">
+          <button class="tile sm pic" data-lb data-img="kit3" data-t="L-shaped modular kitchen" data-s="Full view of the L-shaped layout with glossy wall units and a black granite counter."><img data-img="kit3" alt="L-shaped modular kitchen with glossy wall units and patterned backsplash" loading="lazy"/></button>
           <button class="tile sm pic" data-lb data-img="kit1" data-t="L-shaped modular kitchen" data-s="Glossy upper cabinets, soft-toned base units and a black granite counter."><img data-img="kit1" alt="L-shaped modular kitchen with patterned backsplash and under-cabinet lighting" loading="lazy"/></button>
           <button class="tile sm pic" data-lb data-img="kit2" data-t="Kitchen with serving counter" data-s="Warm under-cabinet lighting over a patterned tile backsplash."><img data-img="kit2" alt="Modular kitchen seen through a serving counter opening" loading="lazy"/></button>
         </div>
@@ -615,9 +616,10 @@ form.sent .f,form.sent>.btn,form.sent .note{display:none}
       </article>
 
       <article class="project rv" data-cat="bedroom">
-        <div class="gal two">
+        <div class="gal three">
           <button class="tile sm pic" data-lb data-img="ward" data-t="Bedroom wardrobe" data-s="Full-height wardrobe with loft storage, a mirrored door and brass-finish handles."><img data-img="ward" alt="Teak and white bedroom wardrobe with loft storage and a mirror" loading="lazy"/></button>
           <button class="tile sm pic" data-lb data-img="kids" data-t="Kids' room study corner" data-s="A built-in study desk with a lit overhead cabinet, beside a storage bed."><img data-img="kids" alt="Kids room with a study desk, lit overhead cabinet and storage bed" loading="lazy"/></button>
+          <button class="tile sm pic" data-lb data-img="kidw" data-t="Kids' room wardrobe" data-s="Blue and white wardrobe with a full-length mirror and a lit display column."><img data-img="kidw" alt="Blue and white kids room wardrobe with mirror and lit display column" loading="lazy"/></button>
         </div>
         <div>
           <span class="num">08</span>
@@ -772,6 +774,7 @@ form.sent .f,form.sent>.btn,form.sent .note{display:none}
 
 <script>
 const IMG={
+  kit3:'img/kitchen-3.jpg',kidw:'img/kids-wardrobe.jpg',
   kit1:'img/kitchen-1.jpg',kit2:'img/kitchen-2.jpg',ward:'img/wardrobe-teak.jpg',kids:'img/kids-room.jpg',
   tv1:'img/tv-wall-1.jpg',tv2:'img/tv-wall-2.jpg',pooja:'img/pooja-wall-unit.jpg',
   sales1:'img/sales-office-1.jpg',sales2:'img/sales-office-2.jpg',sales3:'img/sales-office-3.jpg',
