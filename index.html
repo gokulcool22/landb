@@ -176,6 +176,13 @@ label{display:block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercas
 input,select,textarea{width:100%;font:inherit;font-size:1rem;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--ivory);color:var(--indigo);transition:.2s}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ochre);box-shadow:0 0 0 3px rgba(200,147,46,.18)}
 textarea{resize:vertical;min-height:110px}
+.fgrp{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--indigo);margin:0 0 14px;padding-top:4px}
+.fgrp em{font-style:normal;color:var(--muted);letter-spacing:.06em;text-transform:none;font-weight:400}
+.fgrp:not(:first-child){margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.hint{text-transform:none;letter-spacing:0;font-weight:400}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+input:user-invalid{border-color:#b3412f}
 form .btn{width:100%;margin-top:6px}
 .note{font-size:.76rem;color:var(--muted);margin-top:12px;text-align:center}
 
@@ -309,6 +316,20 @@ form.sent .f,form.sent>.btn,form.sent .note{display:none}
 .btn360{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:12px 20px;border-radius:999px;border:1px solid var(--ochre);background:none;color:var(--indigo);font:inherit;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:.35s}
 .btn360:hover{background:var(--ochre);color:#fff;transform:translateY(-2px)}
 .btn360 svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round}
+/* before / after slider */
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(20px,3vw,40px)}
+.ba{margin:0}
+.ba-frame{position:relative;overflow:hidden;border-radius:22px;aspect-ratio:4/3;background:var(--ivory-warm);touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:ew-resize;box-shadow:0 30px 60px -34px rgba(31,34,61,.45);outline-offset:4px}
+.ba-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+.ba-before{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.ba-line{position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.35);pointer-events:none}
+.ba-knob{position:absolute;top:50%;left:var(--p,50%);width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;color:var(--indigo);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none;transition:transform .3s}
+.ba-frame:hover .ba-knob,.ba-frame:focus-visible .ba-knob{transform:scale(1.1)}
+.ba-knob svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ba-tag{position:absolute;top:14px;padding:6px 14px;border-radius:999px;background:rgba(250,247,242,.92);backdrop-filter:blur(8px);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo);pointer-events:none}
+.ba-tag.b{left:14px}.ba-tag.a{right:14px}
+.ba figcaption{margin-top:14px;font-family:var(--serif);font-size:1.3rem}
+.ba figcaption small{display:block;font-family:var(--sans,inherit);font-size:.86rem;color:var(--muted);font-weight:300;margin-top:2px}
 .wa{position:fixed;right:18px;bottom:22px;z-index:46;display:flex;align-items:center;gap:0;height:54px;padding:0 15px;border-radius:999px;background:#25D366;color:#fff;box-shadow:0 14px 30px -10px rgba(18,140,70,.55);text-decoration:none;overflow:hidden;transition:transform .35s,box-shadow .35s,bottom .35s,gap .35s,padding .35s}
 .wa svg{width:26px;height:26px;flex:none;fill:#fff}
 .wa span{max-width:0;opacity:0;white-space:nowrap;font-size:.85rem;font-weight:500;letter-spacing:.04em;transition:max-width .4s,opacity .3s}
@@ -614,6 +635,17 @@ form.sent .f,form.sent>.btn,form.sent .note{display:none}
   </div>
 </section>
 
+<!-- BEFORE / AFTER (appears only when pairs are added in the BA list in the script) -->
+<section id="ba" hidden>
+  <div class="wrap">
+    <div class="head">
+      <div><span class="kicker rv">Transformations</span><h2 class="rv">Before &amp; <em>after</em></h2></div>
+      <p class="lead rv" style="max-width:26em">Drag the slider to see how each space changed.</p>
+    </div>
+    <div class="ba-grid" id="baGrid"></div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section id="services" class="alt">
   <div class="wrap">
@@ -678,20 +710,45 @@ form.sent .f,form.sent>.btn,form.sent .note{display:none}
       </div>
     </div>
     <form id="form" class="rv">
-      <div class="f"><label for="n">Your name</label><input id="n" name="name" required autocomplete="name" placeholder="e.g. Ananya Sharma" /></div>
-      <div class="f"><label for="p">Phone (optional)</label><input id="p" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Your number" /></div>
-      <div class="f"><label id="tl">Project type</label>
-        <input type="hidden" id="t" value="Full Residence Interior" />
-        <div class="opts" role="group" aria-labelledby="tl">
-          <button type="button" class="opt" aria-pressed="true">Full Residence Interior</button>
-          <button type="button" class="opt" aria-pressed="false">Living &amp; Dining</button>
-          <button type="button" class="opt" aria-pressed="false">Kitchen &amp; Joinery</button>
-          <button type="button" class="opt" aria-pressed="false">Bedroom Suite</button>
-          <button type="button" class="opt" aria-pressed="false">Boutique / Commercial</button>
+      <p class="fgrp">Your details <em>(required)</em></p>
+      <div class="f"><label for="n">Your name *</label><input id="n" name="name" required autocomplete="name" placeholder="e.g. Ananya Sharma" /></div>
+      <div class="two">
+        <div class="f"><label for="p">Phone *</label><input id="p" name="phone" type="tel" required autocomplete="tel" inputmode="tel" pattern="[0-9\s+\-]{8,18}" title="Enter a phone number, for example 90252 84259" placeholder="Your number" /></div>
+        <div class="f"><label for="e">Email *</label><input id="e" name="email" type="email" required autocomplete="email" placeholder="you@example.com" /></div>
+      </div>
+      <p class="fgrp">About your project <em>(all optional)</em></p>
+      <div class="f"><label id="pl">Property type</label>
+        <div class="opts" role="group" aria-labelledby="pl">
+          <button type="button" class="opt" data-g="prop" aria-pressed="false">Apartment</button>
+          <button type="button" class="opt" data-g="prop" aria-pressed="false">Villa / House</button>
+          <button type="button" class="opt" data-g="prop" aria-pressed="false">Office</button>
+          <button type="button" class="opt" data-g="prop" aria-pressed="false">Shop / Showroom</button>
         </div></div>
-      <div class="f"><label for="m">About your space</label><textarea id="m" placeholder="Location, size, timeline, the feeling you want..."></textarea></div>
+      <div class="f"><label id="sl">What do you need? <span class="hint">(choose any)</span></label>
+        <div class="opts" role="group" aria-labelledby="sl">
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Interior Design</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Exterior &amp; Elevation</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Modular Kitchen &amp; Wardrobes</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Space Planning</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">3D Visualisation</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Custom Furniture</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">False Ceiling &amp; Lighting</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Signage &amp; Branding</button>
+          <button type="button" class="opt" data-g="svc" aria-pressed="false">Metal &amp; CNC Work</button>
+        </div></div>
+      <div class="two">
+        <div class="f"><label for="loc">Location</label><input id="loc" name="location" autocomplete="address-level2" placeholder="City or area" /></div>
+        <div class="f"><label for="ar">Approx. area (sq ft)</label><input id="ar" name="area" inputmode="numeric" placeholder="e.g. 1200" /></div>
+      </div>
+      <div class="two">
+        <div class="f"><label for="bd">Budget range</label>
+          <select id="bd" name="budget"><option value="">Prefer not to say</option><option>Under ₹5 lakh</option><option>₹5 – 10 lakh</option><option>₹10 – 25 lakh</option><option>₹25 – 50 lakh</option><option>Above ₹50 lakh</option><option>Not sure yet</option></select></div>
+        <div class="f"><label for="tm">Timeline</label>
+          <select id="tm" name="timeline"><option value="">Not decided</option><option>As soon as possible</option><option>Within 1–3 months</option><option>In 3–6 months</option><option>Just exploring</option></select></div>
+      </div>
+      <div class="f"><label for="m">Anything else we should know?</label><textarea id="m" placeholder="The feeling you want, the light the rooms get, what you already have..."></textarea></div>
       <button class="btn arrow" type="submit">Send Enquiry</button>
-      <p class="note">Opens your email app with the message ready to send.</p>
+      <p class="note">Only your name, phone and email are required. Sending opens your email app with the message ready.</p>
       <div class="ok" id="ok" role="status">
         <svg viewBox="0 0 64 68" fill="none"><path d="M10 64V28C10 15.85 19.85 6 32 6s22 9.85 22 22v36" stroke="#C8932E" stroke-width="2.4" stroke-linecap="round"/></svg>
         <h3>Thank you</h3>
@@ -792,14 +849,19 @@ st.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
 st.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(idx+(d<0?1:-1));sx=null});
 
 // contact form -> mailto
-$$('.opt').forEach(o=>o.addEventListener('click',()=>{$$('.opt').forEach(x=>x.setAttribute('aria-pressed',x===o));$('#t').value=o.textContent}));
+$$('.opt').forEach(o=>o.addEventListener('click',()=>{const on=o.getAttribute('aria-pressed')!=='true';
+  if(o.dataset.g==='prop')$$('.opt[data-g="prop"]').forEach(x=>x.setAttribute('aria-pressed','false'));   // one property type, or none
+  o.setAttribute('aria-pressed',on)}));
+const picked=g=>$$('.opt[data-g="'+g+'"][aria-pressed="true"]').map(x=>x.textContent);
 let lastBody='';
 $('#form').addEventListener('submit',e=>{
   e.preventDefault();
   const v=id=>$('#'+id).value.trim();
-  lastBody=`Name: ${v('n')}\nPhone: ${v('p')||'-'}\nProject: ${$('#t').value}\n\n${v('m')}`;
+  const lines=[['Name',v('n')],['Phone',v('p')],['Email',v('e')],['Property type',picked('prop').join(', ')],['Needs',picked('svc').join(', ')],['Location',v('loc')],['Area',v('ar')&&v('ar')+' sq ft'],['Budget',v('bd')],['Timeline',v('tm')]]
+    .filter(l=>l[1]).map(l=>l[0]+': '+l[1]);
+  lastBody=lines.join('\n')+(v('m')?'\n\n'+v('m'):'');
   $('#form').classList.add('sent'); $('#ok').classList.add('show');
-  location.href='mailto:preethi.lumenarchue@gmail.com?subject='+encodeURIComponent('Enquiry: '+$('#t').value)+'&body='+encodeURIComponent(lastBody);
+  location.href='mailto:preethi.lumenarchue@gmail.com?subject='+encodeURIComponent('Project enquiry from '+v('n'))+'&body='+encodeURIComponent(lastBody);
 });
 $('#copyBtn').addEventListener('click',async e=>{try{await navigator.clipboard.writeText('To: preethi.lumenarchue@gmail.com\n\n'+lastBody);e.target.textContent='Copied ✓'}catch{e.target.textContent='Copy not available'}});
 
@@ -959,6 +1021,36 @@ function bind(){
     st.off=(o=>()=>{o&&o();h&&removeEventListener('deviceorientation',h);G.onclick=null;G.textContent='Tilt to look'})(st.off);
   }
 }
+})();
+
+// ---- before / after sliders. To add one: put two same-angle photos in img/ and add a line to BA ----
+// Example: {before:'img/living-before.jpg', after:'img/living-after.jpg', title:'Living room', note:'Full redesign'}
+const BA=[];
+(function(){
+  const sec=$('#ba'),grid=$('#baGrid');if(!sec||!BA.length)return;
+  const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  grid.innerHTML=BA.map(b=>`<figure class="ba"><div class="ba-frame" role="slider" tabindex="0" aria-label="Drag to compare before and after: ${esc(b.title)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">`
+    +`<img src="${esc(b.after)}" alt="${esc(b.title)} after" loading="lazy"/><img class="ba-before" src="${esc(b.before)}" alt="${esc(b.title)} before" loading="lazy"/>`
+    +`<span class="ba-tag b">Before</span><span class="ba-tag a">After</span><span class="ba-line"></span>`
+    +`<span class="ba-knob"><svg viewBox="0 0 24 24"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>`
+    +`<figcaption>${esc(b.title)}${b.note?`<small>${esc(b.note)}</small>`:''}</figcaption></figure>`).join('');
+  sec.hidden=false;
+  $$('.ba-frame',grid).forEach(f=>{
+    let drag=false;
+    const set=p=>{p=Math.max(0,Math.min(100,p));f.style.setProperty('--p',p+'%');f.setAttribute('aria-valuenow',Math.round(p))};
+    const at=e=>{const r=f.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)};
+    f.addEventListener('pointerdown',e=>{drag=true;f.setPointerCapture(e.pointerId);at(e)});
+    f.addEventListener('pointermove',e=>{if(drag)at(e)});
+    f.addEventListener('pointerup',()=>drag=false);f.addEventListener('pointercancel',()=>drag=false);
+    f.addEventListener('keydown',e=>{const v=+f.getAttribute('aria-valuenow');
+      if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();set(v-5)}
+      else if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();set(v+5)}
+      else if(e.key==='Home'){e.preventDefault();set(0)}else if(e.key==='End'){e.preventDefault();set(100)}});
+    set(50);
+    // a short hint the first time it scrolls into view
+    if(!calm){const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();const t0=performance.now();
+      (function hint(n){const k=(n-t0)/1400;if(k>=1)return set(50);set(50+Math.sin(k*Math.PI*2)*18);requestAnimationFrame(hint)})(t0)}},{threshold:.6});io.observe(f)}
+  });
 })();
 
 // ---- 3D depth: photo + tiny depth map -> gentle parallax (WebGL, draws only while moving) ----
