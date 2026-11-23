@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Lumen &amp; Archue — Interior Design Studio</title>
 <meta name="description" content="Lumen & Archue: experts in interior design, elevation and fabrication for homes and boutique spaces. Founded by Preethi Ranganathan." />
-<meta name="theme-color" content="#FAF7F2" />
+<meta name="theme-color" content="#132B5E" />
 <meta property="og:title" content="Lumen & Archue — Interior Design Studio" />
 <meta property="og:description" content="Experts in interior, elevation and fabrication for serene homes and boutique spaces." />
 <meta property="og:type" content="website" />
@@ -489,15 +489,34 @@ form .btn.done::after{content:none}
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
   .rv{opacity:1;transform:none}
 }
+/* the logo exactly as designed: ivory lettering and gradient gold on the logo's navy */
+:root{--logo-navy:#132B5E;--on-navy:rgba(250,247,242,.8)}
+header,header.solid{background:var(--logo-navy);border-bottom:1px solid rgba(250,247,242,.1);backdrop-filter:none;-webkit-backdrop-filter:none}
+.brand span{display:flex;flex-direction:column;gap:5px}
+.brand .la{height:20px;width:auto;display:block}
+.brand .nm{height:11px;width:auto;display:block;opacity:.92}
+.burger i{background:var(--ivory)}
+.burger[aria-expanded=true] i{background:var(--indigo)}
+@media(min-width:821px){
+  .links a{color:var(--on-navy)}
+  .links a:not(.btn):hover,.links a.active{color:#fff}
+  .links .btn{background:#C5A25B;border-color:#C5A25B;color:var(--logo-navy);font-weight:600}
+  .links .btn:hover{background:#D8B56A;border-color:#D8B56A;box-shadow:0 12px 26px -10px rgba(0,0,0,.5)}
+}
+.pl{background:var(--logo-navy)}
+.pl img{display:block;width:min(226px,60vw);height:auto;opacity:0;animation:plIn 1s .1s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes plIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+footer{background:var(--logo-navy);color:var(--on-navy);border-top:0}
+footer strong{color:#fff}
+footer .wrap.foot{border-bottom-color:rgba(250,247,242,.14)}
+.fcol .flogo{width:150px;max-width:60vw}
+.fcol a{color:var(--on-navy)}
+.fcol a:hover{color:#DFB55C}
+footer>.wrap:last-of-type{color:rgba(250,247,242,.6)}
 </style>
 </head>
 <body>
-<div class="pl" aria-hidden="true"><div>
-  <svg width="68" height="65" viewBox="109 15 43 41" fill="none" style="display:block;margin:0 auto" stroke-width="1.5">
-    <path fill="none" stroke-width="1.5001" stroke="#B08A3E" d="M 148.84 93.28 L 148.84 111.17 C 148.84 121.32 140.54 129.61 130.39 129.61 C 120.25 129.61 111.95 121.32 111.95 111.17 L 111.95 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/>
-    <path fill="none" stroke-width="1.5001" stroke="#D8AA4F" d="M 143.87 93.28 L 143.87 110.84 C 143.87 118.25 137.81 124.32 130.39 124.32 C 122.98 124.32 116.92 118.25 116.92 110.84 L 116.92 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/>
-    <path fill="none" stroke-width="1.5001" stroke="#132B5E" d="M 139.53 93.28 L 139.53 109.09 C 139.53 114.11 135.42 118.23 130.39 118.23 C 125.37 118.23 121.26 114.11 121.26 109.09 L 121.26 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/>
-  </svg><span>Lumen &amp; Archue</span></div></div>
+<div class="pl" aria-hidden="true"><img src="img/logo/stacked-dark.svg" width="226" height="234" alt="" /></div>
 <div class="progress" id="prog"></div>
 <div class="cur" id="cur"></div>
 <a href="#contact" class="mcta" id="mcta" aria-label="Quick contact">
@@ -509,8 +528,8 @@ form .btn.done::after{content:none}
 <header id="hdr">
   <div class="wrap nav">
     <a href="#top" class="brand" aria-label="Lumen &amp; Archue home">
-      <img class="mk" src="img/logo/mark-light.svg" width="36" height="34" alt="" />
-      <span><img class="la" src="img/logo/la-light.svg" width="47" height="20" alt="L&amp;A" /><small>Lumen &amp; Archue</small></span>
+      <img class="mk" src="img/logo/mark-dark.svg" width="36" height="34" alt="" />
+      <span><img class="la" src="img/logo/la-dark.svg" width="47" height="20" alt="L&amp;A" /><img class="nm" src="img/logo/name-dark.svg" width="94" height="13" alt="Lumen &amp; Archue" /></span>
     </a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i></button>
     <nav class="links" id="links">
@@ -850,7 +869,7 @@ form .btn.done::after{content:none}
 <footer>
   <div class="wrap foot">
     <div class="fcol">
-      <img class="flogo" src="img/logo/stacked-light.png" width="113" height="117" alt="Lumen &amp; Archue: Light, Colour, Space" />
+      <img class="flogo" src="img/logo/stacked-dark.svg" width="150" height="155" alt="Lumen &amp; Archue: Light, Colour, Space" />
       <span>Interior · Elevation · Fabrication</span>
       <span>Serving homes and workplaces across Tamil Nadu, Kerala and Karnataka.</span>
     </div>
