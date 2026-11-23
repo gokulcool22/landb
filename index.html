@@ -982,7 +982,7 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
     <div>
       <span class="kicker rv">Begin a Conversation</span>
       <h2 class="rv">Let's design a space you'll <em>love</em> coming home to.</h2>
-      <p class="lead rv" style="margin-top:22px">Tell us about your space, timeline and the light it gets. Your note goes directly to Preethi.</p>
+      <p class="lead rv" style="margin-top:22px">Tell us about your space. Your enquiry goes directly to Preethi.</p>
       <div class="reach rv">
         <div class="rrow"><a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>90252 84259</a><button type="button" class="cp" data-copy="+91 90252 84259" data-what="phone number" aria-label="Copy phone number" title="Copy phone number"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
         <div class="rrow"><a href="mailto:preethi.lumenarchue@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>preethi.lumenarchue@gmail.com</a><button type="button" class="cp" data-copy="preethi.lumenarchue@gmail.com" data-what="email address" aria-label="Copy email address" title="Copy email address"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
@@ -1012,17 +1012,6 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
           <button type="button" class="opt" data-g="svc" aria-pressed="false">Fabrication (signage, metal, CNC)</button>
           <button type="button" class="opt" data-g="svc" aria-pressed="false">Not sure yet</button>
         </div></div>
-      <div class="frow">
-        <div class="f"><label for="loc">Location</label><input id="loc" name="location" autocomplete="address-level2" placeholder="City or area" /></div>
-        <div class="f"><label for="ar">Approx. area (sq ft)</label><input id="ar" name="area" inputmode="numeric" placeholder="e.g. 1200" /></div>
-      </div>
-      <div class="frow">
-        <div class="f"><label for="bd">Budget range</label>
-          <select id="bd" name="budget"><option value="">Prefer not to say</option><option>Under ₹5 lakh</option><option>₹5 – 10 lakh</option><option>₹10 – 25 lakh</option><option>₹25 – 50 lakh</option><option>Above ₹50 lakh</option><option>Not sure yet</option></select></div>
-        <div class="f"><label for="tm">Timeline</label>
-          <select id="tm" name="timeline"><option value="">Not decided</option><option>As soon as possible</option><option>Within 1–3 months</option><option>In 3–6 months</option><option>Just exploring</option></select></div>
-      </div>
-      <div class="f"><label for="m">Anything else we should know?</label><textarea id="m" placeholder="The feeling you want, the light the rooms get, what you already have..."></textarea></div>
       <button class="btn arrow" type="submit">Send Enquiry</button>
       <p class="note">Only your name, phone and email are required. Your enquiry goes straight to Preethi, and we use your details only to reply to it.</p>
       <div class="ok" id="ok" role="status" aria-live="polite">
@@ -1232,12 +1221,12 @@ const okShow=(title,text,fallback)=>{$('#okT').textContent=title;$('#okP').textC
 $('#form').addEventListener('submit',async e=>{
   e.preventDefault();
   const v=id=>$('#'+id).value.trim();
-  const rows=[['Name',v('n')],['Phone',v('p')],['Email',v('e')],['Property type',picked('prop').join(', ')],['Needs',picked('svc').join(', ')],['Location',v('loc')],['Area',v('ar')&&v('ar')+' sq ft'],['Budget',v('bd')],['Timeline',v('tm')]].filter(l=>l[1]);
-  lastBody=rows.map(l=>l[0]+': '+l[1]).join('\n')+(v('m')?'\n\n'+v('m'):'');
+  const rows=[['Name',v('n')],['Phone',v('p')],['Email',v('e')],['Property type',picked('prop').join(', ')],['Needs',picked('svc').join(', ')]].filter(l=>l[1]);
+  lastBody=rows.map(l=>l[0]+': '+l[1]).join('\n');
   if($('#hp').value){return okShow('Thank you','Your enquiry has been sent to Preethi. We will get back to you soon.',false)}   // a bot filled the hidden field
   const btn=$('#form button[type=submit]'),label=btn.textContent;btn.disabled=true;btn.classList.add('sending');btn.textContent='Sending…';
   const payload={_subject:'Project enquiry from '+v('n'),_template:'table',_captcha:'false',name:v('n'),email:v('e'),phone:v('p')};
-  rows.slice(3).forEach(l=>payload[l[0]]=l[1]);if(v('m'))payload.message=v('m');
+  rows.slice(3).forEach(l=>payload[l[0]]=l[1]);
   try{
     const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),15000);
     const res=await fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload),signal:ctl.signal});
