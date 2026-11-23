@@ -417,6 +417,65 @@ form .btn.done::after{content:none}
   footer{padding-bottom:96px}
   details p{padding-right:0}
 }
+
+/* more sections: inspiration strip, service cards, closing banner, phone bar */
+.insp{padding:clamp(48px,7vw,84px) 0 clamp(40px,6vw,70px);background:var(--ivory)}
+.insp .head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 32px;margin-bottom:26px}
+.insp h2{margin:6px 0 0}
+.itabs{display:flex;flex-wrap:wrap;gap:8px}
+.itabs button{font:inherit;font-size:.82rem;letter-spacing:.04em;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid rgba(46,49,86,.22);background:transparent;color:var(--indigo);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.itabs button:hover{border-color:var(--indigo)}
+.itabs button[aria-selected="true"]{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.itabs button:focus-visible,.ibtn:focus-visible,.icard:focus-visible{outline:2px solid var(--ochre-text);outline-offset:3px}
+.itrack-wrap{position:relative}
+.itrack{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--gutter);padding:0 var(--gutter) 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.itrack::-webkit-scrollbar{display:none}
+@media(min-width:1344px){.itrack{padding-left:calc((100vw - 1280px)/2 + var(--gutter));scroll-padding-left:calc((100vw - 1280px)/2 + var(--gutter));padding-right:calc((100vw - 1280px)/2 + var(--gutter))}}
+.icard{position:relative;flex:0 0 auto;width:clamp(240px,26vw,360px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;scroll-snap-align:start;border:0;padding:0;cursor:pointer;background:#e8e2d6;color:#fff;font:inherit;text-align:left}
+.icard.wide{width:clamp(300px,40vw,540px);aspect-ratio:4/3}
+.icard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.icard:hover img{transform:scale(1.06)}
+.icard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,41,76,0) 55%,rgba(38,41,76,.82) 100%)}
+.icard span{position:absolute;left:18px;right:18px;bottom:16px;z-index:1;font-family:var(--serif);font-size:1.3rem;line-height:1.2}
+.icard small{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;margin-top:6px}
+.inav{display:flex;gap:10px}
+.ibtn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(46,49,86,.28);background:transparent;color:var(--indigo);cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s}
+.ibtn:hover{background:var(--indigo);color:#fff}.ibtn:disabled{opacity:.35;cursor:default;background:transparent;color:var(--indigo)}
+@media(max-width:820px){.inav{display:none}.icard{width:68vw}.icard.wide{width:82vw}}
+@keyframes iIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.itrack.swap .icard{animation:iIn .55s cubic-bezier(.22,1,.36,1) both}
+.itrack.swap .icard:nth-child(2){animation-delay:.07s}.itrack.swap .icard:nth-child(3){animation-delay:.14s}.itrack.swap .icard:nth-child(n+4){animation-delay:.2s}
+/* service photo cards */
+.svc-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:0 0 clamp(36px,5vw,56px)}
+.scard{position:relative;display:block;aspect-ratio:3/4;border-radius:18px;overflow:hidden;color:#fff;text-decoration:none;background:#e8e2d6;isolation:isolate}
+.scard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.scard:hover img,.scard:focus-visible img{transform:scale(1.07)}
+.scard::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(38,41,76,0) 38%,rgba(38,41,76,.9) 100%)}
+.scard div{position:absolute;left:18px;right:18px;bottom:18px;z-index:2}
+.scard h3{font-size:1.35rem;color:#fff;margin:0 0 6px;line-height:1.15}
+.scard p{font-size:.84rem;line-height:1.5;margin:0 0 10px;color:rgba(255,255,255,.88)}
+.scard b{font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#E7C27A;display:inline-flex;gap:8px;align-items:center}
+.scard b::after{content:"\2192";transition:transform .3s}.scard:hover b::after{transform:translateX(5px)}
+.scard:focus-visible{outline:2px solid var(--ochre-text);outline-offset:3px}
+@media(max-width:1100px){.svc-cards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.svc-cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scrollbar-width:none}
+ .svc-cards::-webkit-scrollbar{display:none}.scard{flex:0 0 68vw;scroll-snap-align:start}}
+/* closing banner */
+.cta-band{position:relative;overflow:hidden;color:#fff;background:var(--indigo);isolation:isolate}
+.cta-band>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;z-index:-2}
+.cta-band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(38,41,76,.92) 0%,rgba(38,41,76,.7) 45%,rgba(38,41,76,.15) 100%)}
+.cta-in{padding:clamp(72px,11vw,140px) 0;max-width:36rem}
+.cta-band h2{color:#fff;margin:8px 0 14px}.cta-band h2 em{color:#E7C27A}
+.cta-band p{color:rgba(255,255,255,.9);margin:0 0 28px}
+.cta-band .cta{display:flex;flex-wrap:wrap;gap:12px}
+.cta-band .btn.pri{background:#C5A25B;border-color:#C5A25B;color:var(--indigo);font-weight:600}
+.cta-band .btn.pri:hover{background:#D8B56A;border-color:#D8B56A}
+.cta-band .btn.out{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.cta-band .btn.out:hover{background:rgba(255,255,255,.12);border-color:#fff}
+@media(max-width:820px){.cta-band::before{background:linear-gradient(180deg,rgba(38,41,76,.72),rgba(38,41,76,.9))}}
+@media(prefers-reduced-motion:reduce){.itrack.swap .icard{animation:none}.icard img,.scard img{transition:none}}
+/* phone action bar (Call / WhatsApp / Enquire) */
+@media(max-width:820px){.mcta .btn{padding:12px 6px;font-size:.8rem;gap:6px;white-space:nowrap}.mcta .btn svg{width:16px;height:16px;flex:none}.wa.up{opacity:0;visibility:hidden;pointer-events:none}}
 @media (hover:none),(pointer:coarse){.cur{display:none}}
 @media (prefers-reduced-motion:reduce){.pl{display:none}.ln>span{transform:none}.rot-in,.tag-float,.marq-track{animation:none}.rings path{stroke-dashoffset:0;animation:none}}
 
@@ -564,10 +623,11 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 <div class="pl" aria-hidden="true"><img src="img/logo/stacked-dark.svg" width="226" height="234" alt="" /></div>
 <div class="progress" id="prog"></div>
 <div class="cur" id="cur"></div>
-<a href="#contact" class="mcta" id="mcta" aria-label="Quick contact">
-  <span class="btn ghost" style="flex:1" onclick="event.preventDefault();location.href='tel:+919025284259'">Call</span>
-  <span class="btn arrow" style="flex:1.4">Enquire</span>
-</a>
+<nav class="mcta" id="mcta" aria-label="Quick contact">
+  <a class="btn ghost" href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
+  <a class="btn ghost" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>WhatsApp</a>
+  <a class="btn arrow" href="#contact">Enquire</a>
+</nav>
 <button class="top" id="top-btn" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E3156" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <header id="hdr">
@@ -621,6 +681,23 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 </div></div>
 
 <!-- ABOUT -->
+<section class="insp" id="inspiration" aria-labelledby="inspT">
+  <div class="wrap head">
+    <div><span class="kicker rv">Inspiration</span><h2 class="rv" id="inspT">Browse by <em>room</em></h2></div>
+    <div class="itabs rv" role="tablist" aria-label="Rooms">
+      <button role="tab" id="it-living" aria-selected="true" aria-controls="itrack" data-r="living">Living</button>
+      <button role="tab" id="it-kitchen" aria-selected="false" aria-controls="itrack" data-r="kitchen" tabindex="-1">Kitchen</button>
+      <button role="tab" id="it-bedroom" aria-selected="false" aria-controls="itrack" data-r="bedroom" tabindex="-1">Bedroom</button>
+      <button role="tab" id="it-commercial" aria-selected="false" aria-controls="itrack" data-r="commercial" tabindex="-1">Commercial</button>
+      <button role="tab" id="it-fabrication" aria-selected="false" aria-controls="itrack" data-r="fabrication" tabindex="-1">Fabrication</button>
+    </div>
+  </div>
+  <div class="itrack-wrap">
+    <div class="itrack" id="itrack" role="tabpanel" aria-labelledby="it-living" tabindex="0"></div>
+  </div>
+  <div class="wrap" style="display:flex;justify-content:flex-end;margin-top:18px"><div class="inav"><button class="ibtn" id="iprev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button class="ibtn" id="inext" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div></div>
+</section>
+
 <section id="about" class="alt">
   <div class="wrap about">
     <div>
@@ -837,6 +914,13 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
       <div><span class="kicker rv">What We Do</span><h2 class="rv">Services</h2></div>
       <p class="lead rv" style="max-width:26em">Design and fabrication under one roof, from the first sketch to the final finish.</p>
     </div>
+    <div class="svc-cards">
+      <a class="scard rv" href="#works" data-go="living"><img data-img="tv2" alt="" loading="lazy" /><div><h3>Living &amp; Feature Walls</h3><p>Slatted TV walls, pooja and display units.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#works" data-go="kitchen"><img data-img="gk" alt="" loading="lazy" /><div><h3>Modular Kitchens</h3><p>L-shaped and island kitchens, planned around how you cook.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#works" data-go="bedroom"><img data-img="kids" alt="" loading="lazy" /><div><h3>Wardrobes &amp; Bedrooms</h3><p>Colour-led wardrobe walls and study corners.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#works" data-go="commercial"><img data-img="sales1" alt="" loading="lazy" /><div><h3>Commercial Spaces</h3><p>Sales offices and boutique fit-outs.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#works" data-go="fabrication"><img data-img="ball" alt="" loading="lazy" /><div><h3>Signage &amp; Fabrication</h3><p>Illuminated signage, metal and CNC work.</p><b>See projects</b></div></a>
+    </div>
     <div class="svc-groups">
       <div class="svc-grp rv">
         <span class="kicker">Plan · Detail · Visualise</span>
@@ -882,6 +966,16 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 </section>
 
 <!-- CONTACT -->
+<section class="cta-band" id="ready" aria-labelledby="readyT">
+  <img data-img="sales2" alt="" loading="lazy" />
+  <div class="wrap"><div class="cta-in">
+    <span class="kicker rv" style="color:#E7C27A">Let&rsquo;s begin</span>
+    <h2 class="rv" id="readyT">Ready to shape <em>your space?</em></h2>
+    <p class="rv">Tell us about your home or workspace. We will come back with a clear, upfront quote.</p>
+    <div class="cta rv"><a class="btn pri arrow" href="#contact">Start a Conversation</a><a class="btn out" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener">WhatsApp us</a></div>
+  </div></div>
+</section>
+
 <section id="contact">
   <div class="wrap contact">
     <div>
@@ -1003,9 +1097,51 @@ $$('img[data-img]').forEach(i=>{
       :i.closest('.arch')?'(max-width:820px) 390px, 520px'
       :i.closest('.quote-arch')?'(max-width:820px) 300px, 420px'
       :i.closest('.lab-img')?'(max-width:820px) 100vw, 680px'
+      :i.closest('.scard')?'(max-width:820px) 68vw, 260px'
+      :i.closest('.cta-band')?'100vw'
       :'(max-width:820px) 100vw, 560px';
   }
 });
+
+// ---- more sections: room carousel, service cards -> filtered projects ----
+(function(){
+  const R={
+    living:[['tv2','Slatted TV Wall'],['tv1','Slatted TV Wall'],['pooja','Pooja & Display Wall Unit']],
+    kitchen:[['gk','Sage-Green Island Kitchen'],['kit3','L-Shaped Modular Kitchen'],['gk2','Sage-Green Island Kitchen'],['kit1','L-Shaped Modular Kitchen']],
+    bedroom:[['kids',"Wardrobes & Study Corner"],['ward',"Wardrobes & Study Corner"],['wt','Colour-Led Wardrobe Walls'],['wn','Colour-Led Wardrobe Walls'],['wp','Colour-Led Wardrobe Walls']],
+    commercial:[['sales1','Site Sales Office'],['sales2','Site Sales Office'],['sales3','Site Sales Office']],
+    fabrication:[['ball','Illuminated Signage']]
+  };
+  const NAME={living:'Living',kitchen:'Kitchen',bedroom:'Bedroom',commercial:'Commercial',fabrication:'Fabrication'};
+  const tr=$('#itrack'),tabs=$$('.itabs [role=tab]'),pv=$('#iprev'),nx=$('#inext');if(!tr)return;
+  const goProjects=cat=>{const c=$('.filters .chip[data-f="'+cat+'"]');if(c)c.click();
+    const w=$('#works');if(w)w.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'})};
+  function fill(r,animate){
+    tr.innerHTML='';tr.scrollLeft=0;
+    R[r].forEach(([k,t],i)=>{
+      const u=IMG[k],b=document.createElement('button');b.type='button';
+      const wide=/pooja|sales1/.test(k);
+      b.className='icard'+(wide?' wide':'');b.setAttribute('aria-label',t.replace(/&amp;/g,'&')+' — see this project');
+      const im=document.createElement('img');im.alt='';im.loading=i<2?'eager':'lazy';im.decoding='async';
+      im.src=u;im.srcset=u.replace(/\.jpg$/,'-360.jpg')+' 360w, '+u.replace(/\.jpg$/,'-640.jpg')+' 640w, '+u+' 1050w';
+      im.sizes=wide?'(max-width:820px) 82vw, 540px':'(max-width:820px) 68vw, 360px';
+      const sp=document.createElement('span');sp.textContent=t;const sm=document.createElement('small');sm.textContent=NAME[r];sp.appendChild(sm);
+      b.append(im,sp);b.addEventListener('click',()=>goProjects(r));tr.appendChild(b)});
+    if(animate&&!calm){tr.classList.remove('swap');void tr.offsetWidth;tr.classList.add('swap')}
+    arrows()}
+  function arrows(){const m=tr.scrollWidth-tr.clientWidth-2;pv.disabled=tr.scrollLeft<=2;nx.disabled=tr.scrollLeft>=m}
+  function pick(t,focus){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1});
+    tr.setAttribute('aria-labelledby',t.id);fill(t.dataset.r,true);if(focus)t.focus()}
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>pick(t));
+    t.addEventListener('keydown',e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(!k)return;e.preventDefault();pick(tabs[(i+k+tabs.length)%tabs.length],true)})});
+  const step=()=>Math.max(240,tr.clientWidth*.7);
+  pv.onclick=()=>tr.scrollBy({left:-step(),behavior:calm?'auto':'smooth'});
+  nx.onclick=()=>tr.scrollBy({left:step(),behavior:calm?'auto':'smooth'});
+  tr.addEventListener('scroll',()=>requestAnimationFrame(arrows),{passive:true});addEventListener('resize',arrows);
+  fill('living',false);
+  // service cards open the matching project filter
+  $$('.scard[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goProjects(a.dataset.go)}));
+})();
 
 // header + mobile menu
 const hdr=$('#hdr'), burger=$('#burger'), links=$('#links');
