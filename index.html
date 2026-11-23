@@ -14,8 +14,9 @@
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Lumen &amp; Archue: interior, elevation and fabrication" />
 <meta name="twitter:card" content="summary_large_image" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"InteriorDesigner","name":"Lumen & Archue","founder":{"@type":"Person","name":"Preethi Ranganathan","jobTitle":"Founder & Principal"},"telephone":"+91 90252 84259","email":"preethi.lumenarchue@gmail.com","slogan":"Light · Colour · Space","knowsAbout":["Interior design","Elevation design","Fabrication"]}</script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 68'%3E%3Cpath d='M10 64V28C10 15.8 19.8 6 32 6s22 9.8 22 22v36' fill='none' stroke='%232E3156' stroke-width='5'/%3E%3Cpath d='M20 64V29c0-6.6 5.4-12 12-12s12 5.4 12 12v35' fill='none' stroke='%23C8932E' stroke-width='5'/%3E%3C/svg%3E" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"InteriorDesigner","name":"Lumen & Archue","logo":"https://gokulcool22.github.io/landb/img/logo/logo-600.png","image":"https://gokulcool22.github.io/landb/img/og.jpg","founder":{"@type":"Person","name":"Preethi Ranganathan","jobTitle":"Founder & Principal"},"telephone":"+91 90252 84259","email":"preethi.lumenarchue@gmail.com","slogan":"Light · Colour · Space","knowsAbout":["Interior design","Elevation design","Fabrication"]}</script>
+<link rel="icon" href="img/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="img/logo/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -61,8 +62,10 @@ h1 em,h2 em{color:var(--ochre-big)}
 header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--nav-h);transition:background .35s,box-shadow .35s,border-color .35s;border-bottom:1px solid transparent}
 header.solid{background:rgba(250,247,242,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:100%}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px}
 .brand b{font-family:var(--serif);font-weight:500;font-size:1.45rem;letter-spacing:.05em;line-height:1;display:block}
+.brand .mk{height:34px;width:auto;flex:none;display:block}
+.brand .la{height:20px;width:auto;display:block}
 .brand small{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:block;margin-top:4px}
 .links{display:flex;align-items:center;gap:34px}
 .links a{font-size:.8rem;font-weight:500;letter-spacing:.07em;text-decoration:none;color:var(--muted);transition:color .2s;position:relative;padding:6px 0}
@@ -341,6 +344,8 @@ form .btn[disabled]{opacity:.65;cursor:progress}
 .ba figcaption small{display:block;font-family:var(--sans,inherit);font-size:.86rem;color:var(--muted);font-weight:300;margin-top:2px}
 footer .wrap.foot{display:grid;grid-template-columns:1.5fr 1.1fr .7fr;gap:28px 40px;padding-bottom:28px;margin-bottom:24px;border-bottom:1px solid var(--line);justify-content:stretch}
 .fcol{display:flex;flex-direction:column;gap:6px;font-size:.84rem;line-height:1.6}
+@media(min-width:821px){footer>.wrap:last-of-type{padding-right:88px}}
+.fcol .flogo{display:block;margin-bottom:8px;height:auto}
 .fcol .fb{font-family:var(--serif);font-weight:500;font-size:1.35rem;color:var(--indigo);letter-spacing:0}
 .fcol a{color:var(--muted);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;min-height:30px;word-break:break-word}
 .fcol a:hover{color:var(--ochre-text)}
@@ -487,10 +492,10 @@ form .btn.done::after{content:none}
 </head>
 <body>
 <div class="pl" aria-hidden="true"><div>
-  <svg width="64" height="68" viewBox="0 0 64 68" fill="none" style="display:block;margin:0 auto">
-    <path d="M10 64V28C10 15.85 19.85 6 32 6s22 9.85 22 22v36" stroke="#2E3156" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M17 64V29c0-8.28 6.72-15 15-15s15 6.72 15 15v35" stroke="#C8932E" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M24 64V30c0-4.42 3.58-8 8-8s8 3.58 8 8v34" stroke="#2E3156" stroke-width="2.4" stroke-linecap="round"/>
+  <svg width="68" height="65" viewBox="109 15 43 41" fill="none" style="display:block;margin:0 auto" stroke-width="1.5">
+    <path fill="none" stroke-width="1.5001" stroke="#B08A3E" d="M 148.84 93.28 L 148.84 111.17 C 148.84 121.32 140.54 129.61 130.39 129.61 C 120.25 129.61 111.95 121.32 111.95 111.17 L 111.95 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/>
+    <path fill="none" stroke-width="1.5001" stroke="#D8AA4F" d="M 143.87 93.28 L 143.87 110.84 C 143.87 118.25 137.81 124.32 130.39 124.32 C 122.98 124.32 116.92 118.25 116.92 110.84 L 116.92 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/>
+    <path fill="none" stroke-width="1.5001" stroke="#132B5E" d="M 139.53 93.28 L 139.53 109.09 C 139.53 114.11 135.42 118.23 130.39 118.23 C 125.37 118.23 121.26 114.11 121.26 109.09 L 121.26 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/>
   </svg><span>Lumen &amp; Archue</span></div></div>
 <div class="progress" id="prog"></div>
 <div class="cur" id="cur"></div>
@@ -503,12 +508,8 @@ form .btn.done::after{content:none}
 <header id="hdr">
   <div class="wrap nav">
     <a href="#top" class="brand" aria-label="Lumen &amp; Archue home">
-      <svg width="32" height="34" viewBox="0 0 64 68" fill="none" aria-hidden="true">
-        <path d="M10 64V28C10 15.85 19.85 6 32 6s22 9.85 22 22v36" stroke="#2E3156" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M17 64V29c0-8.28 6.72-15 15-15s15 6.72 15 15v35" stroke="#C8932E" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M24 64V30c0-4.42 3.58-8 8-8s8 3.58 8 8v34" stroke="#2E3156" stroke-width="2.4" stroke-linecap="round"/>
-      </svg>
-      <span><b>L&amp;A</b><small>Lumen &amp; Archue</small></span>
+      <img class="mk" src="img/logo/mark-light.svg" width="36" height="34" alt="" />
+      <span><img class="la" src="img/logo/la-light.svg" width="47" height="20" alt="L&amp;A" /><small>Lumen &amp; Archue</small></span>
     </a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i></button>
     <nav class="links" id="links">
@@ -848,7 +849,7 @@ form .btn.done::after{content:none}
 <footer>
   <div class="wrap foot">
     <div class="fcol">
-      <strong class="fb">Lumen &amp; Archue</strong>
+      <img class="flogo" src="img/logo/stacked-light.png" width="113" height="117" alt="Lumen &amp; Archue: Light, Colour, Space" />
       <span>Interior · Elevation · Fabrication</span>
       <span>Serving homes and workplaces across Tamil Nadu, Kerala and Karnataka.</span>
     </div>
