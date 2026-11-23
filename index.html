@@ -501,6 +501,25 @@ footer .fcontact svg{width:18px;height:18px;flex:none;color:#DFB55C}
 footer .fcopy{text-wrap:balance;margin:10px 0 0;padding-top:22px;width:100%;border-top:1px solid rgba(250,247,242,.14);font-size:.78rem;color:rgba(250,247,242,.6)}
 @media(max-width:560px){footer .fcontact{flex-direction:column;align-items:stretch;width:100%;max-width:340px}footer .fcontact a{justify-content:center}}
 @media(max-width:820px){body.at-end .wa,body.at-end .top{opacity:0!important;visibility:hidden!important;pointer-events:none}}
+/* copy buttons next to the phone number and email */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cp{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ochre-text);display:inline-grid;place-items:center;cursor:pointer;position:relative;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.cp svg{width:19px;height:19px;grid-area:1/1;transition:opacity .2s,transform .25s}
+.cp .i-ok{opacity:0;transform:scale(.5)}
+.cp:hover{background:rgba(143,100,16,.08);border-color:var(--ochre)}
+.cp.done{color:#2f7a4d;border-color:#2f7a4d}
+.cp.done .i-copy{opacity:0;transform:scale(.5)}
+.cp.done .i-ok{opacity:1;transform:none}
+.cp.done::after{content:"Copied";position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--indigo);color:#fff;font-size:.7rem;letter-spacing:.04em;padding:4px 9px;border-radius:8px;white-space:nowrap;pointer-events:none}
+.reach .rrow{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+.reach .rrow a{flex:1;min-width:0;border-bottom:0}
+footer .fc{display:inline-flex;align-items:center;gap:8px}
+footer .cp{color:#DFB55C;border-color:rgba(250,247,242,.28)}
+footer .cp:hover{background:rgba(250,247,242,.1);border-color:#DFB55C}
+footer .cp.done{color:#8fe0b0;border-color:#8fe0b0}
+footer .cp.done::after{background:#fff;color:var(--indigo)}
+@media(max-width:560px){footer .fc{width:100%}footer .fc a{flex:1}}
+@media(prefers-reduced-motion:reduce){.cp,.cp svg{transition:none}}
 </style>
 </head>
 <body>
@@ -793,8 +812,8 @@ footer .fcopy{text-wrap:balance;margin:10px 0 0;padding-top:22px;width:100%;bord
       <h2 class="rv">Let's design a space you'll <em>love</em> coming home to.</h2>
       <p class="lead rv" style="margin-top:22px">Tell us about your space, timeline and the light it gets. Your note goes directly to Preethi.</p>
       <div class="reach rv">
-        <a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>90252 84259</a>
-        <a href="mailto:preethi.lumenarchue@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>preethi.lumenarchue@gmail.com</a>
+        <div class="rrow"><a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>90252 84259</a><button type="button" class="cp" data-copy="+91 90252 84259" data-what="phone number" aria-label="Copy phone number" title="Copy phone number"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
+        <div class="rrow"><a href="mailto:preethi.lumenarchue@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>preethi.lumenarchue@gmail.com</a><button type="button" class="cp" data-copy="preethi.lumenarchue@gmail.com" data-what="email address" aria-label="Copy email address" title="Copy email address"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
       </div>
     </div>
     <form id="form" class="rv">
@@ -855,13 +874,14 @@ footer .fcopy{text-wrap:balance;margin:10px 0 0;padding-top:22px;width:100%;bord
     <img class="flogo" src="img/logo/stacked-dark.svg" width="132" height="137" alt="Lumen &amp; Archue: Light, Colour, Space" />
     <p class="fserve">Serving homes and workplaces across Tamil Nadu, Kerala and Karnataka.</p>
     <nav class="fcontact" aria-label="Contact">
-      <a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span>+91 90252 84259</span></a>
+      <span class="fc"><a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span>+91 90252 84259</span></a><button type="button" class="cp" data-copy="+91 90252 84259" data-what="phone number" aria-label="Copy phone number" title="Copy phone number"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></span>
       <a href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1112 20a8 8 0 01-3.6-.9L4 20z"/></svg><span>WhatsApp</span></a>
-      <a href="mailto:preethi.lumenarchue@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>preethi.lumenarchue@gmail.com</span></a>
+      <span class="fc"><a href="mailto:preethi.lumenarchue@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>preethi.lumenarchue@gmail.com</span></a><button type="button" class="cp" data-copy="preethi.lumenarchue@gmail.com" data-what="email address" aria-label="Copy email address" title="Copy email address"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></span>
     </nav>
     <p class="fcopy">© 2026 Lumen &amp; Archue · Founded by Preethi Ranganathan</p>
   </div>
 </footer>
+<div class="sr" id="cpLive" role="status" aria-live="polite"></div>
 
 <aside aria-label="Quick contact"><a class="wa" id="wa" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener" aria-label="Enquire on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.39 4 15.02c0 2.12.55 4.18 1.6 6L4 28l7.17-1.88a12.03 12.03 0 0 0 4.87 1.02h.01C22.68 27.14 28 21.75 28 15.12 28 8.48 22.68 3 16.04 3Zm0 21.95h-.01a10 10 0 0 1-5.1-1.4l-.37-.22-4.25 1.11 1.13-4.14-.24-.38a9.97 9.97 0 0 1-1.53-5.3c0-5.5 4.5-9.98 10.03-9.98 5.52 0 10 4.48 10 9.99 0 5.5-4.48 10.32-10.06 10.32Zm5.5-7.47c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.07-.15-.68-1.64-.93-2.25-.25-.58-.5-.5-.68-.5h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.1 3.2 5.08 4.5.7.3 1.26.48 1.7.62.72.23 1.37.2 1.88.12.58-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.12-.28-.2-.58-.35Z"/></svg><span>Chat on WhatsApp</span></a></aside>
 <div class="pano" id="pano" role="dialog" aria-modal="true" aria-label="360 degree room view">
@@ -1310,6 +1330,22 @@ const BA=[];
 // phones: tuck the floating WhatsApp and back-to-top buttons away while the footer is on screen
 (function(){const ft=$('footer');if(!ft||!('IntersectionObserver' in window))return;
   new IntersectionObserver(es=>document.body.classList.toggle('at-end',es[0].isIntersecting),{threshold:.3}).observe(ft)})();
+
+// copy buttons: phone number and email
+(function(){
+  const live=$('#cpLive');
+  const copy=async t=>{
+    try{await navigator.clipboard.writeText(t);return true}catch(e){}
+    try{const a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(e){return false}
+  };
+  $$('.cp').forEach(b=>b.addEventListener('click',async()=>{
+    const ok=await copy(b.dataset.copy);const label='Copy '+b.dataset.what;
+    if(live)live.textContent=ok?(b.dataset.what[0].toUpperCase()+b.dataset.what.slice(1)+' copied'):'Could not copy. Please select and copy it by hand.';
+    if(!ok)return;
+    b.classList.add('done');b.setAttribute('aria-label','Copied');
+    clearTimeout(b._t);b._t=setTimeout(()=>{b.classList.remove('done');b.setAttribute('aria-label',label)},1800);
+  }));
+})();
 </script>
 </body>
 </html>
