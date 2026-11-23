@@ -204,11 +204,18 @@ form .btn{width:100%;margin-top:6px}
 .lb-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:16px var(--gutter)}
 .lb-top h4{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.2}
 .lb-top p{font-size:.78rem;opacity:.7;margin-top:2px}
-.lb-x{border:1px solid rgba(250,247,242,.3);background:none;border-radius:999px;width:48px;height:48px;font-size:1.4rem;flex:none;color:var(--ivory)}
+.lb-x,.lb-nav{display:grid;place-items:center;padding:0;cursor:pointer;color:#fff;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 24px -8px rgba(15,17,40,.55);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.lb-x svg,.lb-nav svg{width:22px;height:22px;pointer-events:none}
+.lb-x{border-radius:50%;width:52px;height:52px;flex:none;background:#FAF7F2;color:var(--indigo);border-color:#FAF7F2}
+.lb-x:hover{background:#C5A25B;border-color:#C5A25B;transform:rotate(90deg)}
+.lb-nav:hover{background:#C5A25B;border-color:#C5A25B;color:var(--indigo)}
+.lb-x:active,.lb-nav:active{transform:scale(.92)}
+.lb-x:focus-visible,.lb-nav:focus-visible{outline:3px solid #E7C27A;outline-offset:3px}
+.lb-nav:disabled{opacity:.35;pointer-events:none}
 .lb-stage{flex:1;position:relative;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 clamp(8px,6vw,80px);touch-action:pan-y}
 .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(250,247,242,.3);background:rgba(46,49,86,.6);color:var(--ivory);font-size:1.2rem}
-.lb-nav:hover{border-color:var(--ochre)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;z-index:2}
+.lb-prev:hover{transform:translateY(-50%) translateX(-3px)}.lb-next:hover{transform:translateY(-50%) translateX(3px)}
 .lb-prev{left:12px}.lb-next{right:12px}
 .lb-count{text-align:center;padding:12px 0 calc(16px + env(safe-area-inset-bottom));font-size:.74rem;letter-spacing:.2em;opacity:.7}
 
@@ -535,7 +542,7 @@ form .btn.done::after{content:none}
   .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 4px;scrollbar-width:none;width:calc(100% + var(--gutter) * 2)}
   .filters::-webkit-scrollbar{display:none}
   .chip{white-space:nowrap}
-  .lb-nav{top:auto;bottom:6px;transform:none}
+  .lb-nav{top:auto;bottom:6px;transform:none}.lb-prev:hover,.lb-next:hover{transform:none}
   .lb-prev{left:16px}.lb-next{right:16px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -1079,15 +1086,15 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
   <div class="lb-top">
     <div><h4 id="lbT"></h4><p id="lbS"></p></div>
-    <button class="lb-x" id="lbX" aria-label="Close">&times;</button>
+    <button class="lb-x" id="lbX" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <div class="lb-stage" id="lbStage">
-    <button class="lb-nav lb-prev" id="lbP" aria-label="Previous">&larr;</button>
+    <button class="lb-nav lb-prev" id="lbP" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg></button>
     <img id="lbI" alt="" />
     <div class="lb-load" aria-hidden="true"></div>
     <p class="lb-err" id="lbE" role="alert" hidden>This photo didn&rsquo;t load.<button type="button" id="lbRetry">Try again</button></p>
     <p class="lb-hint" id="lbH" aria-hidden="true" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>Swipe to see more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6l6 6-6 6"/></svg></p>
-    <button class="lb-nav lb-next" id="lbN" aria-label="Next">&rarr;</button>
+    <button class="lb-nav lb-next" id="lbN" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
   </div>
   <div class="lb-count"><div class="lb-dots" id="lbD" role="group" aria-label="Photos in this project"></div><span id="lbC" aria-live="polite"></span></div>
 </div>
