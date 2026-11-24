@@ -573,11 +573,11 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 /* A. hero: a rounded photo frame with a small frosted card; slide controls sit under the photo */
 .hero.cine{display:flex;flex-direction:column;align-items:center;height:auto;min-height:max(100svh,620px);padding:calc(var(--nav-h) + 14px) clamp(10px,1.4vw,20px) 14px;background:var(--ivory);color:var(--indigo)}
 .hero.cine::before{display:none}
-.cine-copy{position:absolute;z-index:3;left:clamp(16px,3vw,44px);bottom:clamp(16px,3vw,44px);width:min(26.5rem,calc(100% - 32px));max-width:none;margin:0;padding:24px 26px 26px;border-radius:22px;background:rgba(38,41,76,.62);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:#fff}
+.cine-copy{position:absolute;z-index:3;left:clamp(16px,3vw,44px);bottom:clamp(16px,3vw,44px);width:min(44rem,calc(100% - 32px));max-width:none;margin:0;padding:0;color:#fff;text-shadow:0 2px 18px rgba(20,22,46,.45)}
+.cine-frame::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(0deg,rgba(24,26,52,.8) 0%,rgba(24,26,52,.4) 34%,rgba(24,26,52,0) 64%)}
 @media(min-width:821px) and (max-width:1639px){.cine-media .cine-bar{padding-right:72px}}   /* keeps the pause button clear of the round WhatsApp bubble */
-@media(min-width:821px) and (max-width:1100px){.cine-copy{width:min(23rem,calc(100% - 32px));padding:22px 22px 24px}}
 .cine .kicker{color:#F3D690;font-weight:600;margin-bottom:10px}
-.hero.cine h1{font-size:clamp(2.1rem,3.3vw,3.1rem);color:#fff;margin:2px 0 20px}
+.hero.cine h1{font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.04;color:#fff;margin:2px 0 22px}
 .cine h1 em{color:#E7C27A}
 .cine .lead,.cine .cine-tag{display:none}   /* the card keeps to kicker, headline and buttons */
 .cine .cta{display:flex;flex-wrap:wrap;gap:12px}
@@ -608,9 +608,10 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 @media(max-width:820px){
   .hero.cine{min-height:max(100svh,560px);padding:calc(var(--nav-h) + 8px) 10px 10px}
   .cine-frame{min-height:380px;border-radius:24px}
-  .cine-copy{left:12px;right:12px;bottom:12px;width:auto;padding:16px 16px 18px;border-radius:18px}
+  .cine-copy{left:18px;right:18px;bottom:18px;width:auto;padding:0}
+  .cine-frame::after{background:linear-gradient(0deg,rgba(24,26,52,.88) 0%,rgba(24,26,52,.55) 40%,rgba(24,26,52,0) 70%)}
   .cine .kicker{display:none}
-  .hero.cine h1{font-size:1.85rem;margin:0 0 14px}
+  .hero.cine h1{font-size:2.15rem;margin:0 0 16px}
   .cine .cta{flex-wrap:nowrap;gap:8px}
   .cine .cta .btn{flex:1 1 0;min-width:0;padding:12px 8px;font-size:.76rem;white-space:nowrap}
   .cine .cta .btn.arrow::after{display:none}
