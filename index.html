@@ -393,18 +393,6 @@ form .btn.done::after{content:none}
 @media(max-width:820px){.svc-cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scrollbar-width:none}
  .svc-cards::-webkit-scrollbar{display:none}.scard{flex:0 0 68vw;scroll-snap-align:start}}
 /* closing banner */
-.cta-band{position:relative;overflow:hidden;color:#fff;background:var(--indigo);isolation:isolate;padding:0}
-.cta-band>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;z-index:-2}
-.cta-band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(38,41,76,.92) 0%,rgba(38,41,76,.7) 45%,rgba(38,41,76,.15) 100%)}
-.cta-in{padding:clamp(84px,12vw,170px) 0;max-width:36rem}
-.cta-band h2{color:#fff;margin:8px 0 14px}.cta-band h2 em{color:#E7C27A}
-.cta-band p{color:rgba(255,255,255,.9);margin:0 0 28px}
-.cta-band .cta{display:flex;flex-wrap:wrap;gap:12px}
-.cta-band .btn.pri{background:#FAF7F2;border-color:#FAF7F2;color:var(--indigo);font-weight:500}
-.cta-band .btn.pri:hover{background:#fff;border-color:#fff}
-.cta-band .btn.out{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
-.cta-band .btn.out:hover{background:rgba(255,255,255,.12);border-color:#fff}
-@media(max-width:820px){.cta-band::before{background:linear-gradient(180deg,rgba(38,41,76,.72),rgba(38,41,76,.9))}}
 @media(prefers-reduced-motion:reduce){.scard img{transition:none}}
 /* phone action bar (Call / WhatsApp / Enquire); on phones it replaces the round WhatsApp bubble and the back-to-top button */
 @media(max-width:820px){.wa,.top{display:none!important}}
@@ -596,6 +584,24 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 @media(max-width:560px){footer .fc{width:100%}footer .fc a{flex:1}}
 @media(prefers-reduced-motion:reduce){.cp,.cp svg{transition:none}}
 .quick{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+/* About: vision quote and the five promises live in the About section */
+.about>.vq,.about>.prow{grid-column:1/-1}
+.vq{margin:clamp(40px,5vw,64px) 0 0;padding-top:clamp(28px,4vw,48px);border-top:1px solid var(--line);max-width:46rem}
+.vq blockquote{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.35;color:var(--indigo);margin:0}
+.vq figcaption{margin-top:18px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre-text)}
+.prow{margin-top:clamp(40px,5vw,64px);padding-top:clamp(28px,4vw,48px);border-top:1px solid var(--line)}
+.prow h3{font-size:clamp(1.6rem,3vw,2.4rem);margin:0 0 14px}
+.prow .lead{margin:0 0 clamp(28px,4vw,44px)}
+.pgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.pgrid>div{border-top:1px solid var(--line);padding-top:16px}
+.pgrid span{font-family:var(--serif);font-style:italic;color:var(--ochre-text);font-size:1.2rem;display:block;margin-bottom:6px}
+.pgrid h3{font-size:1.12rem;line-height:1.3;margin:0}
+@media(max-width:1000px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.pgrid{grid-template-columns:1fr}.pgrid>div{display:grid;grid-template-columns:2.2rem 1fr;align-items:baseline}.pgrid span{margin:0}}
+/* Services: every service name in one compact row */
+.svc-all{margin-top:clamp(36px,5vw,56px)}
+.svc-all ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.svc-all li{font-size:.84rem;padding:9px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
 /* Designs: a clean list of projects, each pointing to its photos in the Gallery */
 .project .num{font-size:1.5rem;margin:2px 0 0}
 .pbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:10px clamp(24px,5vw,72px);align-items:start}
@@ -681,8 +687,6 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i></button>
     <nav class="links" id="links">
       <a href="#about">About</a>
-      <a href="#vision">Vision</a>
-      <a href="#promise">Promise</a>
       <a href="#works">Designs</a>
       <a href="#gallery">Gallery</a>
       <a href="#services">Services</a>
@@ -738,39 +742,28 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
       <div class="pillar rv"><span>II</span><h3>Light as Material</h3><p>Spotlights, cove lines and backlit details are planned with the design from the start, so rooms feel warm day and night.</p></div>
       <div class="pillar rv"><span>III</span><h3>Detail in the Making</h3><p>Joinery, panelling and metalwork are built by our own team, with every junction and finish checked.</p></div>
     </div>
+    <figure class="vq rv">
+      <span class="kicker">Our Vision</span>
+      <blockquote>We design spaces that welcome light and reflect the people who live in them. Every arch we shape and every hue we choose is made to make a space feel like yours.</blockquote>
+      <figcaption>Preethi Ranganathan · Founder &amp; Principal</figcaption>
+    </figure>
+    <div class="prow">
+      <span class="kicker rv">Our Promise</span>
+      <h3 class="rv">Our promise <em>to you</em></h3>
+      <p class="lead rv">Where your ideas meet our craft, with personal attention to every detail.</p>
+      <div class="pgrid">
+        <div class="rv"><span>I</span><h3>A clear, upfront quote</h3></div>
+        <div class="rv"><span>II</span><h3>A fixed timeline</h3></div>
+        <div class="rv"><span>III</span><h3>Every detail inspected</h3></div>
+        <div class="rv"><span>IV</span><h3>Your approval comes first</h3></div>
+        <div class="rv"><span>V</span><h3>One single voice for your project</h3></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- VISION -->
-<section id="vision" class="dark" style="padding:clamp(70px,10vw,120px) 0">
-  <div class="wrap founder">
-    <div class="quote-arch rv"><img data-img="kit3" alt="L-shaped modular kitchen with glossy wall units and warm under-cabinet lighting" loading="lazy"/></div>
-    <div class="rv">
-      <span class="kicker">Our Vision</span>
-      <blockquote>We design spaces that welcome light and reflect the people who live in them. Every arch we shape and every hue we choose is made to make a space feel like yours.</blockquote>
-      <div class="sig">Preethi Ranganathan · Founder &amp; Principal</div>
-    </div>
-  </div>
-</section>
-
 <!-- PROMISE -->
-<section id="promise" class="alt">
-  <div class="wrap about">
-    <div>
-      <span class="kicker rv">Our Promise</span>
-      <h2 class="rv">Our promise <em>to you</em></h2>
-      <p class="lead rv" style="margin-top:22px">Where your ideas meet our craft, with personal attention to every detail.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar rv"><span>I</span><h3>A clear, upfront quote</h3></div>
-      <div class="pillar rv"><span>II</span><h3>A fixed timeline</h3></div>
-      <div class="pillar rv"><span>III</span><h3>Every detail inspected</h3></div>
-      <div class="pillar rv"><span>IV</span><h3>Your approval comes first</h3></div>
-      <div class="pillar rv"><span>V</span><h3>One single voice for your project</h3></div>
-    </div>
-  </div>
-</section>
-
 <!-- DESIGNS -->
 <section id="works">
   <div class="wrap">
@@ -907,28 +900,19 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
       <a class="scard rv" href="#gallery" data-go="commercial"><img data-img="sales1" alt="" loading="lazy" /><div><h3>Commercial Spaces</h3><p>Sales offices and boutique fit-outs.</p><b>See projects</b></div></a>
       <a class="scard rv" href="#gallery" data-go="fabrication"><img data-img="ball" alt="" loading="lazy" /><div><h3>Signage &amp; Fabrication</h3><p>Illuminated signage, metal and CNC work.</p><b>See projects</b></div></a>
     </div>
-    <div class="svc-groups">
-      <div class="svc-grp rv">
-        <span class="kicker">Plan · Detail · Visualise</span>
-        <h3>Design Works</h3>
-        <ul>
-        <li><i>01</i><span>Interior Design</span></li>
-        <li><i>02</i><span>Exterior Design &amp; Elevation</span></li>
-        <li><i>03</i><span>Modular Kitchen &amp; Wardrobes</span></li>
-        <li><i>04</i><span>Space Planning &amp; Layouts</span></li>
-        <li><i>05</i><span>3D Visualisation</span></li>
-        <li><i>06</i><span>Custom Furniture</span></li>
-        <li><i>07</i><span>False Ceiling &amp; Lighting Design</span></li>
-        </ul>
-      </div>
-      <div class="svc-grp rv">
-        <span class="kicker">Make · Build · Install</span>
-        <h3>Fabrication</h3>
-        <ul>
-        <li><i>01</i><span>Signage &amp; Branding Works</span></li>
-        <li><i>02</i><span>Metal &amp; CNC Work</span></li>
-        </ul>
-      </div>
+    <div class="svc-all rv">
+      <span class="kicker">Everything we do</span>
+      <ul>
+        <li>Interior Design</li>
+        <li>Exterior Design &amp; Elevation</li>
+        <li>Modular Kitchen &amp; Wardrobes</li>
+        <li>Space Planning &amp; Layouts</li>
+        <li>3D Visualisation</li>
+        <li>Custom Furniture</li>
+        <li>False Ceiling &amp; Lighting Design</li>
+        <li>Signage &amp; Branding Works</li>
+        <li>Metal &amp; CNC Work</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -952,16 +936,6 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 </section>
 
 <!-- CONTACT -->
-<section class="cta-band" id="ready" aria-labelledby="readyT">
-  <img data-img="sales2" alt="" loading="lazy" />
-  <div class="wrap"><div class="cta-in">
-    <span class="kicker rv" style="color:#E7C27A">Let&rsquo;s begin</span>
-    <h2 class="rv" id="readyT">Ready to shape <em>your space?</em></h2>
-    <p class="rv">Tell us about your home or workspace. We will come back with a clear, upfront quote.</p>
-    <div class="cta rv"><a class="btn pri arrow" href="#contact">Start a Conversation</a><a class="btn out" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener">WhatsApp us</a></div>
-  </div></div>
-</section>
-
 <section id="contact">
   <div class="wrap contact">
     <div>
@@ -1426,7 +1400,7 @@ topBtn.onclick=()=>scrollTo({top:0,behavior:calm?'auto':'smooth'});
 
 // scrollspy
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.links a:not(.btn)').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-['about','vision','promise','works','gallery','services','process'].forEach(id=>spy.observe($('#'+id)));
+['about','works','gallery','services','process'].forEach(id=>spy.observe($('#'+id)));
 
 // desktop-only: magnetic buttons
 if(fine&&!calm){
