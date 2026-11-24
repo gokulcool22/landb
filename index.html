@@ -641,9 +641,9 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
     </a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i></button>
     <nav class="links" id="links">
-      <a href="#about">About</a>
       <a href="#works">Designs</a>
       <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#process">Process</a>
       <a href="#contact" class="btn mag">Enquire</a>
@@ -683,42 +683,6 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 
 
 
-<!-- ABOUT -->
-<section id="about" class="alt">
-  <div class="wrap about">
-    <div>
-      <span class="kicker rv">About Us</span>
-      <h2 class="rv">Spaces shaped <em>around you</em></h2>
-      <p class="lead rv" style="margin-top:22px">At Lumen &amp; Archue, we transform spaces into meaningful experiences. Every project is custom made around you, never copied from a template. We blend creativity, functionality and timeless aesthetics to create spaces inside and out, that reflect your lifestyle and personality.</p>
-      <p class="lead rv" style="margin-top:16px">From the first sketch to the final finish, one dedicated team designs, builds and delivers, so the space you imagine is the space you walk into. We proudly serve homes and workplaces across Tamil Nadu, Kerala and Karnataka.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar rv"><span>I</span><h3>Made Around You</h3><p>Every layout, unit and finish is drawn around how you live, never copied from a template.</p></div>
-      <div class="pillar rv"><span>II</span><h3>Light as Material</h3><p>Spotlights, cove lines and backlit details are planned with the design from the start, so rooms feel warm day and night.</p></div>
-      <div class="pillar rv"><span>III</span><h3>Detail in the Making</h3><p>Joinery, panelling and metalwork are built by our own team, with every junction and finish checked.</p></div>
-    </div>
-    <figure class="vq rv">
-      <span class="kicker">Our Vision</span>
-      <blockquote>We design spaces that welcome light and reflect the people who live in them. Every arch we shape and every hue we choose is made to make a space feel like yours.</blockquote>
-      <figcaption>Preethi Ranganathan · Founder &amp; Principal</figcaption>
-    </figure>
-    <div class="prow">
-      <span class="kicker rv">Our Promise</span>
-      <h3 class="rv">Our promise <em>to you</em></h3>
-      <p class="lead rv">Where your ideas meet our craft, with personal attention to every detail.</p>
-      <div class="pgrid">
-        <div class="rv"><span>I</span><h3>A clear, upfront quote</h3></div>
-        <div class="rv"><span>II</span><h3>A fixed timeline</h3></div>
-        <div class="rv"><span>III</span><h3>Every detail inspected</h3></div>
-        <div class="rv"><span>IV</span><h3>Your approval comes first</h3></div>
-        <div class="rv"><span>V</span><h3>One single voice for your project</h3></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VISION -->
-<!-- PROMISE -->
 <!-- DESIGNS -->
 <section id="works">
   <div class="wrap">
@@ -840,6 +804,43 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
     <div class="gmas" id="gmas"></div>
   </div>
 </section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <span class="kicker rv">About Us</span>
+      <h2 class="rv">Spaces shaped <em>around you</em></h2>
+      <p class="lead rv" style="margin-top:22px">At Lumen &amp; Archue, we transform spaces into meaningful experiences. Every project is custom made around you, never copied from a template. We blend creativity, functionality and timeless aesthetics to create spaces inside and out, that reflect your lifestyle and personality.</p>
+      <p class="lead rv" style="margin-top:16px">From the first sketch to the final finish, one dedicated team designs, builds and delivers, so the space you imagine is the space you walk into. We proudly serve homes and workplaces across Tamil Nadu, Kerala and Karnataka.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar rv"><span>I</span><h3>Made Around You</h3><p>Every layout, unit and finish is drawn around how you live, never copied from a template.</p></div>
+      <div class="pillar rv"><span>II</span><h3>Light as Material</h3><p>Spotlights, cove lines and backlit details are planned with the design from the start, so rooms feel warm day and night.</p></div>
+      <div class="pillar rv"><span>III</span><h3>Detail in the Making</h3><p>Joinery, panelling and metalwork are built by our own team, with every junction and finish checked.</p></div>
+    </div>
+    <figure class="vq rv">
+      <span class="kicker">Our Vision</span>
+      <blockquote>We design spaces that welcome light and reflect the people who live in them. Every arch we shape and every hue we choose is made to make a space feel like yours.</blockquote>
+      <figcaption>Preethi Ranganathan · Founder &amp; Principal</figcaption>
+    </figure>
+    <div class="prow">
+      <span class="kicker rv">Our Promise</span>
+      <h3 class="rv">Our promise <em>to you</em></h3>
+      <p class="lead rv">Where your ideas meet our craft, with personal attention to every detail.</p>
+      <div class="pgrid">
+        <div class="rv"><span>I</span><h3>A clear, upfront quote</h3></div>
+        <div class="rv"><span>II</span><h3>A fixed timeline</h3></div>
+        <div class="rv"><span>III</span><h3>Every detail inspected</h3></div>
+        <div class="rv"><span>IV</span><h3>Your approval comes first</h3></div>
+        <div class="rv"><span>V</span><h3>One single voice for your project</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<!-- PROMISE -->
 
 <!-- SERVICES -->
 <section id="services" class="alt">
@@ -1343,7 +1344,7 @@ topBtn.onclick=()=>scrollTo({top:0,behavior:calm?'auto':'smooth'});
 
 // scrollspy
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.links a:not(.btn)').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-['about','works','gallery','services','process'].forEach(id=>spy.observe($('#'+id)));
+['works','gallery','about','services','process'].forEach(id=>spy.observe($('#'+id)));
 
 // desktop-only: magnetic buttons
 if(fine&&!calm){
