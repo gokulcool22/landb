@@ -111,10 +111,8 @@ section{padding:clamp(88px,13vw,200px) 0}
 .chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:10px 18px;font-size:.78rem;font-weight:500;color:var(--muted);transition:.25s;min-height:44px}
 .chip:hover{border-color:var(--indigo);color:var(--indigo)}
 .chip[aria-pressed=true]{background:var(--indigo);border-color:var(--indigo);color:var(--ivory)}
-.projects{display:grid;gap:clamp(60px,9vw,120px)}
-.project{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
-.project:nth-child(even){grid-template-columns:1fr 1.35fr}
-.project:nth-child(even) .gal{order:2}
+.projects{display:grid;border-top:1px solid var(--line)}
+.project{display:grid;grid-template-columns:3.4rem minmax(0,1fr);gap:0 clamp(16px,3vw,40px);align-items:start;padding:clamp(28px,4vw,44px) 0;border-bottom:1px solid var(--line)}
 .project[hidden]{display:none}
 .gal{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{position:relative;overflow:hidden;border-radius:18px;border:0;padding:0;background:var(--ivory-warm);cursor:zoom-in;display:block}
@@ -222,7 +220,6 @@ form .btn{width:100%;margin-top:6px}
 
 /* ===== polish layer ===== */
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E")}
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--ochre),var(--ochre-soft));z-index:80}
 /* preloader */
 .pl{position:fixed;inset:0;z-index:200;background:var(--logo-navy);display:none;place-items:center}
 .intro .pl{display:grid;animation:plSafe .01s 4.5s forwards}   /* safety net: the screen can never stay up */
@@ -250,13 +247,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 @keyframes roll{0%,28%{transform:translateY(0)}33%,61%{transform:translateY(-1.15em)}66%,94%{transform:translateY(-2.3em)}100%{transform:translateY(-3.45em)}}
 @keyframes draw2{to{stroke-dashoffset:0}}
 @keyframes bob{50%{transform:translateY(-8px)}}
-/* marquee */
-.marq{border-block:1px solid var(--line);background:var(--card);overflow:hidden;padding:20px 0;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.marq-track{display:inline-flex;gap:0;animation:marq 38s linear infinite}
-.marq:hover .marq-track{animation-play-state:paused}
-.marq span{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--muted);display:inline-flex;align-items:center}
-.marq span::after{content:"";width:14px;height:18px;margin:0 clamp(22px,3vw,44px);border:1.5px solid var(--ochre);border-bottom:0;border-radius:14px 14px 0 0}
-@keyframes marq{to{transform:translateX(-50%)}}
 /* active nav + arrow btn + magnetic */
 .links a.active{color:var(--indigo)}.links a.active:not(.btn)::after{width:100%}
 .btn.arrow::after{content:"\2192";transition:transform .3s}
@@ -294,10 +284,6 @@ form.sent .f,form.sent>.btn,form.sent .note,form.sent .fgrp,form.sent .frow{disp
 .okb[hidden]{display:none}.okb .btn{width:100%;margin:0;text-align:center;text-decoration:none}
 form .btn[disabled]{opacity:.65;cursor:progress}
 /* cursor */
-.cur{position:fixed;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--ochre);z-index:150;pointer-events:none;opacity:0;transition:width .3s,height .3s,margin .3s,background .3s,opacity .3s;display:grid;place-items:center;font-size:.62rem;letter-spacing:.1em;color:var(--indigo-deep);font-weight:600}
-.cur.on{opacity:1}
-.cur.big{width:78px;height:78px;margin:-39px 0 0 -39px;background:rgba(223,181,92,.92)}
-.cur.link{width:36px;height:36px;margin:-18px 0 0 -18px;background:rgba(200,147,46,.25)}
 /* mobile cta + top */
 .mcta{display:none;text-decoration:none}
 .pillar{grid-template-columns:3rem 1fr}
@@ -522,16 +508,13 @@ input[aria-invalid="true"]{border-color:#A32A1C!important;box-shadow:0 0 0 3px r
 .lb-glow i{position:absolute;inset:-12%;background-size:cover;background-position:center;filter:blur(46px) saturate(1.25) brightness(.55);opacity:0;transition:opacity .9s ease;will-change:opacity}
 .lb>.lb-top,.lb>.lb-stage,.lb>.lb-strip,.lb>.lb-count{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){.lb-glow i{transition:none}}
-@media (hover:none),(pointer:coarse){.cur{display:none}}
-@media (prefers-reduced-motion:reduce){.pl{display:none}.ln>span{transform:none}.rot-in,.tag-float,.marq-track{animation:none}.rings path{stroke-dashoffset:0;animation:none}}
+@media (prefers-reduced-motion:reduce){.pl{display:none}.ln>span{transform:none}.rot-in,.tag-float{animation:none}.rings path{stroke-dashoffset:0;animation:none}}
 
 /* ---------- responsive ---------- */
 @media (max-width:1024px){
   .services>.svc{flex:1 1 calc(50% - 16px)}
   .steps{grid-template-columns:repeat(2,1fr);row-gap:36px}
   .palette{grid-template-columns:repeat(3,1fr)}
-  .project,.project:nth-child(even){grid-template-columns:1fr}
-  .project:nth-child(even) .gal{order:0}
 }
 @media (max-width:820px){
   .burger{display:block}
@@ -612,6 +595,17 @@ footer .cp.done{color:#8fe0b0;border-color:#8fe0b0}
 footer .cp.done::after{background:#fff;color:var(--indigo)}
 @media(max-width:560px){footer .fc{width:100%}footer .fc a{flex:1}}
 @media(prefers-reduced-motion:reduce){.cp,.cp svg{transition:none}}
+.quick{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+/* Designs: a clean list of projects, each pointing to its photos in the Gallery */
+.project .num{font-size:1.5rem;margin:2px 0 0}
+.pbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:10px clamp(24px,5vw,72px);align-items:start}
+.pbody h3{margin:0;font-size:clamp(1.5rem,2.4vw,2rem)}
+.pdesc p{margin:0 0 18px}
+.plink{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:0;min-height:44px;border:0;background:none;font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre-text);cursor:pointer}
+.plink span{transition:transform .3s}.plink:hover span{transform:translateX(5px)}
+.plink:focus-visible{outline:2px solid var(--ochre-text);outline-offset:4px;border-radius:4px}
+.gclear{border:0;background:none;padding:0;font:inherit;color:var(--ochre-text);text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:24px}
+@media(max-width:820px){.project{grid-template-columns:2.4rem minmax(0,1fr)}.pbody{grid-template-columns:1fr}}
 /* A. hero: a rounded photo frame with a small frosted card; slide controls sit under the photo */
 .hero.cine{display:flex;flex-direction:column;align-items:center;height:auto;min-height:max(100svh,620px);padding:calc(var(--nav-h) + 14px) clamp(10px,1.4vw,20px) 14px;background:var(--ivory);color:var(--indigo)}
 .hero.cine::before{display:none}
@@ -667,12 +661,10 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 .lb-stage img.fly{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.xv{transition:none}}
 </style>
-<script>if(!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("intro")</script>
+<script>try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&!sessionStorage.getItem("introSeen"))document.documentElement.classList.add("intro")}catch(e){}</script>
 </head>
 <body>
 <div class="pl" aria-hidden="true"><img src="img/logo/stacked-dark.svg" width="226" height="234" alt="" /></div>
-<div class="progress" id="prog"></div>
-<div class="cur" id="cur"></div>
 <nav class="mcta" id="mcta" aria-label="Quick contact">
   <a class="btn ghost" href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
   <a class="btn ghost" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>WhatsApp</a>
@@ -730,10 +722,7 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
   </div>
 </section>
 
-<div class="marq" aria-hidden="true"><div class="marq-track">
-  <span>Slatted wall panels</span><span>Modular kitchens</span><span>Custom wardrobes</span><span>LED cove lighting</span><span>Laser-cut work</span><span>False ceilings</span><span>Glazed frontages</span>
-  <span>Slatted wall panels</span><span>Modular kitchens</span><span>Custom wardrobes</span><span>LED cove lighting</span><span>Laser-cut work</span><span>False ceilings</span><span>Glazed frontages</span>
-</div></div>
+
 
 <!-- ABOUT -->
 <section id="about" class="alt">
@@ -790,120 +779,95 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
         <span class="kicker rv">Selected Projects</span>
         <h2 class="rv">Spaces built to be <em>felt.</em></h2>
       </div>
-      <div class="filters rv" role="group" aria-label="Filter projects">
-        <button class="chip" data-f="all" aria-pressed="true">All</button>
-        <button class="chip" data-f="living" aria-pressed="false">Living</button>
-        <button class="chip" data-f="kitchen" aria-pressed="false">Kitchen</button>
-        <button class="chip" data-f="bedroom" aria-pressed="false">Bedroom</button>
-        <button class="chip" data-f="commercial" aria-pressed="false">Commercial</button>
-      </div>
     </div>
 
     <div class="projects">
-      
-<article class="project rv" data-cat="commercial">
-        <div class="gal">
-          <button class="tile main" data-lb data-img="sales1" data-t="Site Sales Office" data-s="Warm panelled interior with slatted accents and concealed LED lighting."><img data-img="sales1" alt="Site sales office interior at night with LED ceiling lines and glazed frontage" loading="lazy"/><span class="cap">View full</span></button>
-          <button class="tile sm pic" data-lb data-img="sales2" data-t="Site Sales Office" data-s="Long view along the glazed frontage."><img data-img="sales2" alt="Sales office interior looking along the glazed wall" loading="lazy" style="object-position:50% 60%"/></button>
-          <button class="tile sm pic" data-lb data-img="sales3" data-t="Site Sales Office" data-s="Recessed spotlights and LED strips above slatted wall panels."><img data-img="sales3" alt="Sales office interior with slatted wall panels and ceiling LED strips" loading="lazy" style="object-position:50% 60%"/></button>
-        </div>
-        <div>
-          <span class="num">01</span>
+      <article class="project rv" id="project-1" data-cat="commercial">
+        <span class="num">01</span>
+        <div class="pbody">
           <h3>Site Sales Office</h3>
-          <p>A compact sales office fitted out as one calm space: warm wall panels with slatted accents, recessed spotlights and concealed LED strips overhead, and a full-height glazed frontage that opens the room to the street.</p>
-          <div class="tags"><span>Wall Panelling</span><span>LED Lighting</span><span>Glazed Frontage</span></div>
+          <div class="pdesc">
+            <p>A compact sales office fitted out as one calm space: warm wall panels with slatted accents, recessed spotlights and concealed LED strips overhead, and a full-height glazed frontage that opens the room to the street.</p>
+            <div class="tags"><span>Wall Panelling</span><span>LED Lighting</span><span>Glazed Frontage</span></div>
+            <button type="button" class="plink" data-proj="project-1" aria-label="View 3 photos of Site Sales Office">View 3 photos <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="living">
-        <div class="gal two">
-          <button class="tile sm pic" data-lb data-img="tv2" data-t="Slatted TV wall" data-s="Cove-lit ceiling and a floating TV unit beside a full-height slatted panel."><img data-img="tv2" alt="Living room with slatted TV wall and LED cove ceiling" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="tv1" data-t="Marble-look TV wall" data-s="Floating shelves lit by recessed spotlights, with brass inlay lines in the slats."><img data-img="tv1" alt="Floating TV unit on a marble-look wall with slatted side panel" loading="lazy"/></button>
-        </div>
-        <div>
-          <span class="num">02</span>
+      <article class="project rv" id="project-2" data-cat="living">
+        <span class="num">02</span>
+        <div class="pbody">
           <h3>Slatted TV Wall</h3>
-          <p>A floating TV unit set against a stone-look panel, framed by a full-height slatted wall with fine brass lines. Spotlit shelves and a cove-lit ceiling give the living room a warm, finished glow.</p>
-          <div class="tags"><span>Slatted Panelling</span><span>Floating Unit</span><span>Cove Lighting</span></div>
+          <div class="pdesc">
+            <p>A floating TV unit set against a stone-look panel, framed by a full-height slatted wall with fine brass lines. Spotlit shelves and a cove-lit ceiling give the living room a warm, finished glow.</p>
+            <div class="tags"><span>Slatted Panelling</span><span>Floating Unit</span><span>Cove Lighting</span></div>
+            <button type="button" class="plink" data-proj="project-2" aria-label="View 2 photos of Slatted TV Wall">View 2 photos <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="living">
-        <div class="gal one">
-          <button class="tile main" data-lb data-img="pooja" data-t="Pooja &amp; display wall unit" data-s="Laser-cut pooja doors with a carved Ganesha motif, backlit so the pattern glows."><img data-img="pooja" alt="Wall unit with laser-cut pooja doors, lit display shelves and storage" loading="lazy"/><span class="cap">View full</span></button>
-        </div>
-        <div>
-          <span class="num">03</span>
+      <article class="project rv" id="project-3" data-cat="living">
+        <span class="num">03</span>
+        <div class="pbody">
           <h3>Pooja &amp; Display Wall Unit</h3>
-          <p>A full-wall unit that brings storage, a lit display column and a slatted timber accent together, with a laser-cut pooja cabinet. Its carved Ganesha motif and lotus details are backlit so the pattern glows.</p>
-          <div class="tags"><span>Laser-Cut Work</span><span>Backlighting</span><span>Custom Joinery</span></div>
+          <div class="pdesc">
+            <p>A full-wall unit that brings storage, a lit display column and a slatted timber accent together, with a laser-cut pooja cabinet. Its carved Ganesha motif and lotus details are backlit so the pattern glows.</p>
+            <div class="tags"><span>Laser-Cut Work</span><span>Backlighting</span><span>Custom Joinery</span></div>
+            <button type="button" class="plink" data-proj="project-3" aria-label="View photo of Pooja &amp; Display Wall Unit">View photo <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="kitchen">
-        <div class="gal three">
-          <button class="tile sm pic" data-lb data-img="kit3" data-t="L-shaped modular kitchen" data-s="Full view of the L-shaped layout with glossy wall units and a black granite counter."><img data-img="kit3" alt="L-shaped modular kitchen with glossy wall units and patterned backsplash" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="kit1" data-t="L-shaped modular kitchen" data-s="Glossy upper cabinets, soft-toned base units and a black granite counter."><img data-img="kit1" alt="L-shaped modular kitchen with patterned backsplash and under-cabinet lighting" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="kit2" data-t="Kitchen with serving counter" data-s="Warm under-cabinet lighting over a patterned tile backsplash."><img data-img="kit2" alt="Modular kitchen seen through a serving counter opening" loading="lazy"/></button>
-        </div>
-        <div>
-          <span class="num">04</span>
+      <article class="project rv" id="project-4" data-cat="kitchen">
+        <span class="num">04</span>
+        <div class="pbody">
           <h3>L-Shaped Modular Kitchen</h3>
-          <p>A modular kitchen planned around the way it is used: glossy full-height wall units, soft-toned base cabinets with handle-free drawers, a black granite counter, and warm under-cabinet lighting that makes the patterned backsplash glow.</p>
-          <div class="tags"><span>Modular Kitchen</span><span>Glossy Finish</span><span>Under-Cabinet Lighting</span></div>
+          <div class="pdesc">
+            <p>A modular kitchen planned around the way it is used: glossy full-height wall units, soft-toned base cabinets with handle-free drawers, a black granite counter, and warm under-cabinet lighting that makes the patterned backsplash glow.</p>
+            <div class="tags"><span>Modular Kitchen</span><span>Glossy Finish</span><span>Under-Cabinet Lighting</span></div>
+            <button type="button" class="plink" data-proj="project-4" aria-label="View 3 photos of L-Shaped Modular Kitchen">View 3 photos <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="bedroom">
-        <div class="gal three">
-          <button class="tile sm pic" data-lb data-img="ward" data-t="Bedroom wardrobe" data-s="Full-height wardrobe with loft storage, a mirrored door and brass-finish handles."><img data-img="ward" alt="Teak and white bedroom wardrobe with loft storage and a mirror" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="kids" data-t="Kids' room study corner" data-s="A built-in study desk with a lit overhead cabinet, beside a storage bed."><img data-img="kids" alt="Kids room with a study desk, lit overhead cabinet and storage bed" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="kidw" data-t="Kids' room wardrobe" data-s="Blue and white wardrobe with a full-length mirror and a lit display column."><img data-img="kidw" alt="Blue and white kids room wardrobe with mirror and lit display column" loading="lazy"/></button>
-        </div>
-        <div>
-          <span class="num">05</span>
+      <article class="project rv" id="project-5" data-cat="bedroom">
+        <span class="num">05</span>
+        <div class="pbody">
           <h3>Wardrobes &amp; Study Corner</h3>
-          <p>Floor-to-loft wardrobes with a wood-grain and white finish, a full-length mirror and brass-finish handles, paired with a compact kids' study corner that has a lit overhead cabinet and a built-in desk.</p>
-          <div class="tags"><span>Custom Wardrobes</span><span>Loft Storage</span><span>Study Furniture</span></div>
+          <div class="pdesc">
+            <p>Floor-to-loft wardrobes with a wood-grain and white finish, a full-length mirror and brass-finish handles, paired with a compact kids' study corner that has a lit overhead cabinet and a built-in desk.</p>
+            <div class="tags"><span>Custom Wardrobes</span><span>Loft Storage</span><span>Study Furniture</span></div>
+            <button type="button" class="plink" data-proj="project-5" aria-label="View 3 photos of Wardrobes &amp; Study Corner">View 3 photos <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="kitchen">
-        <div class="gal two">
-          <button class="tile sm pic" data-lb data-img="gk" data-t="Sage-green island kitchen" data-s="Glossy white wall units, sage-green base units and a lit island with a timber-fluted curve."><img data-img="gk" alt="Island kitchen with sage-green base units, glossy white wall units and warm under-lighting" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="gk2" data-t="Sage-green kitchen" data-s="The same kitchen from another angle."><img data-img="gk2" alt="Sage-green kitchen with a long counter, an island and ceiling light lines" loading="lazy"/></button>
-        </div>
-        <div>
-          <span class="num">06</span>
+      <article class="project rv" id="project-6" data-cat="kitchen">
+        <span class="num">06</span>
+        <div class="pbody">
           <h3>Sage-Green Island Kitchen</h3>
-          <p>A large kitchen planned around a central island. Sage-green base units and glossy white wall units sit under a ceiling of light lines, with warm light running under the counters and the island, whose front has a timber-fluted curve.</p>
-          <div class="tags"><span>Island Kitchen</span><span>High-Gloss Finish</span><span>Under-Counter Lighting</span></div>
+          <div class="pdesc">
+            <p>A large kitchen planned around a central island. Sage-green base units and glossy white wall units sit under a ceiling of light lines, with warm light running under the counters and the island, whose front has a timber-fluted curve.</p>
+            <div class="tags"><span>Island Kitchen</span><span>High-Gloss Finish</span><span>Under-Counter Lighting</span></div>
+            <button type="button" class="plink" data-proj="project-6" aria-label="View 2 photos of Sage-Green Island Kitchen">View 2 photos <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="fabrication">
-        <div class="gal one tall">
-          <button class="tile main" data-lb data-img="ball" data-t="Illuminated entrance signage" data-s="Halo-lit metal letters on a stone-clad wall, with warm uplighting from the planting below."><img data-img="ball" alt="Illuminated sign with halo-lit letters on a marble-look wall at night" loading="lazy"/><span class="cap">View full</span></button>
-        </div>
-        <div>
-          <span class="num">07</span>
+      <article class="project rv" id="project-7" data-cat="fabrication">
+        <span class="num">07</span>
+        <div class="pbody">
           <h3>Illuminated Signage</h3>
-          <p>Entrance signage built from halo-lit metal letters on a stone-clad wall, with warm uplighting from the planting below so the name glows at night.</p>
-          <div class="tags"><span>Halo-Lit Letters</span><span>Metal Work</span><span>Signage &amp; Branding</span></div>
+          <div class="pdesc">
+            <p>Entrance signage built from halo-lit metal letters on a stone-clad wall, with warm uplighting from the planting below so the name glows at night.</p>
+            <div class="tags"><span>Halo-Lit Letters</span><span>Metal Work</span><span>Signage &amp; Branding</span></div>
+            <button type="button" class="plink" data-proj="project-7" aria-label="View photo of Illuminated Signage">View photo <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
-
-      <article class="project rv" data-cat="bedroom">
-        <div class="gal three">
-          <button class="tile sm pic" data-lb data-img="wt" data-t="Teal wardrobe and study nook" data-s="Teal doors with warm timber shelves, a built-in desk and copper-tone handles."><img data-img="wt" alt="Teal wardrobe wall with a timber study nook and cove-lit ceiling" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="wn" data-t="Navy and cream wardrobe wall" data-s="Navy upper doors over fluted cream lower doors, with a lit display column and an arched mirror."><img data-img="wn" alt="Navy and cream wardrobe wall with a study desk, lit display column and arched mirror" loading="lazy"/></button>
-          <button class="tile sm pic" data-lb data-img="wp" data-t="Peach wardrobe with oval mirror" data-s="Peach wardrobe with arch-shaped door panels, a study desk and a pill-shaped mirror."><img data-img="wp" alt="Peach wardrobe with arched door panels, study desk and an oval mirror" loading="lazy"/></button>
-        </div>
-        <div>
-          <span class="num">08</span>
+      <article class="project rv" id="project-8" data-cat="bedroom">
+        <span class="num">08</span>
+        <div class="pbody">
           <h3>Colour-Led Wardrobe Walls</h3>
-          <p>Floor-to-ceiling wardrobe walls with a built-in study desk, each in its own colour: teal with warm timber, navy with fluted cream doors, and soft peach with arch-shaped panels. Cove lighting overhead and a lit shelf over each desk finish the room.</p>
-          <div class="tags"><span>Custom Wardrobes</span><span>Study Desks</span><span>Cove Lighting</span></div>
+          <div class="pdesc">
+            <p>Floor-to-ceiling wardrobe walls with a built-in study desk, each in its own colour: teal with warm timber, navy with fluted cream doors, and soft peach with arch-shaped panels. Cove lighting overhead and a lit shelf over each desk finish the room.</p>
+            <div class="tags"><span>Custom Wardrobes</span><span>Study Desks</span><span>Cove Lighting</span></div>
+            <button type="button" class="plink" data-proj="project-8" aria-label="View 3 photos of Colour-Led Wardrobe Walls">View 3 photos <span aria-hidden="true">&rarr;</span></button>
+          </div>
         </div>
       </article>
     </div>
@@ -937,11 +901,11 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
       <p class="lead rv" style="max-width:26em">Design and fabrication under one roof, from the first sketch to the final finish.</p>
     </div>
     <div class="svc-cards">
-      <a class="scard rv" href="#works" data-go="living"><img data-img="tv2" alt="" loading="lazy" /><div><h3>Living &amp; Feature Walls</h3><p>Slatted TV walls, pooja and display units.</p><b>See projects</b></div></a>
-      <a class="scard rv" href="#works" data-go="kitchen"><img data-img="gk" alt="" loading="lazy" /><div><h3>Modular Kitchens</h3><p>L-shaped and island kitchens, planned around how you cook.</p><b>See projects</b></div></a>
-      <a class="scard rv" href="#works" data-go="bedroom"><img data-img="kids" alt="" loading="lazy" /><div><h3>Wardrobes &amp; Bedrooms</h3><p>Colour-led wardrobe walls and study corners.</p><b>See projects</b></div></a>
-      <a class="scard rv" href="#works" data-go="commercial"><img data-img="sales1" alt="" loading="lazy" /><div><h3>Commercial Spaces</h3><p>Sales offices and boutique fit-outs.</p><b>See projects</b></div></a>
-      <a class="scard rv" href="#works" data-go="fabrication"><img data-img="ball" alt="" loading="lazy" /><div><h3>Signage &amp; Fabrication</h3><p>Illuminated signage, metal and CNC work.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#gallery" data-go="living"><img data-img="tv2" alt="" loading="lazy" /><div><h3>Living &amp; Feature Walls</h3><p>Slatted TV walls, pooja and display units.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#gallery" data-go="kitchen"><img data-img="gk" alt="" loading="lazy" /><div><h3>Modular Kitchens</h3><p>L-shaped and island kitchens, planned around how you cook.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#gallery" data-go="bedroom"><img data-img="kids" alt="" loading="lazy" /><div><h3>Wardrobes &amp; Bedrooms</h3><p>Colour-led wardrobe walls and study corners.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#gallery" data-go="commercial"><img data-img="sales1" alt="" loading="lazy" /><div><h3>Commercial Spaces</h3><p>Sales offices and boutique fit-outs.</p><b>See projects</b></div></a>
+      <a class="scard rv" href="#gallery" data-go="fabrication"><img data-img="ball" alt="" loading="lazy" /><div><h3>Signage &amp; Fabrication</h3><p>Illuminated signage, metal and CNC work.</p><b>See projects</b></div></a>
     </div>
     <div class="svc-groups">
       <div class="svc-grp rv">
@@ -1003,7 +967,8 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
     <div>
       <span class="kicker rv">Begin a Conversation</span>
       <h2 class="rv">Let's design a space you'll <em>love</em> coming home to.</h2>
-      <p class="lead rv" style="margin-top:22px">Tell us about your space. Your enquiry goes directly to Preethi.</p>
+      <p class="lead rv" style="margin-top:22px">The quickest way is a call or a WhatsApp message. Or leave your details and we will get back to you.</p>
+      <div class="quick rv"><a class="btn arrow" href="tel:+919025284259">Call now</a><a class="btn ghost" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener">WhatsApp</a></div>
       <div class="reach rv">
         <div class="rrow"><a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>90252 84259</a><button type="button" class="cp" data-copy="+91 90252 84259" data-what="phone number" aria-label="Copy phone number" title="Copy phone number"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
         <div class="rrow"><a href="mailto:preethi.lumenarchue@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>preethi.lumenarchue@gmail.com</a><button type="button" class="cp" data-copy="preethi.lumenarchue@gmail.com" data-what="email address" aria-label="Copy email address" title="Copy email address"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
@@ -1011,11 +976,11 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
     </div>
     <form id="form" class="rv" novalidate>
       <input type="text" name="_honey" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-      <p class="fgrp">Your details <em>(required)</em></p>
+      <p class="fgrp">Your details <em>(name and phone)</em></p>
       <div class="f"><label for="n">Your name *</label><input id="n" name="name" required autocomplete="name" placeholder="e.g. Ananya Sharma" aria-describedby="n-e" /><p class="ferr" id="n-e" hidden></p></div>
       <div class="frow">
         <div class="f"><label for="p">Phone *</label><input id="p" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="Your number" aria-describedby="p-e" /><p class="ferr" id="p-e" hidden></p></div>
-        <div class="f"><label for="e">Email *</label><input id="e" name="email" type="email" required autocomplete="email" placeholder="you@example.com" aria-describedby="e-e" /><p class="ferr" id="e-e" hidden></p></div>
+        <div class="f"><label for="e">Email <span class="hint">(optional)</span></label><input id="e" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="e-e" /><p class="ferr" id="e-e" hidden></p></div>
       </div>
       <p class="fgrp">About your project <em>(all optional)</em></p>
       <div class="f"><label id="pl">Property type</label>
@@ -1034,7 +999,7 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
           <button type="button" class="opt" data-g="svc" aria-pressed="false">Not sure yet</button>
         </div></div>
       <button class="btn arrow" type="submit">Send Enquiry</button>
-      <p class="note">Only your name, phone and email are required. Your enquiry goes straight to Preethi, and we use your details only to reply to it.</p>
+      <p class="note">Only your name and phone are required. Your enquiry goes straight to Preethi, and we use your details only to reply to it.</p>
       <div class="ok" id="ok" role="status" aria-live="polite">
         <svg viewBox="109 15 43 41" fill="none" aria-hidden="true"><path fill="none" stroke-width="1.5001" stroke="#B08A3E" d="M 148.84 93.28 L 148.84 111.17 C 148.84 121.32 140.54 129.61 130.39 129.61 C 120.25 129.61 111.95 121.32 111.95 111.17 L 111.95 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/><path fill="none" stroke-width="1.5001" stroke="#D8AA4F" d="M 143.87 93.28 L 143.87 110.84 C 143.87 118.25 137.81 124.32 130.39 124.32 C 122.98 124.32 116.92 118.25 116.92 110.84 L 116.92 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/><path fill="none" stroke-width="1.5001" stroke="#2E3156" d="M 139.53 93.28 L 139.53 109.09 C 139.53 114.11 135.42 118.23 130.39 118.23 C 125.37 118.23 121.26 114.11 121.26 109.09 L 121.26 93.28" transform="matrix(0.995957, 0, 0, -0.995957, 0.421343, 146.805619)"/></svg>
         <h3 id="okT">Thank you</h3>
@@ -1140,15 +1105,11 @@ $$('#works .gal').forEach(g=>{const t=$$('[data-lb]',g),first=t[0];if(!first)ret
   b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>'+(n>1?'View '+n+' photos':'View photo');
   first.appendChild(b)});
 
-// ---- service cards open the matching projects ----
+// ---- service cards open the Gallery on that room ----
 (function(){
-  const goProjects=cat=>{
-    const chip=$('.filters .chip[data-f="'+cat+'"]');
-    if(chip)chip.click();else{const all=$('.filters .chip[data-f="all"]');if(all)all.click()}   // no chip for this one: show all, then jump to it
-    const target=chip?$('#works'):($('.project[data-cat="'+cat+'"]')||$('#works'));
-    target.scrollIntoView({behavior:calm?'auto':'smooth',block:chip?'start':'center'});
-  };
-  $$('.scard[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goProjects(a.dataset.go)}));
+  $$('.scard[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();
+    const chip=$('#gfil .chip[data-gf="'+a.dataset.go+'"]');if(chip)chip.click();
+    $('#gallery').scrollIntoView({behavior:calm?'auto':'smooth',block:'start'})}));
 })();
 
 // header + mobile menu
@@ -1167,10 +1128,6 @@ if('IntersectionObserver' in window){
 }else $$('.rv').forEach(e=>e.classList.add('in'));
 
 // project filter
-$$('.filters .chip').forEach(c=>c.addEventListener('click',()=>{      // only the project filter buttons (not the time-of-day buttons)
-  $$('.filters .chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
-  $$('.project').forEach(p=>p.hidden=!(c.dataset.f==='all'||p.dataset.cat===c.dataset.f));
-}));
 
 // lightbox
 const lb=$('#lb'), lbI=$('#lbI'), st=$('#lbStage'); let items=[], idx=0, last, fromGallery=false;
@@ -1330,7 +1287,6 @@ $$('[data-lb]').forEach(b=>b.addEventListener('click',()=>openLb(b)));
 $('#lbX').onclick=()=>closeLb(); $('#lbP').onclick=()=>nav(idx-1); $('#lbN').onclick=()=>nav(idx+1);
 // "See this project": close, show every project, jump to it
 $('#lbProj').onclick=()=>{const id=items[idx].dataset.proj;closeLb(true);
-  const all=$('.filters .chip[data-f="all"]');if(all&&all.getAttribute('aria-pressed')!=='true')all.click();
   setTimeout(()=>{const p=document.getElementById(id);if(p)p.scrollIntoView({behavior:calm?'auto':'smooth',block:'center'})},120)};
 lb.addEventListener('click',e=>{if(e.target===lb||e.target.id==='lbStage')closeLb()});
 addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;
@@ -1346,9 +1302,8 @@ st.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[
   const grid=$('#gmas');if(!grid)return;
   const DIM={kit3:'1050/1400',kidw:'1050/1400',kit1:'1050/1400',kit2:'1050/1400',ward:'1050/1400',kids:'1050/1400',wt:'1050/1400',wn:'1050/1400',wp:'1050/1400',gk:'1050/1400',gk2:'1050/1400',ball:'768/1024',tv1:'1050/1400',tv2:'1050/1400',pooja:'1400/1050',sales1:'1280/960',sales2:'960/1280',sales3:'960/1280'};
   const NAME={living:'Living',kitchen:'Kitchen',bedroom:'Bedroom',commercial:'Commercial',fabrication:'Fabrication'};
-  const photos=[];
-  $$('#works .project').forEach((p,k)=>{if(!p.id)p.id='project-'+(k+1);
-    $$('[data-lb]',p).forEach(t=>photos.push({key:t.dataset.img,t:t.dataset.t,s:t.dataset.s,cat:p.dataset.cat,proj:p.id}))});
+  const PHOTOS=[{"k":"sales1","t":"Site Sales Office","s":"Warm panelled interior with slatted accents and concealed LED lighting.","c":"commercial","p":"project-1"},{"k":"sales2","t":"Site Sales Office","s":"Long view along the glazed frontage.","c":"commercial","p":"project-1"},{"k":"sales3","t":"Site Sales Office","s":"Recessed spotlights and LED strips above slatted wall panels.","c":"commercial","p":"project-1"},{"k":"tv2","t":"Slatted TV wall","s":"Cove-lit ceiling and a floating TV unit beside a full-height slatted panel.","c":"living","p":"project-2"},{"k":"tv1","t":"Marble-look TV wall","s":"Floating shelves lit by recessed spotlights, with brass inlay lines in the slats.","c":"living","p":"project-2"},{"k":"pooja","t":"Pooja & display wall unit","s":"Laser-cut pooja doors with a carved Ganesha motif, backlit so the pattern glows.","c":"living","p":"project-3"},{"k":"kit3","t":"L-shaped modular kitchen","s":"Full view of the L-shaped layout with glossy wall units and a black granite counter.","c":"kitchen","p":"project-4"},{"k":"kit1","t":"L-shaped modular kitchen","s":"Glossy upper cabinets, soft-toned base units and a black granite counter.","c":"kitchen","p":"project-4"},{"k":"kit2","t":"Kitchen with serving counter","s":"Warm under-cabinet lighting over a patterned tile backsplash.","c":"kitchen","p":"project-4"},{"k":"ward","t":"Bedroom wardrobe","s":"Full-height wardrobe with loft storage, a mirrored door and brass-finish handles.","c":"bedroom","p":"project-5"},{"k":"kids","t":"Kids' room study corner","s":"A built-in study desk with a lit overhead cabinet, beside a storage bed.","c":"bedroom","p":"project-5"},{"k":"kidw","t":"Kids' room wardrobe","s":"Blue and white wardrobe with a full-length mirror and a lit display column.","c":"bedroom","p":"project-5"},{"k":"gk","t":"Sage-green island kitchen","s":"Glossy white wall units, sage-green base units and a lit island with a timber-fluted curve.","c":"kitchen","p":"project-6"},{"k":"gk2","t":"Sage-green kitchen","s":"The same kitchen from another angle.","c":"kitchen","p":"project-6"},{"k":"ball","t":"Illuminated entrance signage","s":"Halo-lit metal letters on a stone-clad wall, with warm uplighting from the planting below.","c":"fabrication","p":"project-7"},{"k":"wt","t":"Teal wardrobe and study nook","s":"Teal doors with warm timber shelves, a built-in desk and copper-tone handles.","c":"bedroom","p":"project-8"},{"k":"wn","t":"Navy and cream wardrobe wall","s":"Navy upper doors over fluted cream lower doors, with a lit display column and an arched mirror.","c":"bedroom","p":"project-8"},{"k":"wp","t":"Peach wardrobe with oval mirror","s":"Peach wardrobe with arch-shaped door panels, a study desk and a pill-shaped mirror.","c":"bedroom","p":"project-8"}];
+  const photos=PHOTOS.map(x=>({key:x.k,t:x.t,s:x.s,cat:x.c,proj:x.p}));
   photos.forEach(ph=>{
     const [w,h]=(DIM[ph.key]||'1050/1400').split('/').map(Number),u=IMG[ph.key],b=document.createElement('button');
     b.type='button';b.className='gitem';b.setAttribute('data-lb','');b.dataset.img=ph.key;b.dataset.t=ph.t;b.dataset.s=ph.s;b.dataset.proj=ph.proj;b.dataset.cat=ph.cat;
@@ -1360,12 +1315,16 @@ st.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[
     b.append(im,cap);b.addEventListener('click',()=>openLb(b));grid.appendChild(b);fadeIn(im)});
   const quiet=matchMedia('(prefers-reduced-motion:reduce)').matches;   // own copy: this block runs before the page-wide one is defined
   const count=$('#gcount'),chips=$$('#gfil .chip');
+  const PN={};$$('#works .project').forEach(p=>PN[p.id]=$('h3',p).textContent);
   function filter(f){
-    let n=0;$$('.gitem',grid).forEach(b=>{const on=f==='all'||b.dataset.cat===f;b.hidden=!on;if(on)n++});
-    chips.forEach(c=>c.setAttribute('aria-pressed',c.dataset.gf===f));
-    count.textContent=n+(n===1?' photo':' photos')+(f==='all'?' · select any photo to view it large and zoom in':' · '+NAME[f]);
+    const byProj=f.startsWith('p:'),pid=byProj?f.slice(2):'';
+    let n=0;$$('.gitem',grid).forEach(b=>{const on=f==='all'||(byProj?b.dataset.proj===pid:b.dataset.cat===f);b.hidden=!on;if(on)n++});
+    chips.forEach(c=>c.setAttribute('aria-pressed',!byProj&&c.dataset.gf===f));
+    count.textContent=n+(n===1?' photo':' photos')+(f==='all'?' · select any photo to view it large and zoom in':' · '+(byProj?PN[pid]:NAME[f]));
+    if(byProj){const x=document.createElement('button');x.type='button';x.className='gclear';x.textContent='Show all photos';x.addEventListener('click',()=>filter('all'));count.append(' · ',x)}
     if(!quiet){grid.classList.remove('gfade');void grid.offsetWidth;grid.classList.add('gfade')}
   }
+  $$('.plink').forEach(b=>b.addEventListener('click',()=>{filter('p:'+b.dataset.proj);$('#gallery').scrollIntoView({behavior:quiet?'auto':'smooth',block:'start'})}));
   chips.forEach(c=>c.addEventListener('click',()=>filter(c.dataset.gf)));
   filter('all');
 })();
@@ -1383,7 +1342,7 @@ const CHECK={
   n:v=>v.trim().length<2?'Please enter your name.':'',
   p:v=>{let d=v.replace(/\D/g,'');if(d.length===12&&d.startsWith('91'))d=d.slice(2);else if(d.length===11&&d.startsWith('0'))d=d.slice(1);
         return !v.trim()?'Please enter your phone number.':(d.length===10?'':'Enter a 10-digit mobile number, for example 90252 84259.')},
-  e:v=>!v.trim()?'Please enter your email.':(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?'':'Enter a valid email, like you@example.com.')
+  e:v=>!v.trim()?'':(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?'':'Enter a valid email, like you@example.com.')
 };
 function checkField(id,quiet){
   const el=$('#'+id),msg=CHECK[id](el.value),box=$('#'+id+'-e');
@@ -1402,8 +1361,9 @@ $('#form').addEventListener('submit',async e=>{
   lastBody=rows.map(l=>l[0]+': '+l[1]).join('\n');
   if($('#hp').value){return okShow('Thank you','Your enquiry has been sent to Preethi. We will get back to you soon.',false)}   // a bot filled the hidden field
   const btn=$('#form button[type=submit]'),label=btn.textContent;btn.disabled=true;btn.classList.add('sending');btn.textContent='Sending…';
-  const payload={_subject:'Project enquiry from '+v('n'),_template:'table',_captcha:'false',name:v('n'),email:v('e'),phone:v('p')};
-  rows.slice(3).forEach(l=>payload[l[0]]=l[1]);
+  const payload={_subject:'Project enquiry from '+v('n'),_template:'table',_captcha:'false',name:v('n'),phone:v('p')};
+  if(v('e'))payload.email=v('e');
+  rows.filter(l=>!['Name','Phone','Email'].includes(l[0])).forEach(l=>payload[l[0]]=l[1]);
   try{
     const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),15000);
     const res=await fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload),signal:ctl.signal});
@@ -1429,6 +1389,7 @@ const fine=matchMedia('(pointer:fine)').matches, calm=matchMedia('(prefers-reduc
   const done=()=>{if(pl&&pl.parentNode)pl.remove();root.classList.remove('intro');ready()};
   if(!root.classList.contains('intro')||!logo||!brand||!logo.animate){done();return}
   const run=()=>{
+    try{sessionStorage.setItem('introSeen','1')}catch(e){}   // plays once per visit
     try{
       const a=logo.getBoundingClientRect(),b=brand.getBoundingClientRect();
       const s=Math.max(.1,Math.min(.4,b.height/a.height));                       // stacked logo shrinks to the height of the header logo
@@ -1436,23 +1397,22 @@ const fine=matchMedia('(pointer:fine)').matches, calm=matchMedia('(prefers-reduc
       logo.style.animation='none';logo.style.opacity='1';
       ready();                                                                    // hero words start rising as it lifts
       const fly=logo.animate([{transform:'none',opacity:1},{transform:'translate('+dx+'px,'+dy+'px) scale('+s+')',opacity:1,offset:.68},{transform:'translate('+dx+'px,'+dy+'px) scale('+s+')',opacity:0}],
-        {duration:900,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
+        {duration:750,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});
       pl.animate([{backgroundColor:'rgb(46,49,86)'},{backgroundColor:'rgba(46,49,86,0)'}],{duration:640,delay:160,easing:'ease',fill:'forwards'});
-      setTimeout(()=>root.classList.remove('intro'),520);                       // the real header logo fades in as the small one fades out
-      fly.onfinish=done;setTimeout(done,1600);
+      setTimeout(()=>root.classList.remove('intro'),430);                       // the real header logo fades in as the small one fades out
+      fly.onfinish=done;setTimeout(done,1400);
     }catch(e){done()}
   };
-  const start=()=>setTimeout(run,Math.max(0,1300-performance.now()));         // logo is fully visible for about a second first
+  const start=()=>setTimeout(run,Math.max(0,1000-performance.now()));         // logo is fully visible for about a second first
   (logo.decode?logo.decode().catch(()=>{}):Promise.resolve()).then(start);
   setTimeout(()=>{if(root.classList.contains('intro')&&pl.parentNode)run()},3200);   // very slow start: never wait longer than this
 })();
 
 // scroll: progress, back-to-top, mobile CTA, hero parallax
-const prog=$('#prog'), topBtn=$('#top-btn'), mcta=$('#mcta'), arch=$('#archImg'), contact=$('#contact');
+const topBtn=$('#top-btn'), mcta=$('#mcta'), arch=$('#archImg'), contact=$('#contact');
 let tick=false;
 function onScr(){
   const h=document.documentElement.scrollHeight-innerHeight;
-  prog.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
   topBtn.classList.toggle('show',scrollY>900);
   const cr=contact.getBoundingClientRect();
   mcta.classList.toggle('show',scrollY>innerHeight*.7 && cr.top>innerHeight*.5);
@@ -1468,18 +1428,8 @@ topBtn.onclick=()=>scrollTo({top:0,behavior:calm?'auto':'smooth'});
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.links a:not(.btn)').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
 ['about','vision','promise','works','gallery','services','process'].forEach(id=>spy.observe($('#'+id)));
 
-// desktop-only: custom cursor + magnetic buttons
+// desktop-only: magnetic buttons
 if(fine&&!calm){
-  const cur=$('#cur'); let cx=0,cy=0,tx=0,ty=0;
-  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cur.classList.add('on')},{passive:true});
-  document.addEventListener('pointerleave',()=>cur.classList.remove('on'));
-  (function loop(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop)})();
-  document.addEventListener('pointerover',e=>{
-    const t=e.target.closest('[data-lb],a,button,summary,.chip,.opt,input,textarea');
-    cur.classList.toggle('big',!!(t&&t.matches('[data-lb]')&&!lb.classList.contains('open')));
-    cur.classList.toggle('link',!!(t&&!t.matches('[data-lb]')));
-    cur.textContent=(t&&t.matches('[data-lb]')&&!lb.classList.contains('open'))?'VIEW':'';
-  });
   $$('.mag').forEach(b=>{
     b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.28}px)`});
     b.addEventListener('pointerleave',()=>b.style.transform='');
@@ -1507,13 +1457,6 @@ if(fine&&!calm){
     [...h.childNodes].forEach(wrap);
     h.classList.add('hw');            // revealed by the page's existing reveal observer (class "in")
   });
-})();
-
-// filter row: remove the edge fade once the last chip is in view (or when nothing overflows)
-(function(){
-  const f=$('.filters');if(!f)return;
-  const chk=()=>f.classList.toggle('end',f.scrollWidth<=f.clientWidth+4||f.scrollLeft+f.clientWidth>=f.scrollWidth-4);
-  f.addEventListener('scroll',chk,{passive:true});addEventListener('resize',chk);chk();
 })();
 
 // ---- micro-animations: sliding menu line, unveiling photos, lit-up process steps ----
