@@ -620,8 +620,6 @@ header.solid .nav{height:52px}
   .gitem:hover::after,.gitem:focus-visible::after{opacity:1}
   .gitem::before{content:"+";position:absolute;top:12px;right:12px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(250,247,242,.88);color:#2E3156;font-size:1.25rem;line-height:1;opacity:0;transform:scale(.7);transition:opacity .35s,transform .45s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
   .gitem:hover::before,.gitem:focus-visible::before{opacity:1;transform:none}
-  .project .num{transition:color .3s}.project h3{transition:transform .45s cubic-bezier(.22,1,.36,1)}
-  .project:hover .num{color:#B07C1E}.project:hover h3{transform:translateX(6px)}
 }
 @keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.04)}100%{transform:none}}
 @media(prefers-reduced-motion:reduce){
@@ -687,6 +685,34 @@ header.solid .nav{height:52px}
 .cta-card:focus-visible{outline:3px solid var(--ochre);outline-offset:4px}
 @media(max-width:700px){.cta-big{grid-template-columns:1fr;gap:14px;margin-top:34px}.cta-card{padding:22px 24px;min-height:96px}.contact-cta .wrap{text-align:left}.contact-cta h2{margin-inline:0}.contact-cta .lead{margin-left:0}}
 @media(prefers-reduced-motion:reduce){.cta-card{transition:none}.cta-card:hover,.cta-card:active{transform:none}}
+
+/* Designs as cards: two per row on screens, a swipeable row on phones */
+.projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,30px);border-top:0}
+.project{position:relative;display:flex;flex-direction:row;grid-template-columns:none;padding:0;border:1px solid var(--line);border-radius:22px;background:var(--card);overflow:hidden;box-shadow:0 18px 40px -28px rgba(46,49,86,.45);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+.pcover{display:block;flex:0 0 38%;width:38%;min-height:100%;object-fit:cover;object-position:50% 55%;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.project .num{position:absolute;top:14px;left:14px;margin:0;padding:4px 12px;border-radius:999px;background:rgba(250,247,242,.92);font-size:1rem;z-index:1}
+.pbody{display:flex;flex-direction:column;flex:1;min-width:0;gap:0;padding:20px 22px 12px}
+.pbody h3{margin:0 0 8px;font-size:clamp(1.3rem,1.8vw,1.6rem)}
+.pdesc{display:flex;flex-direction:column;flex:1}
+.pdesc p{margin:0 0 12px;font-size:.88rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.project .plink{margin-top:auto;padding-top:6px}
+.project .tags{margin-bottom:6px}
+@media(max-width:1100px){
+  .project{flex-direction:column}
+  .pcover{flex:none;width:100%;min-height:0;aspect-ratio:16/8}
+}
+@media(hover:hover) and (pointer:fine){
+  .project:hover{transform:translateY(-5px);box-shadow:0 26px 50px -26px rgba(46,49,86,.55)}
+  .project:hover .pcover{transform:scale(1.05)}
+}
+@media(max-width:700px){
+  .projects{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:calc(var(--gutter) * -1);padding:4px var(--gutter) 14px;scrollbar-width:none}
+  .projects::-webkit-scrollbar{display:none}
+  .project{flex:0 0 82vw;scroll-snap-align:center}
+  .pcover{aspect-ratio:16/10}
+  .projects .project.rv{opacity:1;transform:none}   /* off-screen cards must already be visible so the next one peeks in */
+}
+@media(prefers-reduced-motion:reduce){.project,.pcover{transition:none}.project:hover,.project:hover .pcover{transform:none}}
 </style>
 <script>try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&!sessionStorage.getItem("introSeen"))document.documentElement.classList.add("intro")}catch(e){}</script>
 </head>
@@ -793,6 +819,7 @@ header.solid .nav{height:52px}
 
     <div class="projects">
       <article class="project rv" id="project-1" data-cat="commercial">
+        <img class="pcover" data-img="sales1" alt="" loading="lazy" decoding="async" />
         <span class="num">01</span>
         <div class="pbody">
           <h3>Site Sales Office</h3>
@@ -804,6 +831,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-2" data-cat="living">
+        <img class="pcover" data-img="tv2" alt="" loading="lazy" decoding="async" />
         <span class="num">02</span>
         <div class="pbody">
           <h3>Slatted TV Wall</h3>
@@ -815,6 +843,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-3" data-cat="living">
+        <img class="pcover" data-img="pooja" alt="" loading="lazy" decoding="async" />
         <span class="num">03</span>
         <div class="pbody">
           <h3>Pooja &amp; Display Wall Unit</h3>
@@ -826,6 +855,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-4" data-cat="kitchen">
+        <img class="pcover" data-img="kit3" alt="" loading="lazy" decoding="async" />
         <span class="num">04</span>
         <div class="pbody">
           <h3>L-Shaped Modular Kitchen</h3>
@@ -837,6 +867,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-5" data-cat="bedroom">
+        <img class="pcover" data-img="ward" alt="" loading="lazy" decoding="async" />
         <span class="num">05</span>
         <div class="pbody">
           <h3>Wardrobes &amp; Study Corner</h3>
@@ -848,6 +879,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-6" data-cat="kitchen">
+        <img class="pcover" data-img="gk" alt="" loading="lazy" decoding="async" />
         <span class="num">06</span>
         <div class="pbody">
           <h3>Sage-Green Island Kitchen</h3>
@@ -859,6 +891,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-7" data-cat="fabrication">
+        <img class="pcover" data-img="ball" alt="" loading="lazy" decoding="async" />
         <span class="num">07</span>
         <div class="pbody">
           <h3>Illuminated Signage</h3>
@@ -870,6 +903,7 @@ header.solid .nav{height:52px}
         </div>
       </article>
       <article class="project rv" id="project-8" data-cat="bedroom">
+        <img class="pcover" data-img="wt" alt="" loading="lazy" decoding="async" />
         <span class="num">08</span>
         <div class="pbody">
           <h3>Colour-Led Wardrobe Walls</h3>
