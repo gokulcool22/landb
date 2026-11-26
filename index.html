@@ -414,6 +414,7 @@ input[aria-invalid="true"]{border-color:#A32A1C!important;box-shadow:0 0 0 3px r
 .gcap{position:absolute;left:16px;right:16px;bottom:13px;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;font-family:var(--serif);font-size:1.15rem;line-height:1.15}
 .gcap small{font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.88;white-space:nowrap}
 .gitem:focus-visible{outline:2px solid var(--ochre-text);outline-offset:3px}
+.gitem[hidden]{display:none}   /* .gitem sets display:block, which would otherwise keep filtered-out photos on screen */
 @keyframes gIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .gmas.gfade .gitem{animation:gIn .5s cubic-bezier(.22,1,.36,1) both}
 @media(max-width:1024px){.gmas{columns:2}}
