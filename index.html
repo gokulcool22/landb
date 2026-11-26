@@ -742,10 +742,10 @@ form.sent .wa-alt{display:none!important}
     </a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><i></i><i></i></button>
     <nav class="links" id="links">
+      <a href="#services">Services</a>
       <a href="#works">Designs</a>
       <a href="#gallery">Gallery</a>
       <a href="#about">About</a>
-      <a href="#services">Services</a>
       <a href="#process">Process</a>
       <a href="#contact" class="btn mag">Enquire</a>
     </nav>
@@ -783,6 +783,37 @@ form.sent .wa-alt{display:none!important}
 </section>
 
 
+
+<!-- SERVICES -->
+<section id="services" class="alt">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="kicker rv">What We Do</span><h2 class="rv">Services</h2></div>
+      <p class="lead rv" style="max-width:26em">Design and fabrication under one roof, from the first sketch to the final finish.</p>
+    </div>
+    <div class="svc-cards">
+      <a class="scard rv" href="#gallery" data-go="living"><img data-img="tv2" alt="" loading="lazy" /><div><h3>Living &amp; Feature Walls</h3></div></a>
+      <a class="scard rv" href="#gallery" data-go="kitchen"><img data-img="gk" alt="" loading="lazy" /><div><h3>Modular Kitchens</h3></div></a>
+      <a class="scard rv" href="#gallery" data-go="bedroom"><img data-img="kids" alt="" loading="lazy" /><div><h3>Wardrobes &amp; Bedrooms</h3></div></a>
+      <a class="scard rv" href="#gallery" data-go="commercial"><img data-img="sales1" alt="" loading="lazy" /><div><h3>Commercial Spaces</h3></div></a>
+      <a class="scard rv" href="#gallery" data-go="fabrication"><img data-img="ball" alt="" loading="lazy" /><div><h3>Signage &amp; Fabrication</h3></div></a>
+    </div>
+    <div class="svc-all rv">
+      <span class="kicker">Everything we do</span>
+      <ul>
+        <li>Interior Design</li>
+        <li>Exterior Design &amp; Elevation</li>
+        <li>Modular Kitchen &amp; Wardrobes</li>
+        <li>Space Planning &amp; Layouts</li>
+        <li>3D Visualisation</li>
+        <li>Custom Furniture</li>
+        <li>False Ceiling &amp; Lighting Design</li>
+        <li>Signage &amp; Branding Works</li>
+        <li>Metal &amp; CNC Work</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <!-- DESIGNS -->
 <section id="works">
@@ -942,37 +973,6 @@ form.sent .wa-alt{display:none!important}
 
 <!-- VISION -->
 <!-- PROMISE -->
-
-<!-- SERVICES -->
-<section id="services" class="alt">
-  <div class="wrap">
-    <div class="head">
-      <div><span class="kicker rv">What We Do</span><h2 class="rv">Services</h2></div>
-      <p class="lead rv" style="max-width:26em">Design and fabrication under one roof, from the first sketch to the final finish.</p>
-    </div>
-    <div class="svc-cards">
-      <a class="scard rv" href="#gallery" data-go="living"><img data-img="tv2" alt="" loading="lazy" /><div><h3>Living &amp; Feature Walls</h3></div></a>
-      <a class="scard rv" href="#gallery" data-go="kitchen"><img data-img="gk" alt="" loading="lazy" /><div><h3>Modular Kitchens</h3></div></a>
-      <a class="scard rv" href="#gallery" data-go="bedroom"><img data-img="kids" alt="" loading="lazy" /><div><h3>Wardrobes &amp; Bedrooms</h3></div></a>
-      <a class="scard rv" href="#gallery" data-go="commercial"><img data-img="sales1" alt="" loading="lazy" /><div><h3>Commercial Spaces</h3></div></a>
-      <a class="scard rv" href="#gallery" data-go="fabrication"><img data-img="ball" alt="" loading="lazy" /><div><h3>Signage &amp; Fabrication</h3></div></a>
-    </div>
-    <div class="svc-all rv">
-      <span class="kicker">Everything we do</span>
-      <ul>
-        <li>Interior Design</li>
-        <li>Exterior Design &amp; Elevation</li>
-        <li>Modular Kitchen &amp; Wardrobes</li>
-        <li>Space Planning &amp; Layouts</li>
-        <li>3D Visualisation</li>
-        <li>Custom Furniture</li>
-        <li>False Ceiling &amp; Lighting Design</li>
-        <li>Signage &amp; Branding Works</li>
-        <li>Metal &amp; CNC Work</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <!-- PROCESS -->
 <section id="process" class="dark">
@@ -1451,7 +1451,7 @@ topBtn.onclick=()=>scrollTo({top:0,behavior:calm?'auto':'smooth'});
 
 // scrollspy
 const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('.links a:not(.btn)').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-['works','gallery','about','services','process'].forEach(id=>spy.observe($('#'+id)));
+['services','works','gallery','about','process'].forEach(id=>spy.observe($('#'+id)));
 
 // desktop-only: magnetic buttons
 if(fine&&!calm){
