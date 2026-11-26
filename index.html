@@ -674,17 +674,23 @@ footer{border-top:1px solid rgba(197,162,91,.3)}   /* keeps the dark contact ban
 #contact h2{color:#fff;margin-inline:auto;max-width:15em}
 #contact h2 em{color:#E7C27A}
 #contact .lead{color:rgba(250,247,242,.82);margin:22px auto 0}
-.big-num{display:inline-flex;align-items:center;gap:.28em;margin-top:44px;padding-bottom:.18em;color:#fff;text-decoration:none;font-family:var(--serif);font-size:clamp(2.3rem,7.5vw,5rem);line-height:1;background:linear-gradient(#C5A25B,#C5A25B) left bottom/100% 2px no-repeat;transition:background-size .4s cubic-bezier(.22,1,.36,1),color .3s}
-.big-num svg{width:.62em;height:.62em;flex:none;color:#E7C27A}
-.big-num:hover{color:#F3D690;background-size:100% 4px}
-.big-num:active{transform:scale(.99)}
-.big-num:focus-visible,.wa-pill:focus-visible{outline:3px solid #E7C27A;outline-offset:6px}
-.wa-pill{display:inline-flex;align-items:center;gap:12px;margin-top:34px;padding:18px 36px;min-height:60px;border-radius:999px;background:#25D366;color:#06371D;font-weight:600;font-size:1.05rem;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 20px 40px -16px rgba(37,211,102,.65);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,background .3s}
-.wa-pill svg{width:28px;height:28px;flex:none}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:44px}
+.call-btn,.wa-pill{display:inline-flex;align-items:center;gap:16px;min-height:76px;padding:12px 34px 12px 22px;border-radius:999px;text-decoration:none;text-align:left;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,background .3s}
+.call-btn svg,.wa-pill svg{flex:none;width:44px;height:44px;padding:10px;border-radius:50%;box-sizing:border-box}
+.call-btn small,.wa-pill small{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8;margin-bottom:2px}
+.call-btn b,.wa-pill b{display:block;font-weight:600;line-height:1.1}
+.call-btn{background:#E7C27A;color:#2E3156;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 20px 40px -16px rgba(231,194,122,.55)}
+.call-btn svg{background:#2E3156;color:#E7C27A}
+.call-btn b{font-family:var(--serif);font-size:1.7rem;font-weight:600;letter-spacing:.01em}
+.call-btn:hover{transform:translateY(-3px);background:#F0CE8C}
+.wa-pill{background:#25D366;color:#06371D;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 20px 40px -16px rgba(37,211,102,.6)}
+.wa-pill svg{background:#06371D;color:#25D366;fill:#25D366;padding:9px}
+.wa-pill b{font-size:1.15rem}
 .wa-pill:hover{transform:translateY(-3px);background:#2BE070}
-.wa-pill:active{transform:scale(.98)}
-@media(max-width:700px){#contact .wrap{text-align:left}#contact h2,#contact .lead{margin-left:0}.big-num{margin-top:34px}.wa-pill{width:100%;justify-content:center;margin-top:26px}}
-@media(prefers-reduced-motion:reduce){.big-num,.wa-pill{transition:none}.wa-pill:hover,.wa-pill:active,.big-num:active{transform:none}}
+.call-btn:active,.wa-pill:active{transform:scale(.98)}
+.call-btn:focus-visible,.wa-pill:focus-visible{outline:3px solid #E7C27A;outline-offset:6px}
+@media(max-width:700px){#contact .wrap{text-align:left}#contact h2,#contact .lead{margin-left:0}.cta-row{flex-direction:column;align-items:stretch;margin-top:30px}.call-btn,.wa-pill{width:100%;justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){.call-btn,.wa-pill{transition:none}.call-btn:hover,.wa-pill:hover,.call-btn:active,.wa-pill:active{transform:none}}
 /* Designs as cards: two per row on screens, a swipeable row on phones */
 .projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,30px);border-top:0}
 .project{position:relative;display:flex;flex-direction:row;grid-template-columns:none;padding:0;border:1px solid var(--line);border-radius:22px;background:var(--card);overflow:hidden;box-shadow:0 18px 40px -28px rgba(46,49,86,.45);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
@@ -1007,8 +1013,10 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
     <span class="kicker rv">Begin a Conversation</span>
     <h2 class="rv">Let's design a space you'll <em>love</em> coming home to.</h2>
     <p class="lead rv">The quickest way is a call or a WhatsApp message.</p>
-    <a class="big-num rv" href="tel:+919025284259" aria-label="Call +91 90252 84259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span>+91 90252 84259</span></a>
-    <div class="rv"><a class="wa-pill" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Chat on WhatsApp</span></a></div>
+    <div class="cta-row rv">
+      <a class="call-btn" href="tel:+919025284259" aria-label="Call +91 90252 84259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span><small>Tap to call</small><b>+91 90252 84259</b></span></a>
+      <a class="wa-pill" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span><small>Message us</small><b>Chat on WhatsApp</b></span></a>
+    </div>
   </div>
 </section>
 </main>
