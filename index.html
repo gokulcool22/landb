@@ -668,26 +668,25 @@ header.solid .nav{height:52px}
 }
 .cine-frame{touch-action:pan-y pinch-zoom}
 
-/* contact: two large call-to-action cards */
-.contact-cta .wrap{text-align:center;max-width:960px}
-.contact-cta h2{margin-inline:auto;max-width:15em}
-.contact-cta .lead{margin:22px auto 0}
-.cta-big{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
-.cta-card{display:flex;align-items:center;gap:20px;padding:28px 32px;min-height:112px;border-radius:26px;text-decoration:none;text-align:left;color:#fff;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
-.cta-card.call{background:var(--indigo);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 24px 44px -22px rgba(46,49,86,.7)}
-.cta-card.wapp{background:#168A4C;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 44px -22px rgba(22,138,76,.65)}
-.cta-card:hover{transform:translateY(-5px)}
-.cta-card.call:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 52px -20px rgba(46,49,86,.8)}
-.cta-card.wapp:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 52px -20px rgba(22,138,76,.75)}
-.cta-card:active{transform:translateY(-1px) scale(.99)}
-.cta-card svg{width:40px;height:40px;flex:none;color:#E7C27A}
-.cta-card.wapp svg{color:#fff}
-.cta-card small{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.85;margin-bottom:4px}
-.cta-card b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.1}
-.cta-card:focus-visible{outline:3px solid var(--ochre);outline-offset:4px}
-@media(max-width:700px){.cta-big{grid-template-columns:1fr;gap:14px;margin-top:34px}.cta-card{padding:22px 24px;min-height:96px}.contact-cta .wrap{text-align:left}.contact-cta h2{margin-inline:0}.contact-cta .lead{margin-left:0}}
-@media(prefers-reduced-motion:reduce){.cta-card{transition:none}.cta-card:hover,.cta-card:active{transform:none}}
-
+/* contact: dark band with a giant number and a WhatsApp button */
+#contact.contact-cta{background:#2E3156;color:#fff;border-top:1px solid rgba(197,162,91,.4)}
+footer{border-top:1px solid rgba(197,162,91,.3)}   /* keeps the dark contact band and the footer visibly apart */
+#contact .wrap{text-align:center;max-width:960px}
+#contact .kicker{color:#E7C27A}
+#contact h2{color:#fff;margin-inline:auto;max-width:15em}
+#contact h2 em{color:#E7C27A}
+#contact .lead{color:rgba(250,247,242,.82);margin:22px auto 0}
+.big-num{display:inline-flex;align-items:center;gap:.28em;margin-top:44px;padding-bottom:.18em;color:#fff;text-decoration:none;font-family:var(--serif);font-size:clamp(2.3rem,7.5vw,5rem);line-height:1;background:linear-gradient(#C5A25B,#C5A25B) left bottom/100% 2px no-repeat;transition:background-size .4s cubic-bezier(.22,1,.36,1),color .3s}
+.big-num svg{width:.62em;height:.62em;flex:none;color:#E7C27A}
+.big-num:hover{color:#F3D690;background-size:100% 4px}
+.big-num:active{transform:scale(.99)}
+.big-num:focus-visible,.wa-pill:focus-visible{outline:3px solid #E7C27A;outline-offset:6px}
+.wa-pill{display:inline-flex;align-items:center;gap:12px;margin-top:34px;padding:18px 36px;min-height:60px;border-radius:999px;background:#25D366;color:#06371D;font-weight:600;font-size:1.05rem;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 20px 40px -16px rgba(37,211,102,.65);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,background .3s}
+.wa-pill svg{width:28px;height:28px;flex:none}
+.wa-pill:hover{transform:translateY(-3px);background:#2BE070}
+.wa-pill:active{transform:scale(.98)}
+@media(max-width:700px){#contact .wrap{text-align:left}#contact h2,#contact .lead{margin-left:0}.big-num{margin-top:34px}.wa-pill{width:100%;justify-content:center;margin-top:26px}}
+@media(prefers-reduced-motion:reduce){.big-num,.wa-pill{transition:none}.wa-pill:hover,.wa-pill:active,.big-num:active{transform:none}}
 /* footer: the copy button lives inside the phone and email pills */
 footer .fcontact .fc{display:inline-flex;align-items:center;min-height:46px;border:1px solid rgba(250,247,242,.28);border-radius:999px;transition:background .25s,border-color .25s,transform .25s}
 footer .fcontact .fc:hover,footer .fcontact .fc:focus-within{border-color:#DFB55C;transform:translateY(-2px)}
@@ -705,7 +704,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 <div class="pl" aria-hidden="true"><img src="img/logo/stacked-dark.svg" width="226" height="234" alt="" /></div>
 <nav class="mcta" id="mcta" aria-label="Quick contact">
   <a class="btn ghost" href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
-  <a class="btn ghost" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>WhatsApp</a>
+  <a class="btn ghost" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
   <a class="btn arrow" href="#contact">Enquire</a>
 </nav>
 <button class="top" id="top-btn" aria-label="Back to top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E3156" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
@@ -975,10 +974,8 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
     <span class="kicker rv">Begin a Conversation</span>
     <h2 class="rv">Let's design a space you'll <em>love</em> coming home to.</h2>
     <p class="lead rv">The quickest way is a call or a WhatsApp message.</p>
-    <div class="cta-big rv">
-      <a class="cta-card call" href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span><small>Call us</small><b>+91 90252 84259</b></span></a>
-      <a class="cta-card wapp" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1112 20a8 8 0 01-3.6-.9L4 20z"/></svg><span><small>Message us</small><b>WhatsApp</b></span></a>
-    </div>
+    <a class="big-num rv" href="tel:+919025284259" aria-label="Call +91 90252 84259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span>+91 90252 84259</span></a>
+    <div class="rv"><a class="wa-pill" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Chat on WhatsApp</span></a></div>
   </div>
 </section>
 </main>
@@ -997,7 +994,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 </footer>
 <div class="sr" id="cpLive" role="status" aria-live="polite"></div>
 
-<aside aria-label="Quick contact"><a class="wa" id="wa" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener" aria-label="Enquire on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.39 4 15.02c0 2.12.55 4.18 1.6 6L4 28l7.17-1.88a12.03 12.03 0 0 0 4.87 1.02h.01C22.68 27.14 28 21.75 28 15.12 28 8.48 22.68 3 16.04 3Zm0 21.95h-.01a10 10 0 0 1-5.1-1.4l-.37-.22-4.25 1.11 1.13-4.14-.24-.38a9.97 9.97 0 0 1-1.53-5.3c0-5.5 4.5-9.98 10.03-9.98 5.52 0 10 4.48 10 9.99 0 5.5-4.48 10.32-10.06 10.32Zm5.5-7.47c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.07-.15-.68-1.64-.93-2.25-.25-.58-.5-.5-.68-.5h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.1 3.2 5.08 4.5.7.3 1.26.48 1.7.62.72.23 1.37.2 1.88.12.58-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.12-.28-.2-.58-.35Z"/></svg><span>Chat on WhatsApp</span></a></aside>
+<aside aria-label="Quick contact"><a class="wa" id="wa" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener" aria-label="Enquire on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Chat on WhatsApp</span></a></aside>
 <!-- LIGHTBOX -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
   <div class="lb-glow" id="lbG" aria-hidden="true"><i></i><i></i></div>
