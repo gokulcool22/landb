@@ -687,6 +687,16 @@ header.solid .nav{height:52px}
 .cta-card:focus-visible{outline:3px solid var(--ochre);outline-offset:4px}
 @media(max-width:700px){.cta-big{grid-template-columns:1fr;gap:14px;margin-top:34px}.cta-card{padding:22px 24px;min-height:96px}.contact-cta .wrap{text-align:left}.contact-cta h2{margin-inline:0}.contact-cta .lead{margin-left:0}}
 @media(prefers-reduced-motion:reduce){.cta-card{transition:none}.cta-card:hover,.cta-card:active{transform:none}}
+
+/* footer: the copy button lives inside the phone and email pills */
+footer .fcontact .fc{display:inline-flex;align-items:center;min-height:46px;border:1px solid rgba(250,247,242,.28);border-radius:999px;transition:background .25s,border-color .25s,transform .25s}
+footer .fcontact .fc:hover,footer .fcontact .fc:focus-within{border-color:#DFB55C;transform:translateY(-2px)}
+footer .fcontact .fc a{flex:1;min-width:0;min-height:44px;padding:0 10px 0 20px;border:0;background:none;transform:none}
+footer .fcontact .fc a:hover{background:rgba(250,247,242,.08);border-color:transparent;transform:none}
+footer .fcontact .fc .cp{width:36px;height:36px;margin:0 5px 0 0;border:0}
+footer .fcontact .fc .cp:hover{background:rgba(250,247,242,.14)}
+@media(max-width:560px){footer .fcontact .fc{width:100%}footer .fcontact .fc a{justify-content:center}}
+@media(prefers-reduced-motion:reduce){footer .fcontact .fc,footer .fcontact .fc:hover{transition:none;transform:none}}
 </style>
 <script>try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&!sessionStorage.getItem("introSeen"))document.documentElement.classList.add("intro")}catch(e){}</script>
 </head>
