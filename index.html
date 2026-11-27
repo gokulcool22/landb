@@ -761,9 +761,8 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 .cb-dots{display:flex;gap:4px;padding:14px}
 .cb-dots i{width:7px;height:7px;border-radius:50%;background:#8F6410;opacity:.4;animation:cbDot 1s infinite}
 .cb-dots i:nth-child(2){animation-delay:.15s}.cb-dots i:nth-child(3){animation-delay:.3s}
-.cb-quick{display:flex;gap:8px;overflow-x:auto;padding:4px 16px 10px;scrollbar-width:none}
-.cb-quick::-webkit-scrollbar{display:none}
-.cb-quick button{flex:none;min-height:40px;padding:0 15px;border-radius:999px;border:1px solid rgba(46,49,86,.22);background:#fff;color:#2E3156;font:inherit;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap}
+.cb-quick{display:flex;flex-wrap:wrap;gap:8px;padding:6px 16px 10px}   /* all topics visible at once, no sideways scrolling to discover them */
+.cb-quick button{flex:none;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(46,49,86,.22);background:#fff;color:#2E3156;font:inherit;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap}
 .cb-quick button:hover{border-color:#2E3156}
 .cb-form{display:flex;gap:8px;padding:0 14px 10px}
 .cb-form input:focus{outline:none;border-color:#C5A25B;box-shadow:0 0 0 3px rgba(197,162,91,.25)}
@@ -1576,7 +1575,7 @@ if(fine&&!calm){
   const WAB=topic=>({t:'WhatsApp us',cls:'cb-a-wa',href:wa(topic?ABOUT_MSG+topic+'.':null),ext:true,topic:topic||null});
   const GAL=(label,cat)=>({t:label,cls:'cb-a-go',gal:cat});
   const ASK=(label,key)=>({t:label,cls:'cb-a-go',ask:key});
-  const TOPICS=[['Services','services'],['Where we work','location'],['How we work','process'],['Quote and pricing','pricing'],['Our projects','projects'],['Contact us','contact']];
+  const TOPICS=[['Services','services'],['Location','location'],['Process','process'],['Pricing','pricing'],['Projects','projects'],['Contact','contact']];
   const A={
     hello:{t:"Hello! I'm the Lumen & Archue assistant. Ask me about our services, where we work or how to reach us.",b:[]},
     services:{t:"We do interior design, elevation and fabrication for homes and workplaces:",l:['Living & feature walls','Modular kitchens','Wardrobes & bedrooms','Commercial spaces','Signage & fabrication'],t2:"Also on our list: exterior design and elevation, space planning and layouts, 3D visualisation, custom furniture, false ceiling and lighting design, signage and branding works, and metal and CNC work.",b:[WAB('your services'),CALL,GAL('See our photos','all')]},
