@@ -764,15 +764,13 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 .cb-quick{display:flex;flex-wrap:wrap;gap:8px;padding:6px 16px 10px}   /* all topics visible at once, no sideways scrolling to discover them */
 .cb-quick button{flex:none;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(46,49,86,.22);background:#fff;color:#2E3156;font:inherit;font-size:.82rem;font-weight:500;cursor:pointer;white-space:nowrap}
 .cb-quick button:hover{border-color:#2E3156}
-.cb-form{display:flex;gap:8px;padding:0 14px 10px}
+.cb-quick .cb-q-contact{background:#E7C27A;border-color:#E7C27A;color:#2E3156;font-weight:600}
+.cb-quick .cb-q-contact:hover{background:#F0CE8C;border-color:#F0CE8C}
+.cb-form{display:flex;gap:8px;padding:0 14px 14px}
 .cb-form input:focus{outline:none;border-color:#C5A25B;box-shadow:0 0 0 3px rgba(197,162,91,.25)}
 .cb-form input{flex:1;min-width:0;min-height:46px;padding:0 16px;border-radius:999px;border:1px solid rgba(46,49,86,.2);background:#fff;font:inherit;font-size:16px;color:#2E3156}
 .cb-form button{flex:none;width:46px;height:46px;border-radius:50%;border:0;background:#2E3156;color:#E7C27A;display:grid;place-items:center;cursor:pointer}
 .cb-form button svg{width:20px;height:20px}
-.cb-foot{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid rgba(46,49,86,.1);background:#F4EFE6}
-.cb-foot a{flex:1;display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;font-weight:600;font-size:.88rem;text-decoration:none}
-.cb-foot a:first-child{background:#E7C27A;color:#2E3156}
-.cb-foot a:last-child{background:#25D366;color:#06371D}
 @keyframes cbIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes cbUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
 @keyframes cbDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px);opacity:1}}
@@ -786,7 +784,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
   .cb-head{padding:calc(12px + env(safe-area-inset-top)) 12px 12px 16px}
   .cb-log{padding:14px 14px 8px}
   .cb-m{max-width:92%;font-size:.95rem}
-  .cb-foot{padding:10px 14px calc(12px + env(safe-area-inset-bottom))}
+  .cb-form{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
   .cb-nudge{padding:14px 14px 10px;border-radius:18px}
   .cb-nudge p{margin-bottom:10px}
   .cb-nudge p b{font-size:1.15rem}
@@ -1150,7 +1148,6 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
   <div class="cb-log" id="cbLog" aria-live="polite"></div>
   <div class="cb-quick" id="cbQuick"></div>
   <form class="cb-form" id="cbForm" autocomplete="off"><input id="cbIn" type="text" aria-label="Type your question" placeholder="Type your question" maxlength="140" /><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>
-  <div class="cb-foot"><a href="tel:+919025284259">Call now</a><a id="cbFwa" href="https://wa.me/919025284259" target="_blank" rel="noopener">WhatsApp</a></div>
 </div>
 
 <!-- LIGHTBOX -->
@@ -1600,7 +1597,7 @@ if(fine&&!calm){
 // ---- chat assistant: answers from what this website says, and always points to a call or WhatsApp ----
 (function(){
   const NUDGE_MS=15000;                       // how long before the invitation appears
-  const PHONE='+919025284259',PHONE_TXT='+91 90252 84259',EMAIL='preethi.lumenarchue@gmail.com',WA='919025284259';
+  const PHONE='+919025284259',PHONE_TXT='+91 90252 84259',WA='919025284259';
   const btn=$('#cbBtn'),nudge=$('#cbNudge'),panel=$('#cbPanel'),log=$('#cbLog'),quick=$('#cbQuick'),form=$('#cbForm'),inp=$('#cbIn');
   if(!btn||!panel)return;
   const wa=t=>'https://wa.me/'+WA+'?text='+encodeURIComponent("Hello Lumen & Archue, "+(t||"I'm looking to enquire about interior design."));
@@ -1624,16 +1621,16 @@ if(fine&&!calm){
     lighting:{t:"False ceiling and lighting design are part of what we do. Spotlights, cove lines and backlit details are planned with the design from the start.",b:[WAB('false ceiling and lighting'),CALL]},
     furniture:{t:"Custom furniture is part of our work. Joinery and panelling are built by our own team, with every junction and finish checked.",b:[WAB('custom furniture'),CALL]},
     layout:{t:"Space planning and layouts are part of our design work. Every layout is drawn around how you live, never copied from a template.",b:[WAB('space planning'),CALL]},
-    location:{t:"We serve homes and workplaces across Tamil Nadu, Kerala and Karnataka. For our studio address or to plan a site visit, the quickest way is a call or a WhatsApp message.",b:[CALL,WAB('your location and a site visit')]},
-    contact:{t:"You can reach us here:",l:['Phone: '+PHONE_TXT,'WhatsApp: same number','Email: '+EMAIL],b:[CALL,WAB(),{t:'Email us',cls:'cb-a-go',href:'mailto:'+EMAIL}]},
+    location:{t:"We serve homes and workplaces across Tamil Nadu, Kerala and Karnataka. For our studio address or to plan a site visit, the quickest way is a call or a WhatsApp message.",b:[CALL,WAB('your location and a site visit'),ASK('Contact us','contact')]},
+    contact:{t:"You can reach us here:",l:['Phone: '+PHONE_TXT,'WhatsApp: same number'],b:[CALL,WAB()],cta:true},
     pricing:{t:"Every project is made around you, so there is no fixed price list. We meet, understand your needs and budget, and measure the site. Then you get a clear, upfront quote. A small advance confirms the project and starts the design.",b:[WAB('a quote'),CALL,ASK('How we work','process')]},
-    timeline:{t:"Each project is built to a fixed timeline, with every stage inspected. For the timeline of your own project, please call or WhatsApp us.",b:[WAB('the timeline for my project'),CALL]},
+    timeline:{t:"Each project is built to a fixed timeline, with every stage inspected. For the timeline of your own project, please call or WhatsApp us.",b:[WAB('the timeline for my project'),CALL,ASK('Contact us','contact')]},
     process:{t:"Here is how we work:",l:['Consultation: we meet, understand your needs and budget, and measure the site','Quotation: a clear, upfront quote','Commencement: a small advance confirms the project and starts the design','Design and approval: nothing starts on site until you approve','Execution: built to a fixed timeline, every stage inspected','Handover: final quality checks, then a space ready to live in'],b:[WAB('starting a project'),CALL]},
     about:{t:"Lumen & Archue is an interior design, elevation and fabrication studio founded by Preethi Ranganathan. One dedicated team designs, builds and delivers. Light, colour, space.",b:[WAB(),CALL]},
     projects:{t:"You can browse every photo in the Gallery, by room:",b:[GAL('Living','living'),GAL('Kitchen','kitchen'),GAL('Bedroom','bedroom'),GAL('Commercial','commercial'),GAL('Fabrication','fabrication')]},
-    hours:{t:"I don't have set hours to share here. The quickest way to reach the team is a call or a WhatsApp message.",b:[CALL,WAB()]},
+    hours:{t:"I don't have set hours to share here. The quickest way to reach the team is a call or a WhatsApp message.",b:[CALL,WAB(),ASK('Contact us','contact')]},
     thanks:{t:"You're welcome! If you would like to talk it through, we are one tap away.",b:[CALL,WAB()]},
-    fallback:{t:"I'm not sure I have that. The team can answer it directly, by call or WhatsApp.",b:[CALL,WAB(),ASK('Our services','services')]}
+    fallback:{t:"I'm not sure I have that. The team can answer it directly, by call or WhatsApp.",b:[CALL,WAB(),ASK('Contact us','contact'),ASK('Our services','services')]}
   };
   const RULES=[
     ['hello',/^\s*(hi+|hello|hey|namaste|vanakkam|good (morning|afternoon|evening))\b/i],
@@ -1682,8 +1679,8 @@ if(fine&&!calm){
     m.appendChild(el('span',null,a.t));
     if(a.l){const ul=el('ul');a.l.forEach(x=>ul.appendChild(el('li',null,x)));m.appendChild(ul)}
     if(a.t2)m.appendChild(el('p',null,a.t2)).style.margin='8px 0 0';
-    // Call and WhatsApp live in the permanent row at the bottom, so messages only carry the extra buttons (photos, related topics, email)
-    const extra=(a.b||[]).filter(x=>x.cls!=='cb-a-call'&&x.cls!=='cb-a-wa');
+    // Call and WhatsApp buttons appear only in the Contact answer; other answers carry just their extra buttons (photos, related topics, Contact)
+    const extra=(a.b||[]).filter(x=>a.cta||(x.cls!=='cb-a-call'&&x.cls!=='cb-a-wa'));
     if(extra.length)m.appendChild(actions(extra));
     return m;
   }
@@ -1700,7 +1697,7 @@ if(fine&&!calm){
   }
   function buildQuick(){
     quick.textContent='';
-    TOPICS.forEach(([label,key])=>{const b=el('button',null,label);b.type='button';b.addEventListener('click',()=>ask(label,key));quick.appendChild(b)});
+    TOPICS.forEach(([label,key])=>{const b=el('button',key==='contact'?'cb-q-contact':null,label);b.type='button';b.addEventListener('click',()=>ask(label,key));quick.appendChild(b)});
   }
   function openPanel(){
     hideNudge();mark();
