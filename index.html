@@ -87,8 +87,6 @@ header.solid{background:rgba(250,247,242,.9);backdrop-filter:blur(16px);-webkit-
 .hero h1{margin-bottom:26px}
 .hero .lead{margin-bottom:36px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
-.scroll-cue{position:absolute;left:var(--gutter);bottom:26px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
-.scroll-cue::after{content:"";width:48px;height:1px;background:var(--ochre)}
 
 /* sections */
 section{padding:clamp(88px,13vw,200px) 0}
@@ -120,7 +118,6 @@ section{padding:clamp(88px,13vw,200px) 0}
 .tags span{font-size:.7rem;letter-spacing:.06em;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
 
 /* services */
-@media(max-width:820px){.svc-groups{grid-template-columns:1fr}}
 .services{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}.services>.svc{flex:1 1 calc(33.333% - 16px);min-width:230px}
 .svc{padding:32px 26px 36px;background:var(--card);border:1px solid var(--line);border-radius:22px;transition:.4s;display:flex;flex-direction:column;gap:14px}
 .svc:hover{transform:translateY(-6px);box-shadow:0 30px 60px -28px rgba(46,49,86,.3);border-color:rgba(200,147,46,.5)}
@@ -136,7 +133,6 @@ section{padding:clamp(88px,13vw,200px) 0}
 .step p{font-size:.92rem;font-weight:300}
 
 /* palette */
-.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .sw{border-radius:20px;aspect-ratio:3/4;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;font-size:.72rem;letter-spacing:.06em;border:1px solid var(--line);transition:transform .4s}
 .sw:hover{transform:translateY(-8px)}
 .sw b{font-family:var(--serif);font-weight:500;font-size:1.25rem;letter-spacing:0;display:block}
@@ -228,20 +224,12 @@ details[open] summary i::before,details[open] summary i::after{background:var(--
 details[open] summary i::after{transform:translate(-50%,-50%) rotate(0)}
 details p{color:var(--muted);font-weight:300;padding:0 54px 26px 0;animation:fadeUp .5s both}
 /* form extras */
-.opts{display:flex;flex-wrap:wrap;gap:8px}
-.opt{border:1px solid var(--line);background:var(--ivory);border-radius:999px;padding:10px 16px;font-size:.8rem;transition:.25s;min-height:44px}
-.opt:hover{border-color:var(--indigo)}
-.opt[aria-pressed=true]{background:var(--indigo);color:var(--ivory);border-color:var(--indigo)}
 /* cursor */
 /* mobile cta + top */
 .mcta{display:none;text-decoration:none}
 .pillar{grid-template-columns:3rem 1fr}
 .ba{margin:0}
 /* micro-animations: form feedback, sliding menu line, slimmer header, unveiling photos, lit-up process steps */
-.opt{position:relative}
-.opt::before{content:"\2713";display:inline-block;width:0;margin-right:0;overflow:hidden;opacity:0;vertical-align:baseline;transition:width .25s,margin .25s,opacity .25s}
-.opt[aria-pressed=true]::before{width:.9em;margin-right:6px;opacity:1}
-.opt[aria-pressed=true]{animation:pop .38s cubic-bezier(.3,1.5,.5,1)}
 @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.09)}100%{transform:scale(1)}}
 @keyframes nudge{20%{transform:translateX(-4px)}60%{transform:translateX(4px)}100%{transform:none}}
 .nav-ind{position:absolute;left:0;height:1px;width:var(--w,0);background:var(--ochre);transform:translateX(var(--x,0));opacity:var(--o,0);transition:transform .45s cubic-bezier(.22,1,.36,1),width .45s cubic-bezier(.22,1,.36,1),opacity .3s;pointer-events:none}
@@ -258,7 +246,7 @@ details p{color:var(--muted);font-weight:300;padding:0 54px 26px 0;animation:fad
 .step.lit::before{color:var(--ochre-soft);text-shadow:0 0 24px rgba(223,181,92,.5)}
 .step::after,.step.in::after{width:calc(var(--f,0) * 100%);transition:none}
 @media(prefers-reduced-motion:reduce){
-  .opt[aria-pressed=true],input:user-invalid{animation:none}
+  input:user-invalid{animation:none}
   .nav-ind{transition:none}
   .step::before{color:var(--ochre-soft)}.step::after,.step.in::after{width:100%}
 }
@@ -289,7 +277,6 @@ details p{color:var(--muted);font-weight:300;padding:0 54px 26px 0;animation:fad
 .lb-stage{overflow:hidden}
 .lb-hint{font-size:.7rem;opacity:.55;margin-top:4px}
 /* card tilt */
-@media (max-width:1024px){.tag-float{left:2%}}
 @media (max-width:820px){
   .mcta{display:flex;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:48;gap:8px;padding:8px;border-radius:999px;background:rgba(250,247,242,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 20px 40px -16px rgba(31,34,61,.4);transform:translateY(140%);transition:transform .5s cubic-bezier(.22,1,.36,1)}
   .mcta.show{transform:none}
@@ -404,13 +391,12 @@ img.fi{animation:imgFade .8s ease both}
 .lb-glow i{position:absolute;inset:-12%;background-size:cover;background-position:center;filter:blur(46px) saturate(1.25) brightness(.55);opacity:0;transition:opacity .9s ease;will-change:opacity}
 .lb>.lb-top,.lb>.lb-stage,.lb>.lb-strip,.lb>.lb-count{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){.lb-glow i{transition:none}}
-@media (prefers-reduced-motion:reduce){.pl{display:none}.ln>span{transform:none}.rot-in,.tag-float{animation:none}.rings path{stroke-dashoffset:0;animation:none}}
+@media (prefers-reduced-motion:reduce){.pl{display:none}.ln>span{transform:none}.rot-in{animation:none}.rings path{stroke-dashoffset:0;animation:none}}
 
 /* ---------- responsive ---------- */
 @media (max-width:1024px){
   .services>.svc{flex:1 1 calc(50% - 16px)}
   .steps{grid-template-columns:repeat(2,1fr);row-gap:36px}
-  .palette{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:820px){
   .burger{display:block}
@@ -421,14 +407,11 @@ img.fi{animation:imgFade .8s ease both}
   .hero{min-height:auto;padding-top:calc(var(--nav-h) + 24px)}
   .hero .wrap{grid-template-columns:1fr}
   .arch{margin:0 auto;max-width:380px;aspect-ratio:4/4.6}
-  .scroll-cue{display:none}
   .about,.founder,.contact{grid-template-columns:1fr}
   .quote-arch{max-width:300px;margin:0 auto}
 }
 @media (max-width:560px){
   .services,.steps{grid-template-columns:1fr}
-  .palette{grid-template-columns:repeat(2,1fr)}
-  .palette .sw:last-child{grid-column:span 2;aspect-ratio:2/1}
   .cta .btn{flex:1 1 100%}
   .head{align-items:flex-start}
   .chip{white-space:nowrap}
@@ -535,6 +518,7 @@ footer .cp.done::after{background:#fff;color:var(--indigo)}
 .cs{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
 .cs.on{opacity:1}
 .cs img{width:100%;height:100%;object-fit:cover;display:block}
+.cs picture{display:block;width:100%;height:100%}
 .cine-bar{display:flex;align-items:center;gap:10px;margin-top:10px;padding:0 2px}
 .cc{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}   /* still read out to screen readers, not shown */
 .ct{flex:1 1 0;min-width:0;height:44px;border:0;background:none;padding:0;display:flex;align-items:center;cursor:pointer}
@@ -573,7 +557,7 @@ header .nav{pointer-events:auto;max-width:1180px;margin:0 auto;height:60px;paddi
 header.solid .nav{background:rgba(46,49,86,.96);box-shadow:0 22px 44px -16px rgba(20,22,46,.7)}
 @media(min-width:821px){
   .links{gap:4px}
-  .links a:not(.btn){padding:9px 16px;border-radius:999px;transition:background .25s,color .25s}
+  .links a:not(.btn){padding:11px 16px;border-radius:999px;transition:background .25s,color .25s}
   .links a:not(.btn):hover{background:rgba(250,247,242,.08)}
   .links a.active{color:#F3D690}
   .links .btn{background:#DFB55C;border-color:#DFB55C;color:#2E3156;font-weight:600;margin-left:8px}
@@ -629,14 +613,14 @@ header.solid .nav{height:52px}
 .cine .cine-primary{box-shadow:0 1px 2px rgba(15,17,40,.3),0 10px 22px -10px rgba(15,17,40,.6)}
 .cine .cine-ghost,.cine .cine-ghost:hover{box-shadow:none}
 .links .btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 1px 2px rgba(15,17,40,.3),0 6px 14px -6px rgba(223,181,92,.55)}
-.chip,.opt{transition:background .2s,border-color .2s,color .2s,box-shadow .2s,transform .12s}
-.chip:hover,.opt:hover{background:rgba(46,49,86,.05)}
-.chip:active,.opt:active{transform:scale(.97)}
-.chip[aria-pressed=true],.opt[aria-pressed=true]{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 6px 12px -6px rgba(46,49,86,.55)}
-.chip[aria-pressed=true]:hover,.opt[aria-pressed=true]:hover{background:#252845}
+.chip{transition:background .2s,border-color .2s,color .2s,box-shadow .2s,transform .12s}
+.chip:hover{background:rgba(46,49,86,.05)}
+.chip:active{transform:scale(.97)}
+.chip[aria-pressed=true]{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 6px 12px -6px rgba(46,49,86,.55)}
+.chip[aria-pressed=true]:hover{background:#252845}
 .top:active{transform:scale(.94)}
 ::selection{background:rgba(223,181,92,.38);color:#1F2240}
-.btn:focus-visible,.chip:focus-visible,.opt:focus-visible{box-shadow:0 0 0 5px rgba(250,247,242,.9)}
+.btn:focus-visible,.chip:focus-visible{box-shadow:0 0 0 5px rgba(250,247,242,.9)}
 ::-webkit-scrollbar{width:12px;height:12px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(46,49,86,.28);border:3px solid transparent;background-clip:padding-box;border-radius:999px}
@@ -645,7 +629,7 @@ header.solid .nav{height:52px}
 .sprog{position:fixed;top:0;left:0;right:0;height:3px;z-index:80;background:linear-gradient(90deg,#C5A25B,#E7C27A);transform-origin:0 50%;transform:scaleX(0);pointer-events:none;display:none}
 @supports (animation-timeline:scroll()){.sprog{display:block;animation:sprog linear both;animation-timeline:scroll(root block)}}
 @keyframes sprog{to{transform:scaleX(1)}}
-@media(prefers-reduced-motion:reduce){.btn:active,.chip:active,.opt:active,.top:active{transform:none}.sprog{display:none!important}}
+@media(prefers-reduced-motion:reduce){.btn:active,.chip:active,.top:active{transform:none}.sprog{display:none!important}}
 
 /* phone-only touches: sticky gallery filters, WhatsApp shortcut under the form */
 @media(max-width:820px){
@@ -668,7 +652,7 @@ footer{border-top:1px solid rgba(197,162,91,.3)}   /* keeps the dark contact ban
 .cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:44px}
 .call-btn,.wa-pill{display:inline-flex;align-items:center;gap:16px;min-height:76px;padding:12px 34px 12px 22px;border-radius:999px;text-decoration:none;text-align:left;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,background .3s}
 .call-btn svg,.wa-pill svg{flex:none;width:44px;height:44px;padding:10px;border-radius:50%;box-sizing:border-box}
-.call-btn small,.wa-pill small{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8;margin-bottom:2px}
+.call-btn small,.wa-pill small{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:1;margin-bottom:2px}
 .call-btn b,.wa-pill b{display:block;font-weight:600;line-height:1.1}
 .call-btn{background:#E7C27A;color:#2E3156;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 20px 40px -16px rgba(231,194,122,.55)}
 .call-btn svg{background:#2E3156;color:#E7C27A}
@@ -714,7 +698,7 @@ footer .fcontact .fc{display:inline-flex;align-items:center;min-height:46px;bord
 footer .fcontact .fc:hover,footer .fcontact .fc:focus-within{border-color:#DFB55C;transform:translateY(-2px)}
 footer .fcontact .fc a{flex:1;min-width:0;min-height:44px;padding:0 10px 0 20px;border:0;background:none;transform:none}
 footer .fcontact .fc a:hover{background:rgba(250,247,242,.08);border-color:transparent;transform:none}
-footer .fcontact .fc .cp{width:36px;height:36px;margin:0 5px 0 0;border:0}
+footer .fcontact .fc .cp{width:40px;height:40px;margin:0 3px 0 0;border:0}
 footer .fcontact .fc .cp:hover{background:rgba(250,247,242,.14)}
 footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 @media(max-width:560px){footer .fcontact .fc{width:100%}footer .fcontact .fc a{justify-content:center}}
@@ -896,9 +880,9 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
     <a class="btn ghost mag" href="#contact">Start a Conversation</a>
   </div>
   <div class="hw-row">
-    <a class="hw-card" href="#gallery" data-go="living"><img data-img="tv2" alt="Slatted TV wall in a living room" width="1050" height="1400" fetchpriority="high" /><span>Slatted TV wall</span></a>
-    <a class="hw-card" href="#gallery" data-go="kitchen"><img data-img="kit3" alt="L-shaped modular kitchen" width="1050" height="1400" /><span>Modular kitchen</span></a>
-    <a class="hw-card" href="#gallery" data-go="bedroom"><img data-img="wt" alt="Teal wardrobe with a study nook" width="1050" height="1400" /><span>Wardrobes and bedrooms</span></a>
+    <a class="hw-card" href="#gallery" data-go="living"><img data-img="tv2" alt="Slatted TV wall in a living room" width="1050" height="1400" loading="lazy" /><span>Slatted TV wall</span></a>
+    <a class="hw-card" href="#gallery" data-go="kitchen"><img data-img="kit3" alt="L-shaped modular kitchen" width="1050" height="1400" loading="lazy" /><span>Modular kitchen</span></a>
+    <a class="hw-card" href="#gallery" data-go="bedroom"><img data-img="wt" alt="Teal wardrobe with a study nook" width="1050" height="1400" loading="lazy" /><span>Wardrobes and bedrooms</span></a>
   </div>
 </section>
 <!-- HERO (phone) -->
@@ -906,7 +890,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
   <div class="cine-media">
   <div class="cine-frame">
   <div class="cine-slides" aria-live="off">
-    <div class="cs on" data-name="Site Sales Office"><img src="img/sales-office-1.jpg" srcset="img/sales-office-1-360.jpg 360w, img/sales-office-1-640.jpg 640w, img/sales-office-1.jpg 1280w" sizes="(max-width:820px) 96vw, min(96vw,1480px)" width="1280" height="960" alt="Warm panelled sales office with concealed LED lighting and a glazed frontage" fetchpriority="high" style="object-position:50% 55%" /></div>
+    <div class="cs on" data-name="Site Sales Office"><picture><source media="(min-width:821px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img src="img/sales-office-1.jpg" srcset="img/sales-office-1-360.jpg 360w, img/sales-office-1-640.jpg 640w, img/sales-office-1.jpg 1280w" sizes="(max-width:820px) 96vw, min(96vw,1480px)" width="1280" height="960" alt="Warm panelled sales office with concealed LED lighting and a glazed frontage" fetchpriority="high" style="object-position:50% 55%" /></picture></div>
     <div class="cs" data-name="Slatted TV Wall"><img data-srcset="img/tv-wall-2-360.jpg 360w, img/tv-wall-2-640.jpg 640w, img/tv-wall-2.jpg 1050w" data-src="img/tv-wall-2.jpg" sizes="(max-width:820px) 96vw, min(96vw,1480px)" width="1050" height="1400" alt="Living room with a slatted TV wall and a cove-lit ceiling" decoding="async" style="object-position:50% 50%" /></div>
     <div class="cs" data-name="Pooja &amp; Display Wall Unit"><img data-srcset="img/pooja-wall-unit-360.jpg 360w, img/pooja-wall-unit-640.jpg 640w, img/pooja-wall-unit.jpg 1400w" data-src="img/pooja-wall-unit.jpg" sizes="(max-width:820px) 96vw, min(96vw,1480px)" width="1400" height="1050" alt="Full-wall unit with a laser-cut pooja cabinet and a lit display column" decoding="async" style="object-position:50% 50%" /></div>
     <div class="cs" data-name="L-Shaped Modular Kitchen"><img data-srcset="img/kitchen-3-360.jpg 360w, img/kitchen-3-640.jpg 640w, img/kitchen-3.jpg 1050w" data-src="img/kitchen-3.jpg" sizes="(max-width:820px) 96vw, min(96vw,1480px)" width="1050" height="1400" alt="L-shaped modular kitchen with glossy wall units and under-cabinet lighting" decoding="async" style="object-position:50% 62%" /></div>
@@ -1138,7 +1122,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
     <div class="head">
       <div><span class="kicker rv">From first conversation to final handover</span><h2 class="rv">Our <em>process</em></h2></div>
     </div>
-    <div class="steps">
+    <div class="steps" tabindex="0" role="region" aria-label="Our process, six steps">
       <div class="step rv"><h3>Consultation</h3><p>We meet, understand your needs and budget, and measure the site.</p></div>
       <div class="step rv"><h3>Quotation</h3><p>A clear, upfront quote for your project.</p></div>
       <div class="step rv"><h3>Commencement</h3><p>A small advance confirms your project and starts the design.</p></div>
@@ -1174,7 +1158,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 
 <footer>
   <div class="wrap fin">
-    <img class="flogo" src="img/logo/stacked-dark.svg" width="132" height="137" alt="Lumen &amp; Archue: Light, Colour, Space" />
+    <img class="flogo" loading="lazy" decoding="async" src="img/logo/stacked-dark.svg" width="132" height="137" alt="Lumen &amp; Archue: Light, Colour, Space" />
     <p class="fserve">Serving homes and workplaces across Tamil Nadu, Kerala and Karnataka.</p>
     <nav class="fcontact" aria-label="Contact">
       <span class="fc"><a href="tel:+919025284259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span>+91 90252 84259</span></a><button type="button" class="cp" data-copy="+91 90252 84259" data-what="phone number" aria-label="Copy phone number" title="Copy phone number"><svg class="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15V6.2A2.2 2.2 0 017.2 4H16"/></svg><svg class="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></span>
@@ -1248,7 +1232,7 @@ function fadeIn(img){
   img.addEventListener('load',done,{once:true});img.addEventListener('error',done,{once:true});
 }
 $$('img[data-img]').forEach(i=>{
-  const u=IMG[i.dataset.img];i.src=u;
+  const u=IMG[i.dataset.img];
   if(/\.jpg$/.test(u)){
     i.srcset=u.replace(/\.jpg$/,'-360.jpg')+' 360w, '+u.replace(/\.jpg$/,'-640.jpg')+' 640w, '+u+' 1050w';
     i.sizes=i.closest('.gal.three')?'(max-width:820px) 34vw, 210px'
@@ -1257,8 +1241,11 @@ $$('img[data-img]').forEach(i=>{
       :i.closest('.quote-arch')?'(max-width:820px) 300px, 420px'
       :i.closest('.scard')?'(max-width:820px) 68vw, 260px'
       :i.closest('.cta-band')?'100vw'
+      :i.closest('.hw-card')?'(min-width:821px) 380px, 100vw'
+      :i.closest('.pcover,.project')?'(max-width:700px) 82vw, (max-width:1100px) 50vw, 240px'
       :'(max-width:820px) 100vw, 560px';
   }
+  i.src=u;   // set last, after srcset and sizes, so only the right size is fetched
   fadeIn(i);
 });
 // ---- service cards open the Gallery on that room ----
@@ -1626,7 +1613,7 @@ if(fine&&!calm){
   const DUR=5500;hero.style.setProperty('--dur',DUR+'ms');
   let i=0,timer=null,userPaused=!!calm,visible=true,tabOn=!document.hidden;
   // the other photos load once the page itself has finished loading
-  const loadRest=()=>$$('img[data-src]',hero).forEach(m=>{m.srcset=m.dataset.srcset;m.src=m.dataset.src;m.removeAttribute('data-src')});
+  const loadRest=()=>hero.offsetParent&&$$('img[data-src]',hero).forEach(m=>{m.srcset=m.dataset.srcset;m.src=m.dataset.src;m.removeAttribute('data-src')});
   if(document.readyState==='complete')setTimeout(loadRest,300);else addEventListener('load',()=>setTimeout(loadRest,300),{once:true});
   const running=()=>!userPaused&&visible&&tabOn;
   const arm=()=>{clearTimeout(timer);hero.classList.toggle('is-paused',userPaused);hero.classList.toggle('is-off',!visible||!tabOn);if(running())timer=setTimeout(()=>go(i+1),DUR)};
