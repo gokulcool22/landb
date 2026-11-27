@@ -775,6 +775,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 .cb-foot a:first-child{background:#E7C27A;color:#2E3156}
 .cb-foot a:last-child{background:#25D366;color:#06371D}
 @keyframes cbIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes cbUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
 @keyframes cbDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px);opacity:1}}
 @media(max-width:820px){
   .cb-btn{right:14px;bottom:calc(20px + env(safe-area-inset-bottom));width:62px;height:62px;padding:0;justify-content:center}
@@ -782,10 +783,18 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
   body.mcta-on .cb-btn{bottom:calc(92px + env(safe-area-inset-bottom))}
   .cb-nudge{right:14px;bottom:calc(94px + env(safe-area-inset-bottom))}
   body.mcta-on .cb-nudge{bottom:calc(166px + env(safe-area-inset-bottom))}
-  .cb-panel{right:0;left:0;bottom:0;width:100%;height:min(82vh,640px);border-radius:24px 24px 0 0;padding-bottom:env(safe-area-inset-bottom)}
-  body.cb-open .cb-btn{display:none}
+  .cb-panel{left:0;right:0;bottom:auto;top:var(--vvt,0px);width:100%;height:var(--vvh,100dvh);min-height:0;max-height:none;border:0;border-radius:0;z-index:70;animation:cbUp .35s cubic-bezier(.22,1,.36,1)}
+  .cb-head{padding:calc(12px + env(safe-area-inset-top)) 12px 12px 16px}
+  .cb-log{padding:14px 14px 8px}
+  .cb-m{max-width:92%;font-size:.95rem}
+  .cb-foot{padding:10px 14px calc(12px + env(safe-area-inset-bottom))}
+  .cb-nudge{padding:14px 14px 10px;border-radius:18px}
+  .cb-nudge p{margin-bottom:10px}
+  .cb-nudge p b{font-size:1.15rem}
+  body.cb-open{overflow:hidden}
+  body.cb-open .cb-btn,body.cb-open .cb-nudge,body.cb-open .mcta{display:none}
 }
-@media(prefers-reduced-motion:reduce){.cb-btn::before{animation:none}.cb-nudge,.cb-panel,.cb-m{animation:none}.cb-btn,.cb-btn:hover{transition:none;transform:none}.cb-log{scroll-behavior:auto}.cb-dots i{animation:none}}
+@media(prefers-reduced-motion:reduce){.cb-panel{animation:none}.cb-btn::before{animation:none}.cb-nudge,.cb-panel,.cb-m{animation:none}.cb-btn,.cb-btn:hover{transition:none;transform:none}.cb-log{scroll-behavior:auto}.cb-dots i{animation:none}}
 </style>
 <script>try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&!sessionStorage.getItem("introSeen"))document.documentElement.classList.add("intro")}catch(e){}</script>
 </head>
@@ -1569,7 +1578,7 @@ if(fine&&!calm){
   const ASK=(label,key)=>({t:label,cls:'cb-a-go',ask:key});
   const TOPICS=[['Services','services'],['Where we work','location'],['How we work','process'],['Quote and pricing','pricing'],['Our projects','projects'],['Contact us','contact']];
   const A={
-    hello:{t:"Hello! I'm the Lumen & Archue assistant. Ask me about our services, where we work or how to reach us.",b:[CALL,WAB()]},
+    hello:{t:"Hello! I'm the Lumen & Archue assistant. Ask me about our services, where we work or how to reach us.",b:[]},
     services:{t:"We do interior design, elevation and fabrication for homes and workplaces:",l:['Living & feature walls','Modular kitchens','Wardrobes & bedrooms','Commercial spaces','Signage & fabrication'],t2:"Also on our list: exterior design and elevation, space planning and layouts, 3D visualisation, custom furniture, false ceiling and lighting design, signage and branding works, and metal and CNC work.",b:[WAB('your services'),CALL,GAL('See our photos','all')]},
     kitchen:{t:"Modular kitchens: L-shaped and island kitchens, planned around how you cook.",b:[GAL('See kitchen photos','kitchen'),WAB('a modular kitchen'),CALL]},
     bedroom:{t:"Wardrobes and bedrooms: colour-led wardrobe walls and study corners.",b:[GAL('See bedroom photos','bedroom'),WAB('wardrobes or a bedroom'),CALL]},
@@ -1639,7 +1648,9 @@ if(fine&&!calm){
     m.appendChild(el('span',null,a.t));
     if(a.l){const ul=el('ul');a.l.forEach(x=>ul.appendChild(el('li',null,x)));m.appendChild(ul)}
     if(a.t2)m.appendChild(el('p',null,a.t2)).style.margin='8px 0 0';
-    if(a.b)m.appendChild(actions(a.b));
+    // Call and WhatsApp live in the permanent row at the bottom, so messages only carry the extra buttons (photos, related topics, email)
+    const extra=(a.b||[]).filter(x=>x.cls!=='cb-a-call'&&x.cls!=='cb-a-wa');
+    if(extra.length)m.appendChild(actions(extra));
     return m;
   }
   function reply(key){
@@ -1661,9 +1672,18 @@ if(fine&&!calm){
     hideNudge();mark();
     panel.hidden=false;open=true;btn.setAttribute('aria-expanded','true');document.body.classList.add('cb-open');
     if(!started){started=true;buildQuick();log.appendChild(bot('hello'))}
-    setTimeout(()=>{inp.focus({preventScroll:true});toBottom()},60);
+    syncVV();
+    if(!matchMedia('(max-width:820px)').matches)setTimeout(()=>{inp.focus({preventScroll:true});toBottom()},60);
+    else toBottom();
   }
-  function closePanel(){panel.hidden=true;open=false;btn.setAttribute('aria-expanded','false');document.body.classList.remove('cb-open');btn.focus({preventScroll:true})}
+  const vv=window.visualViewport;
+  function syncVV(){
+    if(!open||!vv)return;
+    if(matchMedia('(max-width:820px)').matches){panel.style.setProperty('--vvh',Math.round(vv.height)+'px');panel.style.setProperty('--vvt',Math.round(vv.offsetTop)+'px');toBottom()}
+    else{panel.style.removeProperty('--vvh');panel.style.removeProperty('--vvt')}
+  }
+  if(vv){vv.addEventListener('resize',syncVV);vv.addEventListener('scroll',syncVV)}
+  function closePanel(){panel.style.removeProperty('--vvh');panel.style.removeProperty('--vvt');panel.hidden=true;open=false;btn.setAttribute('aria-expanded','false');document.body.classList.remove('cb-open');btn.focus({preventScroll:true})}
   function hideNudge(){nudge.hidden=true}
   btn.addEventListener('click',()=>open?closePanel():openPanel());
   $('.cb-close',panel).addEventListener('click',closePanel);
