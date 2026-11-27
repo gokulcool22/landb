@@ -843,6 +843,18 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
   .step.lit::before{text-shadow:none}
   .step::after{display:none}
 }
+/* ask about this photo, and what happens after you reach out */
+.lb-actions{position:relative;z-index:3;display:flex;justify-content:center;padding:6px 16px 4px}
+.lb-ask{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 24px 0 18px;border-radius:999px;background:#25D366;color:#06371D;font-weight:600;font-size:.9rem;text-decoration:none;box-shadow:0 14px 30px -14px rgba(37,211,102,.7)}
+.lb-ask svg{width:22px;height:22px;fill:#06371D;flex:none}
+.lb-ask:hover{background:#2BE070}
+.lb-ask:focus-visible{outline:3px solid #E7C27A;outline-offset:3px}
+.next-steps{margin:44px auto 0;max-width:860px;text-align:center}
+.ns-title{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#E7C27A;margin-bottom:18px}
+.next-steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
+.next-steps li{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border:1px solid rgba(250,247,242,.18);border-radius:16px;color:rgba(250,247,242,.88);font-size:.92rem;line-height:1.5}
+.next-steps b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#E7C27A;color:#2E3156;font:600 .85rem var(--sans,inherit)}
+@media(max-width:700px){.next-steps{margin-top:34px;text-align:left}.next-steps ol{grid-template-columns:1fr;gap:10px}}
 </style>
 <script>try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&!sessionStorage.getItem("introSeen"))document.documentElement.classList.add("intro")}catch(e){}</script>
 </head>
@@ -1148,6 +1160,14 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
       <a class="call-btn" href="tel:+919025284259" aria-label="Call +91 90252 84259"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span><small>Tap to call</small><b>+91 90252 84259</b></span></a>
       <a class="wa-pill" href="https://wa.me/919025284259?text=Hello%20Lumen%20%26%20Archue%2C%20I%27m%20looking%20to%20enquire%20about%20interior%20design." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span><small>Message us</small><b>Chat on WhatsApp</b></span></a>
     </div>
+    <div class="next-steps rv">
+      <span class="ns-title">What happens when you reach out</span>
+      <ol>
+        <li><b>1</b><span>Tell us about your space</span></li>
+        <li><b>2</b><span>We understand your needs and budget, and measure the site</span></li>
+        <li><b>3</b><span>You get a clear, upfront quote</span></li>
+      </ol>
+    </div>
   </div>
 </section>
 </main>
@@ -1204,6 +1224,7 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
     <div class="lb-mini" id="lbM" aria-hidden="true"><img alt=""><i></i></div>
     <button class="lb-nav lb-next" id="lbN" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
   </div>
+  <div class="lb-actions"><a class="lb-ask" id="lbAsk" href="https://wa.me/919025284259" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.709.306 1.263.489 1.694.626.712.226 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>Like this? Ask about it</span></a></div>
   <div class="lb-strip" id="lbTh" role="group" aria-label="All photos"></div>
   <div class="lb-count"><div class="lb-dots" id="lbD" role="group" aria-label="Photos in this project"></div><span id="lbC" aria-live="polite"></span></div>
 </div>
@@ -1387,6 +1408,7 @@ function show(i,instant,navigating){
   setGlow(b.dataset.img,!glide);
   $('#lbT').innerHTML=b.dataset.t; $('#lbS').innerHTML=b.dataset.s+(touchy?' · Tap photo to zoom':' · Scroll or double-click to zoom');
   $('#lbProj').hidden=!(fromGallery&&b.dataset.proj);
+  $('#lbAsk').href='https://wa.me/919025284259?text='+encodeURIComponent('Hello Lumen & Archue, I like the "'+$('#lbT').textContent+'" and would like something similar.');
   drawDots();drawStrip();
 }
 const inView=el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth};
