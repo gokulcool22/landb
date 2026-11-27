@@ -794,6 +794,27 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
   body.cb-open .cb-btn,body.cb-open .cb-nudge,body.cb-open .mcta{display:none}
 }
 @media(prefers-reduced-motion:reduce){.cb-panel{animation:none}.cb-btn::before{animation:none}.cb-nudge,.cb-panel,.cb-m{animation:none}.cb-btn,.cb-btn:hover{transition:none;transform:none}.cb-log{scroll-behavior:auto}.cb-dots i{animation:none}}
+
+/* web hero: headline, then three sharp photos side by side (phones keep the slideshow hero) */
+.hero-web{display:none}
+@media(min-width:821px){
+  #hero{display:none}
+  .hero-web{display:block;max-width:1180px;margin:0 auto;padding:calc(var(--nav-h) + 38px) 24px 56px;text-align:center;color:var(--indigo);background:var(--ivory)}
+  .hero-web .kicker{display:inline-block;margin-bottom:6px}
+  .hero-web h1{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,5.8vw,5.2rem);line-height:1.04;margin:10px 0 24px;color:var(--indigo)}
+  .hero-web h1 em{color:#A27213}
+  .hero-web h1 .ln{display:inline-block;vertical-align:bottom}
+  .hero-web .cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .hw-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px}
+  .hw-card{position:relative;display:block;height:clamp(320px,calc(100svh - 380px),560px);border-radius:24px;overflow:hidden;background:var(--ivory-warm);box-shadow:0 30px 60px -34px rgba(31,34,61,.5);text-decoration:none;color:#fff;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s}
+  .hw-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 55%;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+  .hw-card::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(0deg,rgba(31,34,61,.62),transparent);pointer-events:none}
+  .hw-card span{position:absolute;left:20px;bottom:16px;z-index:1;font-family:var(--serif);font-size:1.35rem;line-height:1.15;text-align:left;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+  .hw-card:hover{transform:translateY(-6px);box-shadow:0 40px 70px -32px rgba(31,34,61,.6)}
+  .hw-card:hover img{transform:scale(1.04)}
+  .hw-card:focus-visible{outline:3px solid var(--ochre);outline-offset:4px}
+}
+@media(prefers-reduced-motion:reduce){.hw-card,.hw-card img{transition:none}.hw-card:hover,.hw-card:hover img{transform:none}}
 </style>
 <script>try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches&&!sessionStorage.getItem("introSeen"))document.documentElement.classList.add("intro")}catch(e){}</script>
 </head>
@@ -826,7 +847,21 @@ footer .fcontact svg.wa-logo{color:#25D366;width:20px;height:20px}
 </header>
 
 <main id="top">
-<!-- HERO -->
+<!-- HERO (web): headline, then three photos side by side -->
+<section class="hero-web" id="hero-web" aria-label="Featured projects">
+  <span class="kicker">Interior · Elevation · Fabrication</span>
+  <h1><span class="ln"><span>Rooms shaped by</span></span> <span class="ln"><span><span class="rot"><span class="rot-in"><em>light.</em><em>colour.</em><em>space.</em><em>light.</em></span></span></span></span></h1>
+  <div class="cta">
+    <a class="btn arrow mag" href="#works">View Projects</a>
+    <a class="btn ghost mag" href="#contact">Start a Conversation</a>
+  </div>
+  <div class="hw-row">
+    <a class="hw-card" href="#gallery" data-go="living"><img data-img="tv2" alt="Slatted TV wall in a living room" width="1050" height="1400" fetchpriority="high" /><span>Slatted TV wall</span></a>
+    <a class="hw-card" href="#gallery" data-go="kitchen"><img data-img="kit3" alt="L-shaped modular kitchen" width="1050" height="1400" /><span>Modular kitchen</span></a>
+    <a class="hw-card" href="#gallery" data-go="bedroom"><img data-img="wt" alt="Teal wardrobe with a study nook" width="1050" height="1400" /><span>Wardrobes and bedrooms</span></a>
+  </div>
+</section>
+<!-- HERO (phone) -->
 <section class="hero cine" id="hero" aria-roledescription="carousel" aria-label="Featured projects">
   <div class="cine-media">
   <div class="cine-frame">
@@ -1704,6 +1739,13 @@ if(fine&&!calm){
   }
   if(!seen)setTimeout(()=>tryNudge(0),NUDGE_MS);
 })();
+
+// ---- web hero cards open the Gallery on that room ----
+$$('.hw-card[data-go]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const chip=$('#gfil .chip[data-gf="'+a.dataset.go+'"]');if(chip)chip.click();
+  const g=$('#gallery');if(g)g.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'});
+}));
 </script>
 </body>
 </html>
